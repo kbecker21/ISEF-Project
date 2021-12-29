@@ -13,7 +13,8 @@ class Subject extends ResourceController {
         
       $model = new SubjectModel();
 
-      $data['Subject'] = $model->orderBy('idSubject', 'DESC')->findAll();
+      $data['Subject'] = $model->orderBy('idSubject', 'ASC')->findAll();
+
 
       return $this->respond($data);
     }
@@ -31,20 +32,23 @@ class Subject extends ResourceController {
         }
     }
 
+    
+
     // create
     public function create() {
 
         $model = new SubjectModel();
         $session = session();
-
+       
         $data = [
-            'ShortName'  => $this->request->getVar('shortname'),
-            'Name' => $this->request->getVar('name'),
+            'ShortName'  => $this->request->getVar('ShortName'),
+            'Name' => $this->request->getVar('Name'),
             'Creator_idUser' => $session->get('idUser'), //NEED to come from session ID!!!!
-            'Active'  => 1,
+            'Active'  => $this->request->getVar('Active'),
             'CreateDate'  => date("Y-m-d H:i:s")
         ];
 
+        
         $model->insert($data);
 
         $response = [
@@ -66,24 +70,51 @@ class Subject extends ResourceController {
     public function update($id = null){
 
         $model = new SubjectModel();
+        
+        //convert to json
+        $json = $this->request->getJSON();
 
+        //Try map data to object
+       try {
         $data = [
-            'ShortName'  => $this->request->getVar('shortname'),
-            'Name' => $this->request->getVar('name'),
-            //'Creator_idUser' => 1, //NEED to come from session ID!!!!
-            'Active'  => 1
-        ];
-
-        $model->update($id, $data);
-
-        $response = [
-          'status'   => 200,
-          'error'    => null,
-          'messages' => [
-              'success' => 'Subject updated successfully'
-          ]
-      ];
-      return $this->respond($response);
+                'ShortName'  => $json->ShortName ?? '',
+                'Name' => $json->Name ?? '',
+                //'Creator_idUser' => 1, //NEED to come from session ID!!!!
+                'Active'  => $json->Active ?? '',
+            ]; 
+        //On error return error
+        } catch (\Exception $e) {
+            $response = [
+            'status'   => 400,
+            'error'    => $e->getMessage(),
+            'messages' => [
+                'error' => 'Bad Request'
+            ]
+            ];
+            return $this->respond($response);
+        }
+        //Try Update DB with data
+        try{
+            $model->update($id, $data);
+            $response = [
+                'status'   => 200,
+                'error'    => null,
+                'messages' => [
+                    'success' => 'Subject updated successfully',
+                    'data' => $data
+                ]
+            ];
+        } catch(\Exception $e) {
+            $response = [
+                'status'   => 500,
+                'error'    => $e->getMessage(),
+                'messages' => [
+                    'error' => 'Subject update failed',
+                    'data' => $data
+                ]
+            ];
+        }
+      return $this->respond($response); 
     }
 
    

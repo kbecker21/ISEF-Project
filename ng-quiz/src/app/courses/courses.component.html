@@ -1,0 +1,22 @@
+ <div class="flexContainer">
+     <div class="fbox">
+            <app-courses-list 
+                [dataSource]="dataSource"                
+                [displayedColumns]="displayedColumns"
+                (selected)="selectCourse($event)"
+                (deleted)="deleteCourse($event)"
+               >
+            </app-courses-list>
+    </div>
+    <div class="fbox">
+            <app-course-details 
+            [course]="selectedCourse"
+            [categories]="categoriesofCourse" 
+            (saved)="saveCourse($event)"
+            (saveCategory)="saveCategory($event)"
+            (selectCategory)="saveCategory($event)"
+            (deleteCategory)="deleteCategory($event)"
+            (canceled)="cancel()">
+        </app-course-details>
+    </div>
+</div>

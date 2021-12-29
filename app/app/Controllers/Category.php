@@ -30,6 +30,19 @@ class Category extends ResourceController
         }
     }
 
+    // Category of course
+    public function showcourse($id = null){
+
+        $model = new CategoryModel();
+
+        $data['Category'] = $model->where('Subject_idSubject', $id)->findAll();
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No Category found');
+        }
+    }
+
     // create
     public function create() {
 

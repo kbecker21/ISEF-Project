@@ -50,10 +50,11 @@ $routes->get('user/(:num)', 'User::show/$1', ['filter' => 'authadmin']);
 $routes->post('user/(:num)', 'User::update/$1', ['filter' => 'authadmin']);
 $routes->delete('user/(:num)', 'User::delete/$1', ['filter' => 'authadmin']);
 
+
 $routes->get('subject', 'Subject::index', ['filter' => 'authadmin']);
 $routes->post('subject', 'Subject::create', ['filter' => 'authadmin']);
 $routes->get('subject/(:num)', 'Subject::show/$1', ['filter' => 'authadmin']);
-$routes->post('subject/(:num)', 'Subject::update/$1', ['filter' => 'authadmin']);
+$routes->put('subject/(:num)', 'Subject::update/$1', ['filter' => 'authadmin']);
 $routes->delete('subject/(:num)', 'Subject::delete/$1', ['filter' => 'authadmin']);
 
 $routes->get('category', 'Category::index', ['filter' => 'authadmin']);
@@ -61,6 +62,7 @@ $routes->post('category', 'Category::create', ['filter' => 'authadmin']);
 $routes->get('category/(:num)', 'Category::show/$1', ['filter' => 'authadmin']);
 $routes->post('category/(:num)', 'Category::update/$1', ['filter' => 'authadmin']);
 $routes->delete('category/(:num)', 'Category::delete/$1', ['filter' => 'authadmin']);
+$routes->get('category/course/(:num)', 'Category::showcourse/$1', ['filter' => 'authadmin']);
 
 $routes->get('question', 'Question::index', ['filter' => 'authadmin']);
 $routes->post('question', 'Question::create', ['filter' => 'authadmin']);

@@ -1,5 +1,3 @@
-
-
 .centerImage{
     display: block; 
     margin-left: auto; 
@@ -21,3 +19,21 @@ body {
     color:white;
 }
 
+
+.course-container .mat-form-field {
+    margin: 5px;
+}
+
+.pull-right {
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+.mat-list-item:hover {
+    background-color: whitesmoke;
+}
+
+.inactive-course {
+    background-color: rgba(205, 132, 141, 0.39);
+    
+}

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatListModule} from '@angular/material/list';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,7 +35,9 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { AccountLevelPipe } from './shared/pipe/account-level.pipe';
 import { LobbyComponent } from './lobby/lobby.component';
 import { GameComponent } from './game/game.component';
-import { PoolComponent } from './pool/pool.component';
+import { CoursesComponent } from './courses/courses.component';
+import { CoursesListComponent } from './courses/courses-list/courses-list.component';
+import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 
 
 
@@ -51,10 +56,14 @@ import { PoolComponent } from './pool/pool.component';
     AccountLevelPipe,
     LobbyComponent,
     GameComponent,
-    PoolComponent
+    CoursesComponent,
+    CoursesListComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,
+    MatListModule,
+    FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,

@@ -1,0 +1,34 @@
+<h2>Kurse</h2>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Name Column -->
+  
+       
+    
+    <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let course"> {{course.Name}} </mat-cell>
+    </ng-container>
+
+    <!-- ShortName Column -->
+    <ng-container matColumnDef="ShortName">
+        <mat-header-cell *matHeaderCellDef> Abkürzung </mat-header-cell>
+        <mat-cell *matCellDef="let course"> {{course.ShortName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Aktionen </mat-header-cell>
+        <mat-cell *matCellDef="let course">
+            <button mat-icon-button color="primary" (click)="selected.emit(course)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleted.emit(course.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let course; columns: displayedColumns;" [class.inactive-course]='course.isActive==0'></mat-row>
+    
+</mat-table>

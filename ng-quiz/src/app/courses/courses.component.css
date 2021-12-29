@@ -1,0 +1,9 @@
+.flexContainer {
+    display: flex;
+    flex-direction: row;
+ }
+ .fbox {       
+    flex-basis: 70%;
+    margin: 5px; 
+}
+

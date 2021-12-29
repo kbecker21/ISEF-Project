@@ -1,0 +1,73 @@
+<h2>
+    <span *ngIf="selectedCourse.id; else noSelection">{{originalName}}</span>
+    <ng-template #noSelection>Kurs hinzufügen</ng-template> 
+</h2>
+<div class="course-container">
+    <mat-card>
+        <form #form="ngForm" (submit)="saved.emit(selectedCourse)">
+        <mat-card-content>
+
+            <mat-form-field>
+                <mat-label>Kurs</mat-label>
+                <input matInput placeholder="Kurs" 
+                type="text" name="Name" required
+                [(ngModel)]="selectedCourse.Name">
+            </mat-form-field>
+
+            <mat-form-field >
+                <mat-label>Abkürzung</mat-label>
+                <input matInput placeholder="Abkürzung" 
+                type="text" name="ShortName" required
+                [(ngModel)]="selectedCourse.ShortName">
+            </mat-form-field>
+
+            <section>                    
+                <mat-label>Aktiv </mat-label>
+                <mat-checkbox name="Active" ></mat-checkbox>
+            </section>
+
+        </mat-card-content>
+        <mat-card-actions>
+        <button [disabled]="form.invalid" type="submit" mat-button color="primary">
+            <span *ngIf="selectedCourse.id; else noSelection">Aktualisieren</span>
+            
+        </button>
+        <button type="button" mat-button (click)="canceled.emit()">Abbrechen</button>
+        
+
+        </mat-card-actions>
+    </form>
+    </mat-card> 
+</div>
+<div *ngIf="selectedCourse.id">        
+    <h2>Kategorien</h2>
+        <mat-card>
+            <mat-card-header >
+                <div class="pull-right"><button type="button" mat-button (click)="selectCategory.emit()" >Hinzufügen</button> </div>
+            <mat-card-title>  </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+         
+            <mat-list>
+                <mat-list-item
+                *ngFor="let category of categories"
+                (click)="selected.emit(category)"
+                >
+                {{ category.Name }}
+                <div class="pull-right">
+                    <button (click)="selectCategory.emit(category.id)" mat-icon-button color="primary">
+                        <mat-icon >edit</mat-icon>
+                    </button>
+                   
+                    <button (click)="deleteCategory.emit(category)" mat-icon-button color="warn">
+                        <mat-icon >delete</mat-icon>
+                    </button>
+                </div>
+                </mat-list-item>
+            </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>  
+
+
+
