@@ -40,10 +40,10 @@ class User extends ResourceController {
         $model = new UserModel();
 
         $data = [
-            'FirstName' => $this->request->getVar('firstname'),
-            'LastName' => $this->request->getVar('lastname'),
-            'Email'  => $this->request->getVar('email'),
-            'Password'  => $this->request->getVar('password'),
+            'FirstName' => $this->request->getVar('FirstName'),
+            'LastName' => $this->request->getVar('LastName'),
+            'Email'  => $this->request->getVar('Email'),
+            'Password'  => $this->request->getVar('Password'),
             'CreateDate'  => date("Y-m-d H:i:s"),
             'Status'  => 0,
             'AccountLevel_idAccountLevel'  => 3
@@ -63,25 +63,14 @@ class User extends ResourceController {
 
     }
 
-
-
-
     // update
     public function update($id = null){
 
         $model = new UserModel();
-       
-        $data = [
-            'FirstName' => $this->request->getVar('firstname'),
-            'LastName' => $this->request->getVar('lastname'),
-            'Email'  => $this->request->getVar('email'),
-            'Password'  => $this->request->getVar('password'),
-            'Status'  => 0,
-            'AccountLevel_idAccountLevel'  => 3,
-            'Lastupdated'  => date("Y-m-d H:i:s")
-        ];
 
-        $model->update($id, $data);
+        $rawdata = $this->request->getRawInput();
+       
+        $model->update($id, $rawdata);
 
         $response = [
           'status'   => 200,
@@ -93,7 +82,7 @@ class User extends ResourceController {
       return $this->respond($response);
     }
 
-   
+
 
     // delete 
     public function delete($id = null){
