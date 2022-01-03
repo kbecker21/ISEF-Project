@@ -27,16 +27,10 @@ class Me extends ResourceController {
 
         $model = new UserModel();
         $session = session();
-       
-        $data = [
-            'FirstName' => $this->request->getVar('firstname'),
-            'LastName' => $this->request->getVar('lastname'),
-            'Email'  => $this->request->getVar('email'),
-            'Password'  => $this->request->getVar('password'),
-            'Lastupdated'  => date("Y-m-d H:i:s")
-        ];
+        
+        $rawdata = $this->request->getRawInput();
 
-        $model->update($session->get('idUser'), $data);
+        $model->update($session->get('idUser'), $rawdata);
 
         $response = [
           'status'   => 200,
@@ -55,14 +49,16 @@ class Me extends ResourceController {
 
         $model = new UserModel();
         $session = session();
-        $model->delete($session->get('idUser'));
-        $response = [
-            'status'   => 200,
-            'error'    => null,
-            'messages' => [
-                'success' => 'User successfully deleted'
-            ]
-        ];
-        return $this->respondDeleted($response);
+
+            $model->delete($session->get('idUser'));
+            $response = [
+                'status'   => 200,
+                'error'    => null,
+                'messages' => [
+                    'success' => 'Account successfully deleted'
+                ]
+            ];
+            return $this->respondDeleted($response);
+
     }
 }

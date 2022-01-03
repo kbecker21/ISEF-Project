@@ -4,10 +4,10 @@ use CodeIgniter\Model;
   
 class UserModel extends Model{
 
-	protected $table = 'user';
+    protected $table = 'user';
     protected $primaryKey = 'idUser';
     protected $allowedFields = [
-	'FirstName',
+    'FirstName',
     'LastName', 
     'Email',
     'Password',
@@ -15,7 +15,7 @@ class UserModel extends Model{
     'CreateDate',
     'AccountLevel_idAccountLevel',
     'Lastupdated',
-	];
+    ];
 
 
     protected $beforeInsert = ['beforeInsert'];
