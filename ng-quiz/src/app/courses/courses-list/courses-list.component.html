@@ -1,4 +1,8 @@
-<h2>Kurse</h2>
+<h2>Kurse 
+    <button mat-icon-button color="info" (click)="refresh.emit()">
+        <mat-icon>refresh</mat-icon>
+    </button>
+</h2>
 
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Name Column -->

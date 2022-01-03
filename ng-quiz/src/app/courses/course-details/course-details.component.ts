@@ -8,12 +8,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CourseDetailsComponent {
 
   selectedCourse;
+  selectedCategory;
   originalName;
  
  
   @Output() saved = new EventEmitter;
   @Output() canceled = new EventEmitter;
+  
   @Output() selectCategory = new EventEmitter;
+  @Output() newCategory = new EventEmitter;
   @Output() deleteCategory = new EventEmitter;
 
   @Input() set course(value) {
@@ -25,6 +28,7 @@ export class CourseDetailsComponent {
 
   @Input() categories;
 
+  @Input() category;
   
 
 }

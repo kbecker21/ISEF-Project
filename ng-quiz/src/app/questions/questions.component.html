@@ -1,0 +1,14 @@
+<mat-card *ngFor="let category of dataSource">
+    <mat-card-title>{{category.category.Name}}</mat-card-title>
+
+    <mat-card *ngFor="let question of category.questions">
+        {{question.question.QuestionDescription | json}}
+
+        <mat-card *ngFor="let answer of question.answers">
+            {{answer.answer.Description}}
+        </mat-card>
+
+    </mat-card>
+</mat-card>
+
+<pre>{{ dataSource | json }}</pre>

@@ -1,5 +1,5 @@
 <h2>
-    <span *ngIf="selectedCourse.id; else noSelection">{{originalName}}</span>
+    <span *ngIf="selectedCourse.id; else noSelection">{{originalName}} bearbeiten</span>
     <ng-template #noSelection>Kurs hinzufügen</ng-template> 
 </h2>
 <div class="course-container">
@@ -43,19 +43,21 @@
     <h2>Kategorien</h2>
         <mat-card>
             <mat-card-header >
-                <div class="pull-right"><button type="button" mat-button (click)="selectCategory.emit()" >Hinzufügen</button> </div>
+                <div class="pull-right">
+                    <button type="button" mat-button (click)="newCategory.emit(selectedCourse.id)" >Hinzufügen</button>                     
+                    <button type="button" mat-button routerLink="../questions/{{selectedCourse.id}}">Fragenpool</button> 
+                </div>                
             <mat-card-title>  </mat-card-title>
             </mat-card-header>
             <mat-card-content>
          
             <mat-list>
                 <mat-list-item
-                *ngFor="let category of categories"
-                (click)="selected.emit(category)"
+                *ngFor="let category of categories"                
                 >
                 {{ category.Name }}
                 <div class="pull-right">
-                    <button (click)="selectCategory.emit(category.id)" mat-icon-button color="primary">
+                    <button (click)="selectCategory.emit(category)" mat-icon-button color="primary">
                         <mat-icon >edit</mat-icon>
                     </button>
                    

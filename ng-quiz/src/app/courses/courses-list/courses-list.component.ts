@@ -12,4 +12,5 @@ export class CoursesListComponent {
 
   @Output() selected = new EventEmitter();
   @Output() deleted = new EventEmitter();
+  @Output() refresh = new EventEmitter();
 }

@@ -38,6 +38,8 @@ import { GameComponent } from './game/game.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
+import { CategoryDialogComponent } from './courses/category-dialog/category-dialog.component';
+import { QuestionsComponent } from './questions/questions.component';
 
 
 
@@ -58,7 +60,9 @@ import { CourseDetailsComponent } from './courses/course-details/course-details.
     GameComponent,
     CoursesComponent,
     CoursesListComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    CategoryDialogComponent,
+    QuestionsComponent
   ],
   imports: [
     BrowserModule,

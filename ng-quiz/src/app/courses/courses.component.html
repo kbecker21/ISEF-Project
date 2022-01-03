@@ -5,6 +5,7 @@
                 [displayedColumns]="displayedColumns"
                 (selected)="selectCourse($event)"
                 (deleted)="deleteCourse($event)"
+                (refresh)="loadCourses()"
                >
             </app-courses-list>
     </div>
@@ -12,9 +13,11 @@
             <app-course-details 
             [course]="selectedCourse"
             [categories]="categoriesofCourse" 
+            [category]="selectedCategory" 
             (saved)="saveCourse($event)"
-            (saveCategory)="saveCategory($event)"
-            (selectCategory)="saveCategory($event)"
+            (saveCategory)="saveCategory($event)" 
+            (selectCategory)="selectCategory($event)"  
+            (newCategory)="newCategory($event)"          
             (deleteCategory)="deleteCategory($event)"
             (canceled)="cancel()">
         </app-course-details>

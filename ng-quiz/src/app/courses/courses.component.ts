@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { Subscription } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
 import { Course } from '../shared/model/course.model';
@@ -6,6 +7,8 @@ import { Category } from '../shared/model/category.model';
 import { User } from '../shared/model/user.model';
 import { CourseService } from '../shared/services/course.service';
 import { CategoryService } from '../shared/services/category.service';
+import { CategoryDialogComponent } from './category-dialog/category-dialog.component';
+
 
 @Component({
   selector: 'app-courses',
@@ -18,15 +21,15 @@ export class CoursesComponent implements OnInit {
 
   dataSource: Course[] = [];
   categoriesofCourse: Category[] = [];
+  
   displayedColumns: string[] = ['Name', 'ShortName', 'actions'];
-  categorieColumns: string[] = ['Name', 'CreateDate', 'actions'];
-
+  
   loggedInUser: User = null;
   userSub: Subscription = null;
   allCourses: Subscription = null;
   allCategories: Subscription = null;
   
-  constructor(private auth: AuthService, private courseService: CourseService, private categoryService: CategoryService) { }
+  constructor(private auth: AuthService, private courseService: CourseService, private categoryService: CategoryService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -54,10 +57,50 @@ export class CoursesComponent implements OnInit {
     this.loadCategories(course.id);  
   }
 
-  selectCategorie(categorie) {
-    this.selectedCategory = categorie;
- 
+  selectCategory2(categorie) {
+    this.selectedCategory = categorie; 
+    console.log(categorie);
   }
+
+
+  selectCategory(category) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      Name: category.Name,
+      id: category.id,
+      idSubject: category.idSubject,
+  };
+
+  const dialogRef = this.dialog.open(CategoryDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => this.saveCategory(data)
+  );    
+}
+
+newCategory(courseID) {
+  console.log(courseID);
+  const dialogConfig = new MatDialogConfig();
+
+  dialogConfig.disableClose = false;
+  dialogConfig.autoFocus = true;
+
+  dialogConfig.data = {
+    idSubject: courseID,
+};
+
+const dialogRef = this.dialog.open(CategoryDialogComponent, dialogConfig);
+
+  dialogRef.afterClosed().subscribe(
+    data => this.saveCategory(data)
+);    
+}
+
+
 
   loadCourses() {
     this.allCourses = this.courseService.all(this.loggedInUser).subscribe(response => {
@@ -110,20 +153,18 @@ export class CoursesComponent implements OnInit {
   saveCategory(category) {
     if(category.id) {
       this.categoryService.update(this.loggedInUser, category)
-        .subscribe(result => this.refreshCategories(category.idSubject))
+        .subscribe(result => this.refreshCategories(category.Subject_idSubject))
       
     } else  {
       this.categoryService.create(this.loggedInUser, category)
-        .subscribe(result => this.refreshCategories(category.idSubject))
-      
-        
+        .subscribe(result => this.refreshCategories(category.Subject_idSubject))
     }
   }
 
   deleteCategory(category) {
     if (confirm('Möchtest du sicher die Kategorie löschen?')) {
       this.categoryService.delete(this.loggedInUser, category.id).subscribe(response => {
-        this.refreshCategories(category.idSubject);
+        this.refreshCategories(category.idSubject);        
       },
         errorMessage => {
           console.log(errorMessage);
