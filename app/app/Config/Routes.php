@@ -29,7 +29,8 @@ $routes->setAutoRoute(true);
  */
 
 
-// We get a performance increase by specifying the default
+$routes->get('category/course/(:num)', 'Category::showcourse/$1', ['filter' => 'authadmin']);
+ // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->resource('user',['filter' => 'authadmin']);
 $routes->resource('subject',['filter' => 'authadmin']);
@@ -41,6 +42,10 @@ $routes->resource('me',['filter' => 'authuser']);
 
 $routes->post('register', 'Register::index');
 $routes->post('login', 'Login::index');
+
+
+$routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' => 'authadmin']);
+
 /*
 
 

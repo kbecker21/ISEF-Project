@@ -3,6 +3,7 @@ use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\QuestionModel;
 use App\Models\AnswersModel;
+use App\Models\CategoryModel;
 
 
 class Question extends ResourceController {
@@ -51,6 +52,54 @@ class Question extends ResourceController {
                 ];
             }
 
+            return $this->respond($result);
+        }else{
+            return $this->failNotFound('No Question found');
+        }
+    }
+
+
+     // Questions by Course
+     public function showbycourse($id = null){
+
+        $QuestionModel = new QuestionModel();
+        $AnswersModel = new AnswersModel();
+        $CategoryModel = new CategoryModel();
+
+        $categories = $CategoryModel->where('Subject_idSubject', $id)->findAll();
+
+       
+        if($categories){
+
+            $result = [];
+
+            foreach ($categories as $keyC => $category) {
+
+                $result[] = [
+                    'category' => $category                                       
+                ];
+
+                $questions = $QuestionModel->where('Category_idCategory', $category['idcategory'])->findAll();
+
+                
+                foreach ($questions as $keyQ => $question) {
+
+                    $result[$keyC]['questions'][] = [
+                        'question' => $question                     
+                    ];
+
+                    $answers = $AnswersModel->where('Question_idQuestion', $question['idQuestion'])->findAll();
+
+                    foreach ($answers as $keyA => $answer) {
+
+                        $result[$keyC]['questions'][$keyQ]['answers'][] = [
+                            'answer' => $answer                        
+                        ];
+                    }                   
+
+                }               
+
+            }            
             return $this->respond($result);
         }else{
             return $this->failNotFound('No Question found');

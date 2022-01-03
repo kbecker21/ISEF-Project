@@ -50,8 +50,8 @@ class Category extends ResourceController
         $session = session();
         
         $data = [
-            'Subject_idSubject'  => $this->request->getVar('subject'),
-            'Name' => $this->request->getVar('name'),
+            'Subject_idSubject'  => $this->request->getVar('Subject_idSubject'),
+            'Name' => $this->request->getVar('Name'),
             'Creator_idUser' => $session->get('idUser'), //NEED to come from session ID!!!!
             'CreateDate'  => date("Y-m-d H:i:s")
         ];
@@ -75,12 +75,28 @@ class Category extends ResourceController
 
         $model = new CategoryModel();
 
+        //convert to json
+        $json = $this->request->getJSON();
+
+         //Try map data to object
+       try {
         $data = [
-            'Subject_idSubject'  => $this->request->getVar('subject'),
-            'Name' => $this->request->getVar('name'),
-            //'Creator_idUser' => 1, //NEED to come from session ID!!!!
-            'CreateDate'  => date("Y-m-d H:i:s")
-        ];
+                'Name'  => $json->Name ?? '',
+                'Subject_idSubject' => $json->Subject_idSubject ?? '',
+                'CreateDate'  => date("Y-m-d H:i:s")
+            ]; 
+        //On error return error
+        } catch (\Exception $e) {
+            $response = [
+            'status'   => 400,
+            'error'    => $e->getMessage(),
+            'messages' => [
+                'error' => 'Bad Request'
+            ]
+            ];
+            return $this->respond($response);
+        }
+       
 
         $model->update($id, $data);
 
