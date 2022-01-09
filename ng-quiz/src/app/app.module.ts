@@ -20,6 +20,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 import { AppComponent } from './app.component';
@@ -40,7 +42,8 @@ import { CoursesListComponent } from './courses/courses-list/courses-list.compon
 import { CourseDetailsComponent } from './courses/course-details/course-details.component';
 import { CategoryDialogComponent } from './courses/category-dialog/category-dialog.component';
 import { QuestionsComponent } from './questions/questions.component';
-
+import { QuestionDialogComponent } from './questions/question-dialog/question-dialog.component';
+import { AutofocusDirective } from './autofocus.directive';
 
 
 @NgModule({
@@ -62,7 +65,9 @@ import { QuestionsComponent } from './questions/questions.component';
     CoursesListComponent,
     CourseDetailsComponent,
     CategoryDialogComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    QuestionDialogComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,
@@ -85,7 +90,9 @@ import { QuestionsComponent } from './questions/questions.component';
     MatDialogModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSlideToggleModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

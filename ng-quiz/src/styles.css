@@ -37,3 +37,13 @@ body {
     background-color: rgba(205, 132, 141, 0.39);
     
 }
+
+.question {
+    background-color: rgb(241, 243, 246);
+    margin-top: 10px;
+}
+
+.question-title  {
+    size: 2em;
+    font-weight: bold
+}

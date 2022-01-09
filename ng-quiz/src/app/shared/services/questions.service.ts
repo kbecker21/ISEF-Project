@@ -22,9 +22,31 @@ export class QuestionsService {
     );
   }
 
+   /**
+   * Löscht einen Kurs.
+   * @param loggedInUser eingeloggter User
+   * @param questionId Der Kurs der gelöscht werden soll.
+   * @returns xxxxxxxxx
+   */
+    delete(loggedInUser: User, questionId: number) {
+            
+      return this.http.delete<any>(this.getUrlById(questionId), { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
+        catchError(this.handleError)
+      );
+    }
 
+    create(loggedInUser: User, question) {
+      console.log(question);
+      return this.http.post(this.getUrl(), question, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
+        catchError(this.handleError)
+      );
+    }
   
-
+    update(loggedInUser: User, question) {
+      return this.http.post(this.getUrlById(question.id), question, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
+        catchError(this.handleError)
+      );
+    }
 
 
   private setAuthHeader(token) {

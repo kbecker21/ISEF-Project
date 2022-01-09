@@ -5,6 +5,7 @@ import { User } from '../shared/model/user.model';
 import { QuestionList } from '../shared/model/questionlist.model';
 import { QuestionsService } from '../shared/services/questions.service';
 import { ActivatedRoute } from '@angular/router';
+import { Question } from '../shared/model/question.model';
 
 @Component({
   selector: 'app-questions',
@@ -19,6 +20,8 @@ export class QuestionsComponent implements OnInit {
   dataSource: QuestionList[] = [];
 
   courseID: number;
+  editMode = false;
+  
 
   private routeSub: Subscription;
 
@@ -36,7 +39,6 @@ export class QuestionsComponent implements OnInit {
     this.getbyCourse(this.courseID);
   }
 
-
   getbyCourse(courseId: number) {
     this.allQuestions = this.questionsService.getByCourse(this.loggedInUser, courseId).subscribe(data => {
       this.dataSource = data; 
@@ -44,4 +46,36 @@ export class QuestionsComponent implements OnInit {
     });    
   }
 
+  saveQuestion(question: Question) {
+    if(question.id) {
+      this.questionsService.update(this.loggedInUser, question).subscribe(data => {
+        console.log(data);
+      });
+    } else {
+      this.questionsService.create(this.loggedInUser, question).subscribe(data => {
+        console.log(data);
+      });
+    }
+    
+  }
+
+  deleteQuestion(question: Question) {
+    if (confirm('Möchtest du die Frage wirklich löschen?')) {
+      this.questionsService.delete(this.loggedInUser, question.id).subscribe(data => {
+        console.log(data);
+     },
+     errorMessage => {
+        console.log(errorMessage);
+      });
+    }
+  }
+
+  toggleActivate(question: Question) {
+    question.Approved = !question.Approved;
+    this.questionsService.update(this.loggedInUser, question).subscribe(data => {
+      console.log(data);
+    });
+  }
+
 }
+

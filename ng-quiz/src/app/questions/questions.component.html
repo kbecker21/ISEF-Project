@@ -1,14 +1,42 @@
-<mat-card *ngFor="let category of dataSource">
-    <mat-card-title>{{category.category.Name}}</mat-card-title>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let category of dataSource" class="question-expansion-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            <h1>{{category.category.Name}}</h1>            
+        </mat-panel-title>       
+      </mat-expansion-panel-header>
+      <div>
+        <button type="button" mat-button (click)="newCategory.emit(selectedCourse.id)" >Frage Hinzufügen</button>
+        <button type="button" mat-button (click)="newCategory.emit(selectedCourse.id)" >Kapitel bearbeiten</button>
+        <button type="button" mat-button (click)="newCategory.emit(selectedCourse.id)" >Kapitel löschen</button>
+    </div>
+        <div class="questions">
+            <div class="question" *ngFor="let question of category.questions">
+                <div class="question-text">
+                    <h2> 
+                        <mat-icon class="pull-right">delete</mat-icon>
+                        <mat-slide-toggle *ngIf="question.question.Approved === '1'; else approve" class="pull-right" matTooltip="Zurückziehen" checked (change)="toggleActivate(question.question)"></mat-slide-toggle>
+                        <ng-template  #approve>
+                            <mat-slide-toggle class="pull-right" matTooltip="Genehmigen" (change)="toggleActivate(question.question)"></mat-slide-toggle>
+                        </ng-template>
+                        
 
-    <mat-card *ngFor="let question of category.questions">
-        {{question.question.QuestionDescription | json}}
+                        <app-question-dialog [data]='question.question' (focusOut)='saveQuestion($event)'></app-question-dialog></h2>
+                        
+                    
+                </div>
+            <div class="question-answers">
+                <div class="answer" *ngFor="let answer of question.answers">
+                    <mat-checkbox name="Active" [value]="answer.answer.idAnswers" [checked]="answer.answer.Truth"></mat-checkbox>                
+                    {{answer.answer.Description}}
+               
+                </div>
+            </div>
+            </div>
+        </div>
+    </mat-expansion-panel>    
+  </mat-accordion>
 
-        <mat-card *ngFor="let answer of question.answers">
-            {{answer.answer.Description}}
-        </mat-card>
 
-    </mat-card>
-</mat-card>
 
-<pre>{{ dataSource | json }}</pre>
+
