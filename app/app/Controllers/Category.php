@@ -74,31 +74,10 @@ class Category extends ResourceController
     public function update($id = null){
 
         $model = new CategoryModel();
-
-        //convert to json
-        $json = $this->request->getJSON();
-
-         //Try map data to object
-       try {
-        $data = [
-                'Name'  => $json->Name ?? '',
-                'Subject_idSubject' => $json->Subject_idSubject ?? '',
-                'CreateDate'  => date("Y-m-d H:i:s")
-            ]; 
-        //On error return error
-        } catch (\Exception $e) {
-            $response = [
-            'status'   => 400,
-            'error'    => $e->getMessage(),
-            'messages' => [
-                'error' => 'Bad Request'
-            ]
-            ];
-            return $this->respond($response);
-        }
+        
+        $rawdata = $this->request->getRawInput();
        
-
-        $model->update($id, $data);
+        $model->update($id, $rawdata);
 
         $response = [
           'status'   => 200,

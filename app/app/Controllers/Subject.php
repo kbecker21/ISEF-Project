@@ -69,51 +69,19 @@ class Subject extends ResourceController {
     public function update($id = null){
 
         $model = new SubjectModel();
-        
-        //convert to json
-        $json = $this->request->getJSON();
 
-        //Try map data to object
-       try {
-        $data = [
-                'ShortName'  => $json->ShortName ?? '',
-                'Name' => $json->Name ?? '',
-                //'Creator_idUser' => 1, //NEED to come from session ID!!!!
-                'Active'  => $json->Active ?? '',
-            ]; 
-        //On error return error
-        } catch (\Exception $e) {
-            $response = [
-            'status'   => 400,
-            'error'    => $e->getMessage(),
-            'messages' => [
-                'error' => 'Bad Request'
-            ]
-            ];
-            return $this->respond($response);
-        }
-        //Try Update DB with data
-        try{
-            $model->update($id, $data);
-            $response = [
-                'status'   => 200,
-                'error'    => null,
-                'messages' => [
-                    'success' => 'Subject updated successfully',
-                    'data' => $data
-                ]
-            ];
-        } catch(\Exception $e) {
-            $response = [
-                'status'   => 500,
-                'error'    => $e->getMessage(),
-                'messages' => [
-                    'error' => 'Subject update failed',
-                    'data' => $data
-                ]
-            ];
-        }
-      return $this->respond($response); 
+        $rawdata = $this->request->getRawInput();
+       
+        $model->update($id, $rawdata);
+
+        $response = [
+          'status'   => 200,
+          'error'    => null,
+          'messages' => [
+              'success' => 'Subject updated successfully'
+          ]
+      ];
+      return $this->respond($response);
     }
 
    
