@@ -36,7 +36,9 @@ $routes->resource('user',['filter' => 'authadmin']);
 $routes->resource('subject',['filter' => 'authadmin']);
 $routes->resource('category',['filter' => 'authadmin']);
 $routes->resource('question',['filter' => 'authadmin']);
+$routes->resource('answer',['filter' => 'authadmin']);
 
+$routes->resource('quiz',['filter' => 'authuser']);
 $routes->resource('me',['filter' => 'authuser']);
 
 
