@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2021 at 08:18 PM
+-- Generation Time: Jan 15, 2022 at 11:11 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -101,7 +101,7 @@ CREATE TABLE `question` (
   `QuestionDescription` longtext DEFAULT NULL,
   `Creator_idUser` int(11) NOT NULL,
   `Approved` tinyint(4) DEFAULT NULL,
-  `Approver_idUser` int(11) NOT NULL,
+  `Approver_idUser` int(11) DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -112,8 +112,7 @@ CREATE TABLE `question` (
 INSERT INTO `question` (`idQuestion`, `category_idcategory`, `QuestionDescription`, `Creator_idUser`, `Approved`, `Approver_idUser`, `CreateDate`) VALUES
 (1, 1, 'Rollen im finanzmanagement', 1, 1, 1, '2021-12-06 00:00:16'),
 (2, 1, 'Aufgaben controller', 1, 1, 1, '2021-12-06 00:03:29'),
-(4, 1, 'Aufgaben vom treasuer', 1, NULL, 1, '2021-12-07 15:06:09'),
-(8, 1, 'Aufgaben vom treasuer', 1, NULL, 1, '2021-12-07 15:18:56');
+(4, 1, 'Aufgaben vom treasuer', 1, NULL, 1, '2021-12-07 15:06:09');
 
 -- --------------------------------------------------------
 
@@ -140,8 +139,16 @@ CREATE TABLE `quiz` (
   `PlayDate` datetime DEFAULT NULL,
   `Subject_idSubject` int(11) NOT NULL,
   `Creator_idUser` int(11) NOT NULL,
-  `Joiner_idUser1` int(11) NOT NULL
+  `Joiner_idUser1` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `quiz`
+--
+
+INSERT INTO `quiz` (`idQuiz`, `PlayDate`, `Subject_idSubject`, `Creator_idUser`, `Joiner_idUser1`) VALUES
+(1, '2022-01-14 22:06:23', 1, 10, 10),
+(2, '2022-01-14 22:11:41', 1, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -175,7 +182,7 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`idSubject`, `Name`, `Creator_idUser`, `CreateDate`, `ShortName`, `Active`) VALUES
-(1, 'Externe Burchhaltung', 1, '2021-12-05 13:12:17', 'BFIN', 1),
+(1, 'Finanzbuchhaltung', 1, '2021-12-05 13:12:17', 'BFIN1', 0),
 (3, 'Interne Buchhaltung', 1, '2021-12-05 13:17:19', 'BKLR', 1),
 (5, 'Software', 10, '2021-12-09 05:32:01', 'esfs', 1);
 
@@ -202,10 +209,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `FirstName`, `LastName`, `Email`, `Password`, `CreateDate`, `Status`, `AccountLevel_idAccountLevel`, `Lastupdated`) VALUES
-(1, 'Leon', 'Schönenberger', 'Leon.schoenenberger@iubh-fernstudium.de', '$2y$10$PQqM6YdQE8ekEaG74GLW8uB29VVskG6EjYe.lpUcUHTZllnhbNJhm', '2021-12-05 18:20:14', 0, 3, '2021-12-09 13:02:41'),
+(1, 'TestNicolai', 'Schönenberger', 'Leon@leon.ch', '$2y$10$.nVZZuUOP4haihzONlONp.HbcF5..SQOM4a/F3TChehMV5y/AwB.K', '2021-12-05 18:20:14', 0, 5, '2021-12-23 11:36:48'),
 (5, 'Dominik', 'Vogt', 'dominik.vogt@iubh-fernstudium.de', '124343123124123412', NULL, 0, 3, '2021-12-05 12:57:35'),
 (10, 'Leon', 'Privat', 'leon.schoenenberger@gmx.ch', '$2y$10$bTSJ8uSCLEol2eOEic3YQudNpxCPAxMkOG3DaHaMMWHVXnFuvtCXO', '2021-12-08 01:34:04', 0, 5, NULL),
-(11, 'Nicolai', 'Rasch', 'Nicolai.Rasch@iubh-fernstudium.de', '$2y$10$2eTbN.kvVM5ryv/0bh7Cj.fzS/maOeuq/4904cdip0f2YNvsbKSOO', '2021-12-09 12:50:38', 0, 4, NULL);
+(15, 'Kevin1', 'test', 'Kevin@test.com', '$2y$10$C.oP9kXw82lQsVMGJbcRhO7hKBfFfRFGvUPbQEMVFtXu1.rZoBR8S', '2021-12-23 12:09:59', 0, 3, NULL),
+(16, 'Nicolai', 'Rasch', 'Nicolai.Rasch@iubh-fernstudiuum.de', '$2y$10$ltoDNQXtPgFntq4Mvio.o.Wom9f.9AanZr.3BcZ3lSWrlTBVSHud2', '2021-12-23 12:26:59', 0, 5, NULL),
+(17, 'dev', 'dev', 'dev@iubh-fernstudiuum.de', '$2y$10$NX3QO8ecDLZpDiBmpgDaFePquuoEXmiJ4zPQf3K0/VPnYbdorc39W', '2022-01-02 05:43:18', 0, 5, NULL);
 
 --
 -- Indexes for dumped tables
@@ -236,7 +245,7 @@ ALTER TABLE `category`
 -- Indexes for table `question`
 --
 ALTER TABLE `question`
-  ADD PRIMARY KEY (`idQuestion`,`category_idcategory`,`Creator_idUser`,`Approver_idUser`),
+  ADD PRIMARY KEY (`idQuestion`,`category_idcategory`,`Creator_idUser`),
   ADD KEY `fk_Question_category1_idx` (`category_idcategory`),
   ADD KEY `fk_Question_User1_idx` (`Creator_idUser`),
   ADD KEY `fk_Question_User2_idx` (`Approver_idUser`);
@@ -255,7 +264,7 @@ ALTER TABLE `question_has_rounds`
 -- Indexes for table `quiz`
 --
 ALTER TABLE `quiz`
-  ADD PRIMARY KEY (`idQuiz`,`Subject_idSubject`,`Creator_idUser`,`Joiner_idUser1`),
+  ADD PRIMARY KEY (`idQuiz`,`Subject_idSubject`,`Creator_idUser`),
   ADD KEY `fk_Quiz_Subject1_idx` (`Subject_idSubject`),
   ADD KEY `fk_Quiz_User1_idx` (`Creator_idUser`),
   ADD KEY `fk_Quiz_User2_idx` (`Joiner_idUser1`);
@@ -296,25 +305,25 @@ ALTER TABLE `accountlevel`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `idAnswers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idAnswers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `idcategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idcategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `idQuestion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idQuestion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `idQuiz` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idQuiz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `rounds`
@@ -326,13 +335,13 @@ ALTER TABLE `rounds`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `idSubject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idSubject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
