@@ -43,7 +43,7 @@ export class QuestionsService {
     }
   
     update(loggedInUser: User, question) {
-      return this.http.post(this.getUrlById(question.id), question, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
+      return this.http.put(this.getUrlById(question.idQuestion), question, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
         catchError(this.handleError)
       );
     }

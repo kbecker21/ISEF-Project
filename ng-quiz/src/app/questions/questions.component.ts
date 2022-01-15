@@ -47,7 +47,7 @@ export class QuestionsComponent implements OnInit {
   }
 
   saveQuestion(question: Question) {
-    if(question.id) {
+    if(question.idQuestion) {
       this.questionsService.update(this.loggedInUser, question).subscribe(data => {
         console.log(data);
       });
@@ -61,7 +61,7 @@ export class QuestionsComponent implements OnInit {
 
   deleteQuestion(question: Question) {
     if (confirm('Möchtest du die Frage wirklich löschen?')) {
-      this.questionsService.delete(this.loggedInUser, question.id).subscribe(data => {
+      this.questionsService.delete(this.loggedInUser, question.idQuestion).subscribe(data => {
         console.log(data);
      },
      errorMessage => {

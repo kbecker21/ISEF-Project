@@ -65,9 +65,10 @@ class Question extends ResourceController {
     public function update($id = null){
         $QuestionModel = new QuestionModel(); 
         
-        $rawdata = $this->request->getRawInput();
-       
-        $model->update($id, $rawdata);
+        $rawdata = $this->request->getJSON(true);     
+        var_dump($rawdata);
+        $filteredData = remove_empty($rawdata);
+        $QuestionModel->update($id, $filteredData);
 
         $response = [
           'status'   => 200,
