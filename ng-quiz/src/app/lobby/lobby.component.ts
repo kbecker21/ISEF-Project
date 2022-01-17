@@ -16,7 +16,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./lobby.component.css']
 })
 export class LobbyComponent implements OnInit {
-  displayedColumns: string[] = ['idCreatorUser', 'idSubject', 'action'];
+  displayedColumns: string[] = ['name', 'subject', 'action'];
 
   loggedInUser: User = null;
   userSub: Subscription = null;

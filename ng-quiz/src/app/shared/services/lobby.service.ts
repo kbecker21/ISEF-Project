@@ -37,6 +37,9 @@ export class LobbyService {
             playDate: quiz.PlayDate,
             idCreatorUser: quiz.Creator_idUser,
             idJoinerUser: quiz.Joiner_idUser1,
+            firstNameCreator: quiz.FirstName,
+            lastNameCreator: quiz.LastName,
+            subject: quiz.Name
           });
         });
 
