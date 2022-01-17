@@ -6,7 +6,15 @@
                 <mat-card-subtitle>{{loggedInUser.accountLevel | accountLevelPipe}}</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
-                Nimmt aktuell an keinen Spiel teil.
+                <span *ngIf="currentUserGame != null">
+                    Organisator: {{currentUserGame.firstNameCreator}} +
+                    {{currentUserGame.lastNameCreator}}<br>
+                    Spiel: {{currentUserGame.subject}}
+                </span>
+                <span *ngIf="currentUserGame === null">Nimmt aktuell an keinen
+                    Spiel
+                    teil.</span>
+
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
