@@ -18,13 +18,17 @@ export class CourseService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   all(loggedInUser: User) {
-    return this.http.get<any>(URL + '/subject', { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
+
+    // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
+    let usedController = loggedInUser.accountLevel === 5 ? 'subject' : 'StudentsSubject'
+
+    return this.http.get<any>(URL + '/' + usedController, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
       map(responseData => {
         if (!responseData || !responseData.Subject)
           return [];
 
         const courseArray: Course[] = [];
-        console.log(responseData);
+
         responseData.Subject.forEach((subject) => {
           courseArray.push({
             id: subject.idSubject,
