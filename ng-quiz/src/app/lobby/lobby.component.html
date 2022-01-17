@@ -19,10 +19,9 @@
             <mat-card-content>
                 <mat-form-field appearance="fill">
                     <mat-label>Wähle ein Modul</mat-label>
-                    <mat-select disableRipple>
-                        <mat-option value="1">Requirements Engineering</mat-option>
-                        <mat-option value="2">Spezifikation</mat-option>
-                        <mat-option value="3">Qualitätssicherung im Softwareprozess</mat-option>
+                    <mat-select disableRipple [formControl]="courses">
+                        <mat-option *ngFor="let course of dataSourceCourses" [value]="course.id">{{course.Name}}
+                        </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <br>
@@ -33,14 +32,14 @@
     <mat-grid-tile colspan="2" rowspan="1">
         <mat-table [dataSource]="dataSource" style="width:calc(100% - 10px)">
 
-            <ng-container matColumnDef="firstName">
-                <mat-header-cell *matHeaderCellDef> Vorname </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+            <ng-container matColumnDef="idCreatorUser">
+                <mat-header-cell *matHeaderCellDef> Organisator </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.idCreatorUser}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="lastName">
-                <mat-header-cell *matHeaderCellDef> Nachname </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
+            <ng-container matColumnDef="idSubject">
+                <mat-header-cell *matHeaderCellDef> Kurs </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.idSubject}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="action">
