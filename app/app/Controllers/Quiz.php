@@ -12,8 +12,11 @@ class Quiz extends ResourceController {
     public function index(){
         
       $model = new QuizModel();
-
-      $data['Quiz'] = $model->where('Joiner_idUser1', NULL)->findAll();
+      $model->where('Joiner_idUser1', NULL);
+      $model->select('quiz.idQuiz,quiz.PlayDate,  subject.Name, user.FirstName, user.LastName,');
+      $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
+      $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
+      $data['Quiz'] = $model->findAll();
 
         if($data){
             return $this->respond($data);
