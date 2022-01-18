@@ -37,6 +37,9 @@ export class LobbyService {
             playDate: quiz.PlayDate,
             idCreatorUser: quiz.Creator_idUser,
             idJoinerUser: quiz.Joiner_idUser1,
+            firstNameCreator: quiz.FirstName,
+            lastNameCreator: quiz.LastName,
+            subject: quiz.Name
           });
         });
 
@@ -61,10 +64,17 @@ export class LobbyService {
       );
   }
 
-  joinQuiz() {
-    // patch
-    // params sent to server: idQuiz, Joiner_idUser1
-    // return from server: alles aus Quiz
+  joinQuiz(loggedInUser: User, idQuiz: number, idJoinerUser: number) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + loggedInUser.token
+    });
+
+    return this.http.patch<any>(URL + '/quiz' + '/' + idQuiz, { Joiner_idUser1: idJoinerUser }, { headers: headers })
+      .pipe(
+        catchError(errorRes => {
+          return throwError(errorRes);
+        })
+      );
   }
 
 

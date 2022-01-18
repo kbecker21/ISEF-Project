@@ -6,6 +6,9 @@ export interface Quiz {
     idSubject: number,
     playDate: Date,
     idCreatorUser: number,
-    idJoinerUser: number
+    idJoinerUser: number,
+    firstNameCreator: string,
+    lastNameCreator: string,
+    subject: string
 }
 

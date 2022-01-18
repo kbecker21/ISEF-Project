@@ -6,7 +6,15 @@
                 <mat-card-subtitle>{{loggedInUser.accountLevel | accountLevelPipe}}</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
-                Nimmt aktuell an keinen Spiel teil.
+                <span *ngIf="currentUserGame != null">
+                    Organisator: {{currentUserGame.firstNameCreator}} +
+                    {{currentUserGame.lastNameCreator}}<br>
+                    Spiel: {{currentUserGame.subject}}
+                </span>
+                <span *ngIf="currentUserGame === null">Nimmt aktuell an keinen
+                    Spiel
+                    teil.</span>
+
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
@@ -32,14 +40,14 @@
     <mat-grid-tile colspan="2" rowspan="1">
         <mat-table [dataSource]="dataSource" style="width:calc(100% - 10px)">
 
-            <ng-container matColumnDef="idCreatorUser">
+            <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef> Organisator </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.idCreatorUser}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.firstNameCreator}} {{element.lastNameCreator}}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="idSubject">
+            <ng-container matColumnDef="subject">
                 <mat-header-cell *matHeaderCellDef> Kurs </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.idSubject}} </mat-cell>
+                <mat-cell *matCellDef="let element"> {{element.subject}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="action">
