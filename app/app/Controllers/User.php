@@ -68,10 +68,9 @@ class User extends ResourceController {
 
         $model = new UserModel();
 
-        $rawdata = $this->request->getJSON(true);     
-        //var_dump($rawdata);
-        $filteredData = remove_empty($rawdata);
-        $model->update($id, $filteredData);
+        $rawdata = $this->request->getRawInput();
+       
+        $model->update($id, $rawdata);
 
         $response = [
           'status'   => 200,
