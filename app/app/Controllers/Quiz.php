@@ -13,7 +13,7 @@ class Quiz extends ResourceController {
         
       $model = new QuizModel();
       $model->where('Joiner_idUser1', NULL);
-      $model->select('quiz.idQuiz,quiz.PlayDate,  subject.Name, user.FirstName, user.LastName,');
+      $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name, user.idUser, user.FirstName, user.LastName');
       $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
       $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
       $data['Quiz'] = $model->findAll();
