@@ -7,14 +7,13 @@
             </mat-card-title-group>
             <mat-card-content>
                 <span *ngIf="currentUserGame != null">
-                    Organisator: {{currentUserGame.firstNameCreator}} +
-                    {{currentUserGame.lastNameCreator}}<br>
-                    Spiel: {{currentUserGame.subject}}
+                    <b>Organisator:</b> {{currentUserGame.firstNameCreator}} {{currentUserGame.lastNameCreator}}
+                    <br>
+                    <b>Spiel:</b> {{currentUserGame.subject}}
+                    <hr>
+                    <button mat-stroked-button [routerLink]="['/game']" routerLinkActive="is-active">zum Spiel</button>
                 </span>
-                <span *ngIf="currentUserGame === null">Nimmt aktuell an keinen
-                    Spiel
-                    teil.</span>
-
+                <span *ngIf="currentUserGame === null">Nimmt aktuell an keinen Spiel teil.</span>
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
@@ -27,13 +26,14 @@
             <mat-card-content>
                 <mat-form-field appearance="fill">
                     <mat-label>Wähle ein Modul</mat-label>
-                    <mat-select disableRipple [formControl]="courses">
+                    <mat-select disableRipple [formControl]="courses" [disabled]="currentUserGame != null">
                         <mat-option *ngFor="let course of dataSourceCourses" [value]="course.id">{{course.Name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <br>
-                <button mat-stroked-button (click)="onCreateGame()">erstellen</button>
+                <button mat-stroked-button (click)="onCreateGame()"
+                    [disabled]="currentUserGame != null">erstellen</button>
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
@@ -53,7 +53,8 @@
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef> Aktion </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                    <button mat-stroked-button (click)="onJoinGame(element)">teilnehmen</button>
+                    <button mat-stroked-button (click)="onJoinGame(element)"
+                        [disabled]="currentUserGame != null">teilnehmen</button>
                 </mat-cell>
             </ng-container>
 

@@ -42,7 +42,7 @@ export class LobbyComponent implements OnInit {
 
   initCurrentUser() {
     this.dataSource.forEach(quiz => {
-      if (this.loggedInUser.idUser === quiz.idCreatorUser || this.loggedInUser.idUser === quiz.idJoinerUser) {
+      if (this.loggedInUser.idUser == quiz.idCreatorUser || this.loggedInUser.idUser == quiz.idJoinerUser) {
         this.currentUserGame = quiz;
       }
     });
@@ -70,10 +70,6 @@ export class LobbyComponent implements OnInit {
 
   onJoinGame(quiz: Quiz): void {
     this.lobbyService.joinQuiz(this.loggedInUser, quiz.idQuiz, this.loggedInUser.idUser).subscribe(response => {
-
-      // wenn successfull dann initTable(); eigene Box aktualisieren
-
-      console.log(response);
       this.initTable();
     },
       errorMessage => {
