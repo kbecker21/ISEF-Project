@@ -66,7 +66,7 @@ class Question extends ResourceController {
         $QuestionModel = new QuestionModel(); 
         
         $rawdata = $this->request->getJSON(true);     
-        var_dump($rawdata);
+        //var_dump($rawdata);
         $filteredData = remove_empty($rawdata);
         $QuestionModel->update($id, $filteredData);
 
