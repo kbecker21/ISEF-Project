@@ -56,6 +56,7 @@ class Quiz extends ResourceController {
         // update
     public function update($id = null){
 
+        $model = new QuizModel();
         $rawdata = $this->request->getJSON(true);     
         //var_dump($rawdata);
         $filteredData = remove_empty($rawdata);

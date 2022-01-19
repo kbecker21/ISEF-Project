@@ -24,6 +24,10 @@ export class UserService {
 
   // TODO: erst fertigstellen bevor Kommentar.
   getUser(userId: number) {
+
+    // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
+    //let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me'
+
     return this.http.get<any>(URL + '/user/' + userId).pipe(
       catchError(this.handleError)
     );
@@ -38,7 +42,11 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
-    return this.http.get<any>(URL + '/user', { headers: headers }).pipe(
+
+    // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
+    let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me'
+
+    return this.http.get<any>(URL + '/' + usedController, { headers: headers }).pipe(
       map(responseData => {
         if (!responseData || !responseData.User)
           return [];
