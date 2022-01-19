@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { User } from '../model/user.model';
 import { Category } from '../model/category.model';
 import { AuthService } from './auth.service';
+import { setAuthHeader, getUrl, getUrlById, handleError} from '../helpers';
 
 const URL = 'http://localhost:8000';
 
@@ -18,7 +19,7 @@ export class CategoryService {
 
 
   find(loggedInUser: User, courseID: number) {
-    return this.http.get<any>(this.getUrl() + '/course/' + courseID, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
+    return this.http.get<any>(getUrl(this.model) + '/course/' + courseID, { headers: setAuthHeader(loggedInUser.token) }).pipe(
       map(responseData => {
         if (!responseData || !responseData.Category)
         
@@ -47,14 +48,14 @@ export class CategoryService {
 
   create(loggedInUser: User, category) {
     console.log(category);
-    return this.http.post(this.getUrl(), category, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
-      catchError(this.handleError)
+    return this.http.post(getUrl(this.model), category, { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
     );
   }
 
   update(loggedInUser: User, category) {
-    return this.http.put(this.getUrlById(category.id), category, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
-      catchError(this.handleError)
+    return this.http.put(getUrlById(this.model, category.id), category, { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
     );
   }
 
@@ -66,43 +67,10 @@ export class CategoryService {
    */
     delete(loggedInUser: User, categorieId: number) {
             
-      return this.http.delete<any>(this.getUrlById(categorieId), { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
-        catchError(this.handleError)
+      return this.http.delete<any>(getUrlById(this.model, categorieId), { headers: setAuthHeader(loggedInUser.token) }).pipe(
+        catchError(handleError)
       );
     }
 
-  private setAuthHeader(token) {
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
-    });
-    return headers;
-  }
-
-  private getUrl() {
-    return `${URL}/${this.model}`;
-  }
-
-  private getUrlById(id) {
-    return `${this.getUrl()}/${id}`
-  }
-
-   /**
-     * Behandelt Fehlermeldungen
-     * @param errorRes Error
-     * @returns xxxxxxxxx
-     */
-    private handleError(errorRes: HttpErrorResponse) {
-      let errorMessage = 'An unknown error occurred!';
-      if (!errorRes.error || !errorRes.error.error) {
-        return throwError(errorMessage);
-      }
-      switch (errorRes.error.error.message) {
-        case 'Foo':
-          errorMessage = 'Foo';
-          break;
-      }
-      return throwError(errorMessage);
-    }
-
+  
 }

@@ -41,36 +41,36 @@ export class GameComponent implements OnInit {
       idQuestion: 1,
       category_idcategory: 1,
       QuestionDescription: "Wer war der 44. Präsident der USA?",
-      Approved: true,
+      Approved: 1,
       CreateDate: ""
     }
 
-    const answer1: Answer = {
-      id: 1,
-      Description: "Donald Trump",
-      Truth: false
-    };
+  //   const answer1: Answer = {
+  //     idAnswers: 1,
+  //     Description: "Donald Trump",
+  //     Truth: 0
+  //   };
 
-    const answer2: Answer = {
-      id: 2,
-      Description: "Barack Obama",
-      Truth: true
-    };
+  //   const answer2: Answer = {
+  //     idAnswers: 2,
+  //     Description: "Barack Obama",
+  //     Truth: 1
+  //   };
 
-    const answer3: Answer = {
-      id: 3,
-      Description: "Richard Nixon",
-      Truth: false
-    };
+  //   const answer3: Answer = {
+  //     idAnswers: 3,
+  //     Description: "Richard Nixon",
+  //     Truth: 0
+  //   };
 
-    const answer4: Answer = {
-      id: 4,
-      Description: "George Bush",
-      Truth: false
-    };
+  //   const answer4: Answer = {
+  //     id: 4,
+  //     Description: "George Bush",
+  //     Truth: 0
+  //   };
 
-    this.answers.push(answer1, answer2, answer3, answer4);
-  }
+  //   this.answers.push(answer1, answer2, answer3, answer4);
+   }
 
   dummyCreateQuiz() {
     this.player1 = {

@@ -149,7 +149,13 @@ class Question extends ResourceController {
             }            
             return $this->respond($result);
         }else{
-            return $this->failNotFound('No Question found');
+            return $this->respond([
+                'status'   => 204,
+                'error'    => null,
+                'messages' => [
+                    'error' => 'No Questions found'
+                ]
+            ]);
         }
     }
 

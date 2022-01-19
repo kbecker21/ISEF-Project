@@ -29,6 +29,11 @@ body {
     margin-right: 0;
 }
 
+.pull-left {
+    margin-right: auto; 
+    margin-left: 5px;
+}
+
 .mat-list-item:hover {
     background-color: whitesmoke;
 }

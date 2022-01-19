@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { User } from '../model/user.model';
 import { Course } from '../model/course.model';
 import { AuthService } from './auth.service';
+import { setAuthHeader, getUrl, getUrlById, handleError} from '../helpers';
 
 // TODO: Bei Integration anpassen
 const URL = 'http://localhost:8000';
@@ -22,7 +23,7 @@ export class CourseService {
     // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
     let usedController = loggedInUser.accountLevel === 5 ? 'subject' : 'StudentsSubject'
 
-    return this.http.get<any>(URL + '/' + usedController, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
+    return this.http.get<any>(URL + '/' + usedController, { headers: setAuthHeader(loggedInUser.token) }).pipe(
       map(responseData => {
         if (!responseData || !responseData.Subject)
           return [];
@@ -56,61 +57,32 @@ export class CourseService {
   */
   delete(loggedInUser: User, courseId: number) {
 
-    return this.http.delete<any>(this.getUrlById(courseId), { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
-      catchError(this.handleError)
+    return this.http.delete<any>(getUrlById(this.model, courseId), { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
     );
   }
 
-  find(courseID) {
-
+  find(loggedInUser: User, courseID: number) {
+    return this.http.get<any>(getUrlById(this.model, courseID), { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
+    );
   }
+
 
   create(loggedInUser: User, course) {
     console.log(course);
-    return this.http.post(this.getUrl(), course, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
-      catchError(this.handleError)
+    return this.http.post(getUrl(this.model), course, { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
     );
   }
 
   update(loggedInUser: User, course) {
-    return this.http.put(this.getUrlById(course.id), course, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
-      catchError(this.handleError)
+    return this.http.put(getUrlById(this.model, course.id), course, { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
     );
   }
 
 
-  private getUrl() {
-    return `${URL}/${this.model}`;
-  }
-
-  private getUrlById(id) {
-    return `${this.getUrl()}/${id}`
-  }
-
-  private setAuthHeader(token) {
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
-    });
-    return headers;
-  }
-
-  /**
-   * Behandelt Fehlermeldungen
-   * @param errorRes Error
-   * @returns xxxxxxxxx
-   */
-  private handleError(errorRes: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred!';
-    if (!errorRes.error || !errorRes.error.error) {
-      return throwError(errorMessage);
-    }
-    switch (errorRes.error.error.message) {
-      case 'Foo':
-        errorMessage = 'Foo';
-        break;
-    }
-    return throwError(errorMessage);
-  }
+ 
 }
 

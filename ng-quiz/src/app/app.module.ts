@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,7 +24,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -48,7 +49,9 @@ import { AutofocusDirective } from './autofocus.directive';
 import { AddQuestionDialogComponent } from './questions/add-question-dialog/add-question-dialog.component';
 import { AddAnswerDialogComponent } from './questions/add-answer-dialog/add-answer-dialog.component';
 import { EditAnswerDialogComponent } from './questions/edit-answer-dialog/edit-answer-dialog.component';
+import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 
+import { LoadingScreenInterceptor } from './shared/helpers/loading.interceptors';
 
 
 @NgModule({
@@ -75,7 +78,8 @@ import { EditAnswerDialogComponent } from './questions/edit-answer-dialog/edit-a
     AutofocusDirective,
     AddQuestionDialogComponent,
     AddAnswerDialogComponent,
-    EditAnswerDialogComponent
+    EditAnswerDialogComponent,
+    LoadingScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -102,9 +106,15 @@ import { EditAnswerDialogComponent } from './questions/edit-answer-dialog/edit-a
     MatSlideToggleModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    FlexLayoutModule
+    MatSidenavModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingScreenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

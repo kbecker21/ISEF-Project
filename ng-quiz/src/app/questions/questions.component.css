@@ -1,3 +1,15 @@
 .answer {
     margin-bottom: 5px;
 }
+
+.cell:hover {
+    cursor: pointer;
+    border: 2px dashed lightgray;
+  }
+
+  .toolbar { 
+    position: fixed;
+    top: 4em;
+    left: 0;
+    width: 20em;
+    }

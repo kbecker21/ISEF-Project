@@ -38,7 +38,10 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
-    return this.http.get<any>(URL + '/user', { headers: headers }).pipe(
+
+    let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me'
+
+    return this.http.get<any>(URL + + usedController, { headers: headers }).pipe(
       map(responseData => {
         if (!responseData || !responseData.User)
           return [];

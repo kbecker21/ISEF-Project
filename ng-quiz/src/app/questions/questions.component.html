@@ -1,10 +1,48 @@
-<mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+
+<!--   <div *ngIf="isLoading" style="position: relative">
   <mat-progress-spinner 
     color="primary" 
-    mode="indeterminate">
+    mode="indeterminate"
+    [fullscreen]="true"
+    >
   </mat-progress-spinner>
-</mat-card>
-<mat-accordion>
+</div> -->
+
+<mat-sidenav-container >
+  <mat-sidenav  class="toolbar" mode="side" opened>
+    <h2><b>Module</b></h2>
+    <mat-nav-list>
+      <div *ngFor="let course of courseList">               
+        <a mat-list-item (click)="getbyCourse(course.Name, course.id)">{{course.Name}}</a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  
+</mat-sidenav-container>
+
+<!-- <mat-drawer-container autosize  >
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+    <p>Auto-resizing sidenav</p>    
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon >menu</mat-icon>
+    </button>
+  </div>
+
+</mat-drawer-container> -->
+
+<div *ngIf="dataSource.length == 0">
+  <h1><mat-icon>face</mat-icon> Bitte wähle ein Modul aus  </h1>
+</div>
+
+<mat-accordion *ngIf="dataSource.length != 0">
+  <h1>{{ courseName }}</h1>
+  <button type="button" mat-button (click)="editCourse(currentCourse)" >Kurs bearbeiten</button>
+  <button type="button" mat-button (click)="deleteCourse(currentCourse)" >Kurs löschen</button>
+
     <div *ngFor="let category of dataSource">
     <mat-expansion-panel (click)="setPanelID(category.category.idcategory)" class="question-expansion-panel" [expanded]="panel === category.category.idcategory">
       <mat-expansion-panel-header>
@@ -38,25 +76,29 @@
                         
                     
                 </div>
-                
-                <div class="answer" *ngFor="let answer of question.answers">
-                    <div fxLayout="row" fxLayoutGap="1px" class="container">
-                        <div fxLayoutAlign="center center">
-                          <mat-checkbox  name="Truth" [value]="answer.answer.idAnswers" [checked]="answer.answer.Truth === '1'" (change)="toggleTruth(answer.answer)"></mat-checkbox>
-                        </div>
-                        <div fxFlex="5 1 auto" >
-                          <app-edit-answer-dialog [data]='answer.answer' (focusOut)='saveAnswer($event)'></app-edit-answer-dialog>
-                        </div>
-                        <div fxLayoutAlign="center center">
-                          <button (click)="deleteAnswer(answer.answer)" mat-icon-button color="warn">
-                              <mat-icon >delete</mat-icon>
-                          </button>
-                        </div>                 
-                      </div>
-                
-                </div>
 
-            
+                <mat-grid-list [cols]="6" rowHeight="2:0.5" *ngFor="let answer of question.answers" class="cell" >
+                  <mat-grid-tile>
+                    <div class="pull-left">
+                    <mat-checkbox  name="Truth" [value]="answer.answer.idAnswers" [checked]="answer.answer.Truth === '1'" (change)="toggleTruth(answer.answer)"></mat-checkbox>
+                  </div>
+                  </mat-grid-tile>
+                  <mat-grid-tile [colspan]="4" >
+                    <div style="width: 100%;" class="pull-left">
+                      <app-edit-answer-dialog [data]='answer.answer' (focusOut)='saveAnswer($event)'></app-edit-answer-dialog>
+                    </div>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <div class="pull-right">
+                    <button (click)="deleteAnswer(answer.answer)" mat-icon-button color="warn" >
+                      <mat-icon >delete</mat-icon>
+                    </button>
+                  </div>
+                  </mat-grid-tile>
+                  <mat-divider></mat-divider>                  
+                </mat-grid-list>
+                
+                           
                 
               </div>
                

@@ -12,6 +12,8 @@ import { AddQuestionDialogComponent } from './add-question-dialog/add-question-d
 import { AddAnswerDialogComponent } from './add-answer-dialog/add-answer-dialog.component';
 import { filter } from 'rxjs/operators';
 import { Answer } from '../shared/model/answer.model';
+import { Course } from '../shared/model/course.model';
+import { CourseService } from '../shared/services/course.service';
 
 @Component({
   selector: 'app-questions',
@@ -24,17 +26,22 @@ export class QuestionsComponent implements OnInit {
   allQuestions: Subscription = null;
   loggedInUser: User = null;
   dataSource: QuestionList[] = [];
+  allCourses: Subscription = null;
+  courseList: Course[] = [];
 
   courseID: number;
   editMode = false;
   panel = 0;
 
-  isLoading = true;
+  courseName: string;
+  currentCourse: number;
+
   
+  nav_position: string = 'start';
 
   private routeSub: Subscription;
 
-  constructor(private auth: AuthService, private questionsService: QuestionsService, private answerService: AnswerService, private route: ActivatedRoute, private dialog: MatDialog) { }
+  constructor(private auth: AuthService, private questionsService: QuestionsService, private answerService: AnswerService, private route: ActivatedRoute, private dialog: MatDialog, private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -44,45 +51,59 @@ export class QuestionsComponent implements OnInit {
     this.routeSub = this.route.params.subscribe(params => {
       this.courseID = params['id'];
     });
-
-    this.getbyCourse(this.courseID);
+    this.loadCourses()    
   }
 
-  getbyCourse(courseId: number) {
-    this.isLoading = true;
+  loadCourses() {
+    this.allCourses = this.courseService.all(this.loggedInUser).subscribe(response => {
+      this.courseList = response;  
+      console.log(this.dataSource)    
+    },
+      errorMessage => {
+        console.log(errorMessage);
+      });
+  }
+
+  getbyCourse(Name: string, courseId: number) {    
     this.allQuestions = this.questionsService.getByCourse(this.loggedInUser, courseId).subscribe(data => {
-      this.isLoading = false;
-      this.dataSource = data; 
-      console.log(data);     
+      if (data.status === 204) {
+        this.dataSource = [];
+      } else {
+        this.courseName = Name;
+        this.currentCourse = courseId;
+        this.dataSource = data;          
+      }   
     });    
   }
 
   saveQuestion(question: Question) {
-    if(question.idQuestion) {
-      this.isLoading = true;
+    if(question.idQuestion) {     
       this.questionsService.update(this.loggedInUser, question).subscribe(data => {
-        this.isLoading = false;
-        this.getbyCourse(this.courseID);
+        
+        this.getbyCourse(this.courseName, this.courseID);
       });
     } else {
       this.questionsService.create(this.loggedInUser, question).subscribe(data => {
-        this.isLoading = false;
-        this.getbyCourse(this.courseID);       
+        
+        this.getbyCourse(this.courseName, this.courseID);       
       });
     }
     
   }
 
-
   saveAnswer(answer: Answer) {
     if(answer.idAnswers) {
+     
       this.answerService.update(this.loggedInUser, answer).subscribe(data => {
-        this.getbyCourse(this.courseID);
+        
+        this.getbyCourse(this.courseName, this.courseID);
         
       });
     } else {
+      
       this.answerService.create(this.loggedInUser, answer).subscribe(data => {
-        this.getbyCourse(this.courseID);
+       
+        this.getbyCourse(this.courseName, this.courseID);
       });
     }
     
@@ -92,7 +113,7 @@ export class QuestionsComponent implements OnInit {
     if (confirm('Möchtest du die Frage wirklich löschen?')) {
       this.questionsService.delete(this.loggedInUser, question.idQuestion).subscribe(data => {
         console.log(data);
-        this.getbyCourse(this.courseID);
+        this.getbyCourse(this.courseName, this.courseID);
      },
      errorMessage => {
         console.log(errorMessage);        
@@ -104,7 +125,7 @@ export class QuestionsComponent implements OnInit {
     if (confirm('Möchtest du die Antwort wirklich löschen?')) {
       this.answerService.delete(this.loggedInUser, answer.idAnswers).subscribe(data => {
         console.log(data);
-        this.getbyCourse(this.courseID);
+        this.getbyCourse(this.courseName, this.courseID);
      },
      errorMessage => {
         console.log(errorMessage);
@@ -117,7 +138,7 @@ export class QuestionsComponent implements OnInit {
           
     this.questionsService.update(this.loggedInUser, question).subscribe(data => {
       console.log(question);
-      this.getbyCourse(this.courseID);
+      this.getbyCourse(this.courseName, this.courseID);
     });
   }
 
@@ -129,7 +150,7 @@ export class QuestionsComponent implements OnInit {
     }          
     this.answerService.update(this.loggedInUser, answer).subscribe(data => {
       console.log(answer);
-      this.getbyCourse(this.courseID);
+      this.getbyCourse(this.courseName, this.courseID);
     });
   }
 
