@@ -5,6 +5,6 @@
     idQuestion: number,
     category_idcategory: number,
     QuestionDescription: string,
-    Approved: boolean,
+    Approved: number,
     CreateDate: string, 
 }

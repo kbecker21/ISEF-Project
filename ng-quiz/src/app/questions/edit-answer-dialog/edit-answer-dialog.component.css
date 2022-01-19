@@ -1,0 +1,19 @@
+.cellInput {
+    border: 2px solid transparent;
+    /* padding: 11px 20px; */
+    width: 80%;
+    height: 100%;
+  }
+
+  .cell {
+    border: 2px solid transparent;
+    /* padding: 11px 20px; */
+    width: 80%;
+    height: 100%;
+  }
+
+    .cell:hover {
+      cursor: pointer;
+      border: 2px dashed lightgray;
+    }
+  

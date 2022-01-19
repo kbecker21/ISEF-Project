@@ -74,9 +74,13 @@ class Answer extends ResourceController {
 
         $model = new AnswersModel();
         
-        $rawdata = $this->request->getRawInput();
+       /*  $rawdata = $this->request->getRawInput();
        
-        $model->update($id, $rawdata);
+        $model->update($id, $rawdata); */
+
+        $rawdata = $this->request->getJSON(true);  // true = return as array
+        $filteredData = remove_empty($rawdata);
+        $model->update($id, $filteredData);
 
         $response = [
           'status'   => 200,

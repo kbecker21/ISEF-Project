@@ -2,7 +2,8 @@
  * Dieses Klasse repräsentiert das Model Frage.
  */
  export interface Answer {    
-    id: number,
+    idAnswers: number,
+    Question_idQuestion: number, 
     Description: number,
-    Truth: boolean
+    Truth: number
 }

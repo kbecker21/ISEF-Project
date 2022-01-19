@@ -1,12 +1,20 @@
+<mat-card *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner 
+    color="primary" 
+    mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let category of dataSource" class="question-expansion-panel">
+    <div *ngFor="let category of dataSource">
+    <mat-expansion-panel (click)="setPanelID(category.category.idcategory)" class="question-expansion-panel" [expanded]="panel === category.category.idcategory">
       <mat-expansion-panel-header>
         <mat-panel-title>
             <h1>{{category.category.Name}}</h1>            
         </mat-panel-title>       
       </mat-expansion-panel-header>
       <div>
-        <button type="button" mat-button (click)="newCategory.emit(selectedCourse.id)" >Frage Hinzufügen</button>
+         
+        <button type="button" mat-button (click)="newQuestion(category.category.idcategory)" >Frage Hinzufügen</button>
         <button type="button" mat-button (click)="newCategory.emit(selectedCourse.id)" >Kapitel bearbeiten</button>
         <button type="button" mat-button (click)="newCategory.emit(selectedCourse.id)" >Kapitel löschen</button>
     </div>
@@ -14,7 +22,12 @@
             <div class="question" *ngFor="let question of category.questions">
                 <div class="question-text">
                     <h2> 
-                        <mat-icon class="pull-right">delete</mat-icon>
+                        <button class="pull-right" (click)="deleteQuestion(question.question)" mat-icon-button color="warn">
+                            <mat-icon >delete</mat-icon>
+                        </button>
+                        <button matTooltip="Antwort hinzufügen" class="pull-right" (click)="newAnswer(question.question.idQuestion)" mat-icon-button color="accent">
+                            <mat-icon >add</mat-icon>
+                        </button>
                         <mat-slide-toggle *ngIf="question.question.Approved === '1'; else approve" class="pull-right" matTooltip="Zurückziehen" checked (change)="toggleActivate(question.question)"></mat-slide-toggle>
                         <ng-template  #approve>
                             <mat-slide-toggle class="pull-right" matTooltip="Genehmigen" (change)="toggleActivate(question.question)"></mat-slide-toggle>
@@ -25,17 +38,37 @@
                         
                     
                 </div>
-            <div class="question-answers">
+                
                 <div class="answer" *ngFor="let answer of question.answers">
-                    <mat-checkbox name="Active" [value]="answer.answer.idAnswers" [checked]="answer.answer.Truth"></mat-checkbox>                
-                    {{answer.answer.Description}}
-               
+                    <div fxLayout="row" fxLayoutGap="1px" class="container">
+                        <div fxLayoutAlign="center center">
+                          <mat-checkbox  name="Truth" [value]="answer.answer.idAnswers" [checked]="answer.answer.Truth === '1'" (change)="toggleTruth(answer.answer)"></mat-checkbox>
+                        </div>
+                        <div fxFlex="5 1 auto" >
+                          <app-edit-answer-dialog [data]='answer.answer' (focusOut)='saveAnswer($event)'></app-edit-answer-dialog>
+                        </div>
+                        <div fxLayoutAlign="center center">
+                          <button (click)="deleteAnswer(answer.answer)" mat-icon-button color="warn">
+                              <mat-icon >delete</mat-icon>
+                          </button>
+                        </div>                 
+                      </div>
+                
                 </div>
+
+            
+                
+              </div>
+               
+                
+            
             </div>
-            </div>
-        </div>
-    </mat-expansion-panel>    
+            
+        
+    </mat-expansion-panel>   
+</div> 
   </mat-accordion>
+
 
 
 

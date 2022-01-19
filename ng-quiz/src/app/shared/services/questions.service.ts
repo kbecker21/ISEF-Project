@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { User } from '../model/user.model';
-import { QuestionList } from '../model/questionlist.model';
+import { Question } from '../model/question.model';
 import { AuthService } from './auth.service';
 
 const URL = 'http://localhost:8000';
@@ -35,24 +35,23 @@ export class QuestionsService {
       );
     }
 
-    create(loggedInUser: User, question) {
+    create(loggedInUser: User, question: Question) {
       console.log(question);
       return this.http.post(this.getUrl(), question, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
         catchError(this.handleError)
       );
     }
   
-    update(loggedInUser: User, question) {
+    update(loggedInUser: User, question: Question) {
       return this.http.put(this.getUrlById(question.idQuestion), question, { headers: this.setAuthHeader(loggedInUser.token) }).pipe(
         catchError(this.handleError)
       );
     }
 
-
   private setAuthHeader(token) {
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + token,
-      'Content-Type': 'application/json'
+      'Authorization': 'Bearer ' + token
+      //'Content-Type': 'application/json'
     });
     return headers;
   }

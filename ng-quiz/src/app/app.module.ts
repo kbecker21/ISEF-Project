@@ -22,7 +22,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -44,6 +45,10 @@ import { CategoryDialogComponent } from './courses/category-dialog/category-dial
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionDialogComponent } from './questions/question-dialog/question-dialog.component';
 import { AutofocusDirective } from './autofocus.directive';
+import { AddQuestionDialogComponent } from './questions/add-question-dialog/add-question-dialog.component';
+import { AddAnswerDialogComponent } from './questions/add-answer-dialog/add-answer-dialog.component';
+import { EditAnswerDialogComponent } from './questions/edit-answer-dialog/edit-answer-dialog.component';
+
 
 
 @NgModule({
@@ -67,7 +72,10 @@ import { AutofocusDirective } from './autofocus.directive';
     CategoryDialogComponent,
     QuestionsComponent,
     QuestionDialogComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    AddQuestionDialogComponent,
+    AddAnswerDialogComponent,
+    EditAnswerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +100,9 @@ import { AutofocusDirective } from './autofocus.directive';
     MatSelectModule,
     MatGridListModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

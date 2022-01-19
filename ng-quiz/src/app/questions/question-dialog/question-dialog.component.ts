@@ -20,7 +20,6 @@ export class QuestionDialogComponent implements OnInit {
   onFocusOut() {
     console.log(this.data);
     this.focusOut.emit(this.data);
-
   }
 
 }

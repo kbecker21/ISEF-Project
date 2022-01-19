@@ -1,0 +1,13 @@
+.answer-form {
+    min-width: 500px;
+    max-width: 800px;
+    min-height: 500px;
+    max-height: 800px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .answer-full-width {
+    width: 100%;
+    height: 100%;
+  }
