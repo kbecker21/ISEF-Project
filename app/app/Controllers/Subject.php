@@ -70,9 +70,10 @@ class Subject extends ResourceController {
 
         $model = new SubjectModel();
 
-        $rawdata = $this->request->getRawInput();
-       
-        $model->update($id, $rawdata);
+        $rawdata = $this->request->getJSON(true);     
+        //var_dump($rawdata);
+        $filteredData = remove_empty($rawdata);
+        $model->update($id, $filteredData);
 
         $response = [
           'status'   => 200,

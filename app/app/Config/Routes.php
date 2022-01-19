@@ -38,9 +38,10 @@ $routes->resource('category',['filter' => 'authadmin']);
 $routes->resource('question',['filter' => 'authadmin']);
 $routes->resource('answer',['filter' => 'authadmin']);
 
+
+$routes->resource('StudentsSubject',['filter' => 'authuser']);
 $routes->resource('quiz',['filter' => 'authuser']);
 $routes->resource('me',['filter' => 'authuser']);
-
 
 $routes->post('register', 'Register::index');
 $routes->post('login', 'Login::index');

@@ -12,8 +12,11 @@ class Quiz extends ResourceController {
     public function index(){
         
       $model = new QuizModel();
-
-      $data['Quiz'] = $model->where('Joiner_idUser1', NULL)->findAll();
+      $model->where('Joiner_idUser1', NULL);
+      $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name, quiz.Creator_idUser, user.FirstName, user.LastName');
+      $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
+      $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
+      $data['Quiz'] = $model->findAll();
 
         if($data){
             return $this->respond($data);
@@ -53,11 +56,10 @@ class Quiz extends ResourceController {
         // update
     public function update($id = null){
 
-        $model = new QuizModel();
-
-        $rawdata = $this->request->getRawInput();
-       
-        $model->update($id, $rawdata);
+        $rawdata = $this->request->getJSON(true);     
+        //var_dump($rawdata);
+        $filteredData = remove_empty($rawdata);
+        $model->update($id, $filteredData);
 
         $response = [
           'status'   => 200,

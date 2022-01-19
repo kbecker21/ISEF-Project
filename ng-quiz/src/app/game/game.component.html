@@ -1,17 +1,21 @@
 <mat-card>
-    <h3 style="text-align: center">
-        <b>Spieler X (10 Punkte) </b>
-        spielt gegen
-        <b>Spieler Y (0 Punkte)</b>
+    <h3>
+        <span style="text-align: center;">
+            <b>{{player1.firstName}} {{player1.lastName}} ({{player1Points}} Punkte) </b>
+            spielt gegen
+            <b>{{player2.firstName}} {{player2.lastName}} ({{player2Points}} Punkte)</b>
+        </span>
+        <span style="float: right;">Restzeit: <b>60</b></span>
+        <span style="float: right;margin-right: 20px;">Kurs: <b>Test</b></span>
     </h3>
 </mat-card>
 
 <mat-card>
     <mat-card-title-group>
-        <mat-card-subtitle>Frage x von y</mat-card-subtitle>
+        <mat-card-subtitle>Frage {{questionNumber}} von 10</mat-card-subtitle>
     </mat-card-title-group>
     <mat-card-content>
-        <h1>Wer war der 44. Präsident der USA?</h1>
+        <h1>{{question.QuestionDescription}}</h1>
     </mat-card-content>
 </mat-card>
 
@@ -20,17 +24,12 @@
         <mat-card-subtitle>Antwort</mat-card-subtitle>
     </mat-card-title-group>
     <mat-card-content>
-        <div class="example-button-row">
-            <button mat-stroked-button style="width: 100%">Donald Trump</button>
-        </div>
-        <div class="example-button-row">
-            <button mat-stroked-button style="width: 100%">Barack Obama</button>
-        </div>
-        <div class="example-button-row">
-            <button mat-stroked-button style="width: 100%">Richard Nixon</button>
-        </div>
-        <div class="example-button-row">
-            <button mat-stroked-button style="width: 100%">George Bush</button>
-        </div>
+        <button mat-stroked-button *ngFor="let answer of answers"
+            style="width: 100%; padding: 5px; margin-top: 5px;margin-bottom: 5px; background-color: rgb(235, 233, 233);">
+            <div style="text-align: left;">
+                {{answer.Description}}
+            </div>
+        </button>
     </mat-card-content>
 </mat-card>
+<button mat-flat-button color="primary" style="width: 100%;" disabled>Nächste Frage</button>
