@@ -28,10 +28,16 @@ export class LobbyComponent implements OnInit {
 
   currentUserGame: Quiz = null;
 
+  currentUserSub: Subscription = null;
+  openedGamesSub: Subscription = null;
+  allCoursesSub: Subscription = null;
+  joinedQuiz: Subscription = null;
+  createdQuiz: Subscription = null;
+
   constructor(private auth: AuthService, private userService: UserService, private lobbyService: LobbyService, private courseService: CourseService) { }
 
   ngOnInit(): void {
-    this.auth.user.subscribe(user => {
+    this.currentUserSub = this.auth.user.subscribe(user => {
       this.loggedInUser = user;
     });
 
@@ -42,6 +48,7 @@ export class LobbyComponent implements OnInit {
 
   initCurrentUser() {
     this.dataSource.forEach(quiz => {
+      console.log(quiz);
       if (this.loggedInUser.idUser == quiz.idCreatorUser || this.loggedInUser.idUser == quiz.idJoinerUser) {
         this.currentUserGame = quiz;
       }
@@ -49,7 +56,7 @@ export class LobbyComponent implements OnInit {
   }
 
   initTable() {
-    this.lobbyService.getAllOpenedGames(this.loggedInUser).subscribe(response => {
+    this.openedGamesSub = this.lobbyService.getAllOpenedGames(this.loggedInUser).subscribe(response => {
       this.dataSource = response;
       this.initCurrentUser();
     },
@@ -59,7 +66,7 @@ export class LobbyComponent implements OnInit {
   }
 
   initCourses() {
-    this.courseService.all(this.loggedInUser).subscribe(response => {
+    this.allCoursesSub = this.courseService.all(this.loggedInUser).subscribe(response => {
       const filteredResponse = response.filter(course => course.isActive === true);
       this.dataSourceCourses = filteredResponse;
     },
@@ -69,7 +76,7 @@ export class LobbyComponent implements OnInit {
   }
 
   onJoinGame(quiz: Quiz): void {
-    this.lobbyService.joinQuiz(this.loggedInUser, quiz.idQuiz, this.loggedInUser.idUser).subscribe(response => {
+    this.joinedQuiz = this.lobbyService.joinQuiz(this.loggedInUser, quiz.idQuiz, this.loggedInUser.idUser).subscribe(response => {
       this.initTable();
     },
       errorMessage => {
@@ -80,7 +87,7 @@ export class LobbyComponent implements OnInit {
 
   onCreateGame() {
     const selectedCourseId = this.courses.value;
-    this.lobbyService.createQuiz(this.loggedInUser, selectedCourseId).subscribe(response => {
+    this.createdQuiz = this.lobbyService.createQuiz(this.loggedInUser, selectedCourseId).subscribe(response => {
       this.initTable();
     },
       errorMessage => {

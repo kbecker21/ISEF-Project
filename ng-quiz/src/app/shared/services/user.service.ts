@@ -44,9 +44,9 @@ export class UserService {
     });
 
     // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
-    let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me'
+    //let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me'
 
-    return this.http.get<any>(URL + '/' + usedController, { headers: headers }).pipe(
+    return this.http.get<any>(URL + '/user', { headers: headers }).pipe(
       map(responseData => {
         if (!responseData || !responseData.User)
           return [];
