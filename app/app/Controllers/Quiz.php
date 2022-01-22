@@ -12,7 +12,6 @@ class Quiz extends ResourceController {
     public function index(){
         
       $model = new QuizModel();
-      $model->where('Joiner_idUser1', NULL);
       $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name, quiz.Creator_idUser, user.FirstName, user.LastName');
       $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
       $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
@@ -72,4 +71,23 @@ class Quiz extends ResourceController {
       return $this->respond($response);
     }
 
+
+        // getQuestions
+    public function getQuestions($idSubject = null, $idCategory = null){
+
+        $model = new QuestionModel();
+        $model->select('question.idQuestion, question.category_idcategory, category.Subject_idSubject, question.QuestionDescription');
+        $model->join('category', 'category.idcategory = question.category_idcategory', 'left');
+        $model->where('category.Subject_idSubject', $idSubject);
+        $model->where('question.category_idcategory', $idCategory);
+        $model->orderBy('question.idQuestion', 'RANDOM');
+        $model->limit('10');
+        $data['questions'] = $model->find();
+
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No User found');
+        }
+    }
 }

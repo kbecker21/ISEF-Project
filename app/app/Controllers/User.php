@@ -20,6 +20,14 @@ class User extends ResourceController {
       return $this->respond($data);
     }
 
+    public function getAllUser(){
+
+        $model = new UserModel();
+        $model->select('idUser, FirstName, LastName, Email');
+        $data['user'] = $model->findAll();
+
+      return $this->respond($data);
+    }
 
     // single user
     public function show($id = null){
@@ -67,8 +75,11 @@ class User extends ResourceController {
     public function update($id = null){
 
         $model = new UserModel();
-
-        $rawdata = $this->request->getRawInput();
+        
+        $rawdata = $this->request->getJSON(true);     
+        //var_dump($rawdata);
+        $filteredData = remove_empty($rawdata);
+        $model->update($id, $filteredData);
        
         $model->update($id, $rawdata);
 
