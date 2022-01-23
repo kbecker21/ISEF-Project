@@ -1,13 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-
-
-export interface CategoryDialogData {
-  Name: string;
-  id: number;
-  idSubject: number;
-}
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Category } from 'src/app/shared/model/category.model';
 
 @Component({
   selector: 'app-category-dialog',
@@ -17,14 +11,11 @@ export interface CategoryDialogData {
 export class CategoryDialogComponent implements OnInit {
 
   form: FormGroup;
-  name: string;
-  id: number;
-  SubjectId: number;
-
+ 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CategoryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CategoryDialogData) { 
+    @Inject(MAT_DIALOG_DATA) public data: Category) { 
       
     }
 
@@ -32,9 +23,9 @@ export class CategoryDialogComponent implements OnInit {
     this.form = this.fb.group({
       Name: [this.data.Name, []],  
       id: [this.data.id, []],   
-      Subject_idSubject: [this.data.idSubject, []],      
+      Subject_idSubject: [this.data.Subject_idSubject, []],      
   }); 
-  }
+  }  
 
   save() {
     this.dialogRef.close(this.form.value);
