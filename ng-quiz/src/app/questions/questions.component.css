@@ -13,3 +13,26 @@
     left: 0;
     width: 20em;
     }
+
+    .question-panel {
+        margin-bottom: 1em;
+    }
+
+    .mat-row:hover {
+      background-color: rgb(214, 214, 214);
+    }
+
+    .add {
+      background-color: #aed581;
+      margin-right: 1em;
+    }
+
+    .delete {
+      background-color: #e57373;
+      margin-right: 1em;
+    }
+
+    .edit {
+      background-color: #4fc3f7;
+      margin-right: 1em;
+    }

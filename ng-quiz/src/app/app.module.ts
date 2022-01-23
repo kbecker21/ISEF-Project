@@ -39,10 +39,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { AccountLevelPipe } from './shared/pipe/account-level.pipe';
 import { LobbyComponent } from './lobby/lobby.component';
 import { GameComponent } from './game/game.component';
-import { CoursesComponent } from './courses/courses.component';
-import { CoursesListComponent } from './courses/courses-list/courses-list.component';
-import { CourseDetailsComponent } from './courses/course-details/course-details.component';
-import { CategoryDialogComponent } from './courses/category-dialog/category-dialog.component';
+
+
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionDialogComponent } from './questions/question-dialog/question-dialog.component';
 import { AutofocusDirective } from './autofocus.directive';
@@ -52,7 +50,8 @@ import { EditAnswerDialogComponent } from './questions/edit-answer-dialog/edit-a
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 
 import { LoadingScreenInterceptor } from './shared/helpers/loading.interceptors';
-
+import { CourseDialogComponent } from './questions/course-dialog/course-dialog.component';
+import { CategoryDialogComponent } from './questions/category-dialog/category-dialog.component';
 
 @NgModule({
   declarations: [
@@ -69,9 +68,6 @@ import { LoadingScreenInterceptor } from './shared/helpers/loading.interceptors'
     AccountLevelPipe,
     LobbyComponent,
     GameComponent,
-    CoursesComponent,
-    CoursesListComponent,
-    CourseDetailsComponent,
     CategoryDialogComponent,
     QuestionsComponent,
     QuestionDialogComponent,
@@ -79,7 +75,8 @@ import { LoadingScreenInterceptor } from './shared/helpers/loading.interceptors'
     AddQuestionDialogComponent,
     AddAnswerDialogComponent,
     EditAnswerDialogComponent,
-    LoadingScreenComponent
+    LoadingScreenComponent,
+    CourseDialogComponent
   ],
   imports: [
     BrowserModule,

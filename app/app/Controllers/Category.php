@@ -72,6 +72,7 @@ class Category extends ResourceController
 
     // update
     public function update($id = null){
+        $model = new CategoryModel();
 
         $rawdata = $this->request->getJSON(true);     
         //var_dump($rawdata);

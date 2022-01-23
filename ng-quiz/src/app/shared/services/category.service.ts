@@ -30,7 +30,7 @@ export class CategoryService {
         responseData.Category.forEach((category) => {
           categoryArray.push({
             id: category.idcategory,
-            idSubject: category.Subject_idSubject,
+            Subject_idSubject: category.Subject_idSubject,
             Name: category.Name,
             Creator: category.Creator_idUser,
             CreateDate: category.CreateDate                       

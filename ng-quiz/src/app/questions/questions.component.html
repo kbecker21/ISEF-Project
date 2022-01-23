@@ -8,17 +8,7 @@
   </mat-progress-spinner>
 </div> -->
 
-<mat-sidenav-container >
-  <mat-sidenav  class="toolbar" mode="side" opened>
-    <h2><b>Module</b></h2>
-    <mat-nav-list>
-      <div *ngFor="let course of courseList">               
-        <a mat-list-item (click)="getbyCourse(course.Name, course.id)">{{course.Name}}</a>
-      </div>
-    </mat-nav-list>
-  </mat-sidenav>
-  
-</mat-sidenav-container>
+
 
 <!-- <mat-drawer-container autosize  >
   <mat-drawer #drawer class="example-sidenav" mode="side" opened>
@@ -34,27 +24,74 @@
 
 </mat-drawer-container> -->
 
-<div *ngIf="dataSource.length == 0">
-  <h1><mat-icon>face</mat-icon> Bitte wähle ein Modul aus  </h1>
+<div *ngIf="!courseID">
+  
+  <mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile [colspan]="3">
+      <div class="pull-left">
+        <h1 ><mat-icon>face</mat-icon> Bitte wähle ein Modul aus </h1> 
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="pull-right">
+        <button mat-raised-button (click)="newCourse()" class="add"><mat-icon>add</mat-icon> Modul hinzufügen</button>
+      </div>
+    </mat-grid-tile>   
+  </mat-grid-list> 
+  
+  <mat-table [dataSource]="courseList" class="mat-elevation-z8">
+    
+    <!-- FirstName Column -->
+    <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef> Modulname </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="getbyCourse(element.Name, element.ShortName, element.id)" style="cursor: pointer;"> {{element.Name}}</mat-cell>        
+    </ng-container>
+
+    <ng-container matColumnDef="ShortName">
+      <mat-header-cell *matHeaderCellDef> Kurzbezeichnung </mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="getbyCourse(element.Name, element.ShortName, element.id)" style="cursor: pointer;"> {{element.ShortName}} </mat-cell>
+  </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedCourseColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedCourseColumns;"></mat-row>
+</mat-table>
+
 </div>
 
-<mat-accordion *ngIf="dataSource.length != 0">
-  <h1>{{ courseName }}</h1>
-  <button type="button" mat-button (click)="editCourse(currentCourse)" >Kurs bearbeiten</button>
-  <button type="button" mat-button (click)="deleteCourse(currentCourse)" >Kurs löschen</button>
+<mat-accordion *ngIf="courseID"> 
 
-    <div *ngFor="let category of dataSource">
-    <mat-expansion-panel (click)="setPanelID(category.category.idcategory)" class="question-expansion-panel" [expanded]="panel === category.category.idcategory">
+  <mat-grid-list cols="2" rowHeight="100px">
+    <mat-grid-tile>
+      <div class="pull-left">
+        <h1> <button mat-icon-button  (click)="loadCourses()" matTooltip="Modulübersicht"><mat-icon>arrow_back</mat-icon></button> {{ courseName }}</h1> 
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="pull-right">        
+        <button mat-raised-button (click)="newCategory(courseID)" class="add">Kapitel hinzufügen</button>
+        &nbsp;
+        <button mat-raised-button (click)="editCourse(courseID)" class="edit">Kurs bearbeiten</button>
+        &nbsp;
+        <button mat-raised-button (click)="deleteCourse(courseID)" class="delete">Kurs löschen</button>       
+      </div>
+    </mat-grid-tile>   
+  </mat-grid-list> 
+
+    <div *ngFor="let category of dataSource" class="question-panel">
+   
+      <mat-expansion-panel (click)="setPanelID(category.category.idcategory)" class="question-expansion-panel" [expanded]="panel === category.category.idcategory">
       <mat-expansion-panel-header>
         <mat-panel-title>
             <h1>{{category.category.Name}}</h1>            
-        </mat-panel-title>       
+        </mat-panel-title> 
+              
       </mat-expansion-panel-header>
-      <div>
-         
-        <button type="button" mat-button (click)="newQuestion(category.category.idcategory)" >Frage Hinzufügen</button>
-        <button type="button" mat-button (click)="newCategory.emit(selectedCourse.id)" >Kapitel bearbeiten</button>
-        <button type="button" mat-button (click)="newCategory.emit(selectedCourse.id)" >Kapitel löschen</button>
+      
+      <div>        
+        <button mat-icon-button (click)="newQuestion(category.category.idcategory)" class="add" matTooltip="Frage hinzufügen"><mat-icon>quiz</mat-icon></button>
+        <button mat-icon-button (click)="editCategory(category.category.idcategory, category.category.Name)" class="edit" matTooltip="Kategorie editieren"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button (click)="deleteCategory(category.category.idcategory)" class="delete" matTooltip="Kategorie löschen"><mat-icon>delete</mat-icon></button>
     </div>
         <div class="questions">
             <div class="question" *ngFor="let question of category.questions">
