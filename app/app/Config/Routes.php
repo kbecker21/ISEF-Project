@@ -39,7 +39,7 @@ $routes->resource('question',['filter' => 'authadmin']);
 $routes->resource('answer',['filter' => 'authadmin']);
 
 
-$routes->resource('StudentsSubject',['filter' => 'authuser']);
+$routes->resource('students',['filter' => 'authuser']);
 $routes->resource('quiz',['filter' => 'authuser']);
 $routes->resource('me',['filter' => 'authuser']);
 
@@ -49,7 +49,7 @@ $routes->post('login', 'Login::index');
 
 $routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' => 'authadmin']);
 
-$routes->get('user/getalluser', 'User::getAllUser', ['filter' => 'authuser']);
+$routes->get('students/getalluser', 'User::getAllUser', ['filter' => 'authuser']);
 
 $routes->get('quiz/getquestions/(:num)/(:num)', 'Quiz::getQuestions/$1/$2', ['filter' => 'authuser']);
 /*

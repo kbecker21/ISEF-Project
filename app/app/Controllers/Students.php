@@ -2,9 +2,10 @@
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\SubjectModel;
+use App\Models\UserModel;
 
 
-class StudentsSubject extends ResourceController {
+class Students extends ResourceController {
     use ResponseTrait;
 
         
@@ -30,6 +31,15 @@ class StudentsSubject extends ResourceController {
         }else{
             return $this->failNotFound('No Subject found');
         }
+    }
+
+       public function getAllUser(){
+
+        $model = new UserModel();
+        $model->select('idUser, FirstName, LastName, Email');
+        $data['user'] = $model->findAll();
+
+      return $this->respond($data);
     }
 
 }
