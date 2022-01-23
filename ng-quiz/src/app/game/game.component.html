@@ -1,12 +1,12 @@
 <mat-card>
     <h3>
         <span style="text-align: center;">
-            <b>Du spielst ({{player1Points}} Punkte) </b>
-            gegen
+            <b>Du </b> spielst gegen
             <b>{{player2.firstName}} {{player2.lastName}}</b>
         </span>
         <span style="float: right;">Kategorie: <b>Testkategorie</b></span>
         <span style="float: right;margin-right: 20px;">Kurs: <b>Testkurs</b></span>
+        <span style="float: right;margin-right: 20px;">Punkte: <b>{{player1Points}}</b></span>
     </h3>
 </mat-card>
 
@@ -25,9 +25,9 @@
     </mat-card-title-group>
     <mat-card-content>
         <button mat-stroked-button *ngFor="let answer of answers" [disabled]="disableAnswerButton"
-            (click)="selectAnswer(answer)"
-            style="width: 100%; padding: 5px; margin-top: 5px;margin-bottom: 5px; background-color: rgb(235, 233, 233);">
-            <div style="text-align: left;">
+            style=" width: 100%; padding: 5px; margin-top: 5px;margin-bottom:5px;background-color: rgb(240, 240, 240);"
+            (click)="selectAnswer(answer)">
+            <div style=" text-align: left;">
                 {{answer.Description}}
             </div>
         </button>

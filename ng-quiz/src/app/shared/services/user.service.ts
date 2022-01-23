@@ -44,27 +44,43 @@ export class UserService {
     });
 
     // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
-    //let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me'
+    let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'Students/getalluser'
 
-    return this.http.get<any>(URL + '/user', { headers: headers }).pipe(
+    return this.http.get<any>(URL + '/' + usedController, { headers: headers }).pipe(
+
       map(responseData => {
-        if (!responseData || !responseData.User)
-          return [];
 
-        const usersArray: Users[] = [];
-
-        responseData.User.forEach((user) => {
-          usersArray.push({
-            id: user.idUser,
-            firstName: user.FirstName,
-            lastName: user.LastName,
-            email: user.Email,
-            accountLevel: user.AccountLevel_idAccountLevel
+        if (usedController === 'user') {
+          if (!responseData || !responseData.User)
+            return [];
+          const usersArray: Users[] = [];
+          responseData.User.forEach((user) => {
+            usersArray.push({
+              id: user.idUser,
+              firstName: user.FirstName,
+              lastName: user.LastName,
+              email: user.Email,
+              accountLevel: user.AccountLevel_idAccountLevel
+            });
           });
-        });
+          return usersArray;
+        } else {
+          if (!responseData || !responseData.user)
+            return [];
+          const usersArray: Users[] = [];
+          responseData.user.forEach((user) => {
+            usersArray.push({
+              id: user.idUser,
+              firstName: user.FirstName,
+              lastName: user.LastName,
+              email: user.Email,
+              accountLevel: user.AccountLevel_idAccountLevel
+            });
+          });
+          return usersArray;
+        }
 
 
-        return usersArray;
       }),
       catchError(errorRes => {
         return throwError(errorRes);

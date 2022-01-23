@@ -25,6 +25,7 @@ export class LobbyComponent implements OnInit {
   dataSourceCourses: Course[] = [];
 
   dataSource: Quiz[] = [];
+  allQuizes: Quiz[] = [];
 
   currentUserGame: Quiz = null;
 
@@ -48,7 +49,6 @@ export class LobbyComponent implements OnInit {
 
   initCurrentUser() {
     this.dataSource.forEach(quiz => {
-      console.log(quiz);
       if (this.loggedInUser.idUser == quiz.idCreatorUser || this.loggedInUser.idUser == quiz.idJoinerUser) {
         this.currentUserGame = quiz;
       }
@@ -57,7 +57,10 @@ export class LobbyComponent implements OnInit {
 
   initTable() {
     this.openedGamesSub = this.lobbyService.getAllOpenedGames(this.loggedInUser).subscribe(response => {
-      this.dataSource = response;
+      this.allQuizes = response;
+      //console.log(response);
+      //this.dataSource = response;
+      this.dataSource = response.filter(quiz => quiz.idJoinerUser === null);
       this.initCurrentUser();
     },
       errorMessage => {

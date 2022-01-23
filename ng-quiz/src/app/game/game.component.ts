@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../shared/model/question.model';
 import { Answer } from '../shared/model/answer.model';
-import { User } from '../shared/model/user.model';
-import { UserService } from '../shared/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
+
 
 @Component({
   selector: 'app-game',
@@ -25,7 +26,9 @@ export class GameComponent implements OnInit {
   disableNextQuestionButton = true;
   disableAnswerButton = false;
 
-  constructor() { }
+
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.dummyCreateQuiz();
@@ -33,15 +36,23 @@ export class GameComponent implements OnInit {
     this.dummyGetNewQuestion();
   }
 
-
   selectAnswer(answer: Answer) {
     if (answer.Truth) {
-
+      this.openDialog(true, 'Super gemacht, weiter so.');
       this.disableNextQuestionButton = false;
     } else {
-
+      this.openDialog(false, 'Die richtige Antwort ist xy.');
       this.disableNextQuestionButton = false;
     }
+  }
+
+  openDialog(isCorrect: boolean, answer: string) {
+    this.dialog.open(DialogComponent, {
+      data: {
+        isCorrect: isCorrect,
+        answer: answer,
+      },
+    });
   }
 
   dummyGetNewQuestion() {

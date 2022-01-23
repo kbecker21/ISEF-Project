@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { User } from '../model/user.model';
 import { Course } from '../model/course.model';
 import { AuthService } from './auth.service';
-import { setAuthHeader, getUrl, getUrlById, handleError} from '../helpers';
+import { setAuthHeader, getUrl, getUrlById, handleError } from '../helpers';
 
 // TODO: Bei Integration anpassen
 const URL = 'http://localhost:8000';
@@ -21,7 +21,7 @@ export class CourseService {
   all(loggedInUser: User) {
 
     // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
-    let usedController = loggedInUser.accountLevel === 5 ? 'subject' : 'StudentsSubject'
+    let usedController = loggedInUser.accountLevel === 5 ? 'subject' : 'Students'
 
     return this.http.get<any>(URL + '/' + usedController, { headers: setAuthHeader(loggedInUser.token) }).pipe(
       map(responseData => {
@@ -83,6 +83,6 @@ export class CourseService {
   }
 
 
- 
+
 }
 
