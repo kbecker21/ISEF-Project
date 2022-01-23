@@ -3,7 +3,7 @@
  */
  export interface Category {
     id: number,
-    idSubject: number,
+    Subject_idSubject: number,
     Name: string,
     Creator: number,
     CreateDate: string,    

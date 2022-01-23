@@ -6,14 +6,19 @@ import { User } from '../shared/model/user.model';
 import { QuestionList } from '../shared/model/questionlist.model';
 import { QuestionsService } from '../shared/services/questions.service';
 import { AnswerService } from '../shared/services/answer.service';
-import { ActivatedRoute } from '@angular/router';
 import { Question } from '../shared/model/question.model';
 import { AddQuestionDialogComponent } from './add-question-dialog/add-question-dialog.component';
 import { AddAnswerDialogComponent } from './add-answer-dialog/add-answer-dialog.component';
+import { CourseDialogComponent } from './course-dialog/course-dialog.component';
+import { CategoryDialogComponent } from './category-dialog/category-dialog.component';
+import { Category } from '../shared/model/category.model';
+import { CategoryService } from '../shared/services/category.service';
 import { filter } from 'rxjs/operators';
 import { Answer } from '../shared/model/answer.model';
 import { Course } from '../shared/model/course.model';
 import { CourseService } from '../shared/services/course.service';
+import { MatTableDataSource } from '@angular/material/table';
+
 
 @Component({
   selector: 'app-questions',
@@ -29,48 +34,50 @@ export class QuestionsComponent implements OnInit {
   allCourses: Subscription = null;
   courseList: Course[] = [];
 
+  displayedCourseColumns: string[] = ['Name', 'ShortName'];
+
   courseID: number;
   editMode = false;
   panel = 0;
 
   courseName: string;
-  currentCourse: number;
-
+  courseShort: string;
   
   nav_position: string = 'start';
 
   private routeSub: Subscription;
 
-  constructor(private auth: AuthService, private questionsService: QuestionsService, private answerService: AnswerService, private route: ActivatedRoute, private dialog: MatDialog, private courseService: CourseService) { }
+  constructor(private auth: AuthService, private questionsService: QuestionsService, private answerService: AnswerService, private categoryService: CategoryService, private dialog: MatDialog, private courseService: CourseService) { }
 
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
       this.loggedInUser = user;
-    });
+    });    
     
-    this.routeSub = this.route.params.subscribe(params => {
-      this.courseID = params['id'];
-    });
     this.loadCourses()    
   }
 
   loadCourses() {
     this.allCourses = this.courseService.all(this.loggedInUser).subscribe(response => {
       this.courseList = response;  
-      console.log(this.dataSource)    
+      this.courseID = null;   
     },
       errorMessage => {
         console.log(errorMessage);
       });
   }
 
-  getbyCourse(Name: string, courseId: number) {    
+  getbyCourse(Name: string, shortName: string,  courseId: number) {    
     this.allQuestions = this.questionsService.getByCourse(this.loggedInUser, courseId).subscribe(data => {
       if (data.status === 204) {
+        this.courseName = Name;
+        this.courseShort = shortName;
+        this.courseID = courseId;
         this.dataSource = [];
       } else {
         this.courseName = Name;
-        this.currentCourse = courseId;
+        this.courseShort = shortName;
+        this.courseID = courseId;
         this.dataSource = data;          
       }   
     });    
@@ -80,12 +87,12 @@ export class QuestionsComponent implements OnInit {
     if(question.idQuestion) {     
       this.questionsService.update(this.loggedInUser, question).subscribe(data => {
         
-        this.getbyCourse(this.courseName, this.courseID);
+        this.getbyCourse(this.courseName, this.courseShort, this.courseID);
       });
     } else {
       this.questionsService.create(this.loggedInUser, question).subscribe(data => {
         
-        this.getbyCourse(this.courseName, this.courseID);       
+        this.getbyCourse(this.courseName, this.courseShort, this.courseID);       
       });
     }
     
@@ -94,26 +101,53 @@ export class QuestionsComponent implements OnInit {
   saveAnswer(answer: Answer) {
     if(answer.idAnswers) {
      
-      this.answerService.update(this.loggedInUser, answer).subscribe(data => {
-        
-        this.getbyCourse(this.courseName, this.courseID);
-        
+      this.answerService.update(this.loggedInUser, answer).subscribe(data => {        
+        this.getbyCourse(this.courseName, this.courseShort, this.courseID);        
       });
-    } else {
-      
+    } else {      
       this.answerService.create(this.loggedInUser, answer).subscribe(data => {
-       
-        this.getbyCourse(this.courseName, this.courseID);
+        this.getbyCourse(this.courseName, this.courseShort, this.courseID);
       });
     }
     
   }
 
+  saveCourse(course) {
+    if(course.id) {
+      this.courseService.update(this.loggedInUser, course)
+        .subscribe(result => {
+          this.courseName = course.Name;
+          this.courseShort = course.ShortName;
+          this.getbyCourse(this.courseName, this.courseShort, this.courseID);
+
+          
+        });
+      
+    } else  {
+      this.courseService.create(this.loggedInUser, course)
+        .subscribe(result => this.refreshCourses())     
+        
+    }
+  }
+
+  deleteCourse(id: number) {
+    if (confirm('Möchtest du sicher den Kurs löschen?')) {
+      this.courseService.delete(this.loggedInUser, id).subscribe(response => {
+        this.refreshCourses();
+      },
+        errorMessage => {
+          console.log(errorMessage);
+        });
+    }
+
+  }
+
+
   deleteQuestion(question: Question) {
     if (confirm('Möchtest du die Frage wirklich löschen?')) {
       this.questionsService.delete(this.loggedInUser, question.idQuestion).subscribe(data => {
         console.log(data);
-        this.getbyCourse(this.courseName, this.courseID);
+        this.getbyCourse(this.courseName, this.courseShort, this.courseID);
      },
      errorMessage => {
         console.log(errorMessage);        
@@ -125,7 +159,7 @@ export class QuestionsComponent implements OnInit {
     if (confirm('Möchtest du die Antwort wirklich löschen?')) {
       this.answerService.delete(this.loggedInUser, answer.idAnswers).subscribe(data => {
         console.log(data);
-        this.getbyCourse(this.courseName, this.courseID);
+        this.getbyCourse(this.courseName, this.courseShort, this.courseID);
      },
      errorMessage => {
         console.log(errorMessage);
@@ -133,12 +167,39 @@ export class QuestionsComponent implements OnInit {
     }
   }
 
+  saveCategory(category) {
+    if(category.id) {
+      this.categoryService.update(this.loggedInUser, category)
+        .subscribe(result => this.getbyCourse(this.courseName, this.courseShort, this.courseID))
+      
+    } else  {
+      this.categoryService.create(this.loggedInUser, category)
+        .subscribe(result => this.getbyCourse(this.courseName, this.courseShort, this.courseID))
+    }
+  }
+
+  deleteCategory(categoryID: number) {
+    if (confirm('Möchtest du sicher die Kategorie löschen?')) {
+      this.categoryService.delete(this.loggedInUser, categoryID).subscribe(response => {
+        this.getbyCourse(this.courseName, this.courseShort, this.courseID);        
+      },
+        errorMessage => {
+          console.log(errorMessage);
+        });
+    }
+
+  }
+
   toggleActivate(question: Question) {
-    question.Approved = question.Approved === 1 ? 0 : 1;
+    if (question.Approved == 1) {
+      question.Approved = 0;      
+    } else {
+      question.Approved = 1;
+    }
           
     this.questionsService.update(this.loggedInUser, question).subscribe(data => {
       console.log(question);
-      this.getbyCourse(this.courseName, this.courseID);
+      this.getbyCourse(this.courseName, this.courseShort, this.courseID);
     });
   }
 
@@ -150,7 +211,7 @@ export class QuestionsComponent implements OnInit {
     }          
     this.answerService.update(this.loggedInUser, answer).subscribe(data => {
       console.log(answer);
-      this.getbyCourse(this.courseName, this.courseID);
+      this.getbyCourse(this.courseName, this.courseShort, this.courseID);
     });
   }
 
@@ -194,10 +255,94 @@ export class QuestionsComponent implements OnInit {
   );    
   }
 
+  newCourse() {
+   const dialogConfig = new MatDialogConfig();
+  
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    
+  
+    dialogConfig.data = {
+      
+    };
+  
+  const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
+  
+    dialogRef.afterClosed()
+      .pipe(filter(data => data))
+      .subscribe(data => this.saveCourse(data)
+    );    
+  }
+
+  editCourse(courseID: number) {
+    const dialogConfig = new MatDialogConfig();
+  
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+    
+  
+    dialogConfig.data = {
+      Name : this.courseName,
+      id : courseID,
+      ShortName : this.courseShort
+    };
+  
+  const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
+  
+    dialogRef.afterClosed()
+      .pipe(filter(data => data))
+      .subscribe(data => this.saveCourse(data)
+    );    
+  }
+
+  newCategory(courseID) {
+    console.log(courseID);
+    const dialogConfig = new MatDialogConfig();
+  
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+  
+    dialogConfig.data = {
+      Subject_idSubject: courseID,
+  };  
+  
+  const dialogRef = this.dialog.open(CategoryDialogComponent, dialogConfig);
+  
+    dialogRef.afterClosed()
+    .pipe(filter(data => data))
+    .subscribe(data => this.saveCategory(data)
+  );    
+  }
+
+  editCategory(categoryID: number, Name: string ) {
+    const dialogConfig = new MatDialogConfig();
+  
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = true;
+  
+    dialogConfig.data = {
+      id: categoryID,
+      Name: Name,
+      Subject_idSubject: this.courseID,
+  };  
+  
+  const dialogRef = this.dialog.open(CategoryDialogComponent, dialogConfig);
+  
+    dialogRef.afterClosed()
+    .pipe(filter(data => data))
+    .subscribe(data => this.saveCategory(data)
+  );    
+  }
  
   setPanelID(panelid: number) {
     this.panel = panelid;
   }
+
+  refreshCourses() {        
+    this.loadCourses();
+  }
+
+  
 
 }
 

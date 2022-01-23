@@ -49,6 +49,8 @@ $routes->post('login', 'Login::index');
 
 $routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' => 'authadmin']);
 
+$routes->get('user/getalluser', 'User::getAllUser', ['filter' => 'authuser']);
+$routes->get('quiz/questions/(:num)/(:num)', 'Quiz::getQuestions/$1/$2', ['filter' => 'authuser']);
 /*
 
 
