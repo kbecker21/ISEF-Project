@@ -20,15 +20,6 @@ class User extends ResourceController {
       return $this->respond($data);
     }
 
-    public function getAllUser(){
-
-        $model = new UserModel();
-        $model->select('idUser, FirstName, LastName, Email');
-        $data['user'] = $model->findAll();
-
-      return $this->respond($data);
-    }
-
     // single user
     public function show($id = null){
 
