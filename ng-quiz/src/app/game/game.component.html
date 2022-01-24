@@ -1,12 +1,12 @@
 <mat-card>
     <h3>
         <span style="text-align: center;">
-            <b>{{player1.firstName}} {{player1.lastName}} ({{player1Points}} Punkte) </b>
-            spielt gegen
-            <b>{{player2.firstName}} {{player2.lastName}} ({{player2Points}} Punkte)</b>
+            <b>Du </b> spielst gegen
+            <b>{{player2.firstName}} {{player2.lastName}}</b>
         </span>
-        <span style="float: right;">Restzeit: <b>60</b></span>
-        <span style="float: right;margin-right: 20px;">Kurs: <b>Test</b></span>
+        <span style="float: right;">Kategorie: <b>Testkategorie</b></span>
+        <span style="float: right;margin-right: 20px;">Kurs: <b>Testkurs</b></span>
+        <span style="float: right;margin-right: 20px;">Punkte: <b>{{player1Points}}</b></span>
     </h3>
 </mat-card>
 
@@ -15,7 +15,7 @@
         <mat-card-subtitle>Frage {{questionNumber}} von 10</mat-card-subtitle>
     </mat-card-title-group>
     <mat-card-content>
-        <h1>{{question.QuestionDescription}}</h1>
+        <h1>{{currentQuestion.QuestionDescription}}</h1>
     </mat-card-content>
 </mat-card>
 
@@ -24,12 +24,15 @@
         <mat-card-subtitle>Antwort</mat-card-subtitle>
     </mat-card-title-group>
     <mat-card-content>
-        <button mat-stroked-button *ngFor="let answer of answers"
-            style="width: 100%; padding: 5px; margin-top: 5px;margin-bottom: 5px; background-color: rgb(235, 233, 233);">
-            <div style="text-align: left;">
+        <button mat-stroked-button *ngFor="let answer of currentAnswers" [disabled]="disableAnswerButton"
+            style=" width: 100%; padding: 5px; margin-top: 5px;margin-bottom:5px;background-color: rgb(240, 240, 240);"
+            (click)="selectAnswer(answer)">
+            <div style=" text-align: left;">
                 {{answer.Description}}
             </div>
         </button>
     </mat-card-content>
 </mat-card>
-<button mat-flat-button color="primary" style="width: 100%;" disabled>Nächste Frage</button>
+<button mat-flat-button color="primary" style="width: 100%;" [disabled]="disableNextQuestionButton"
+    (click)="nextQuestion()">Nächste
+    Frage</button>
