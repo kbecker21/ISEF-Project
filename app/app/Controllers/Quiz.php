@@ -33,6 +33,7 @@ class Quiz extends ResourceController {
 
         $data = [
             'Subject_idSubject'  => $this->request->getVar('Subject_idSubject'),
+            'Category_idcategory'  => $this->request->getVar('Category_idcategory'),
             'Creator_idUser' => $session->get('idUser'), 
             'PlayDate'  => date("Y-m-d H:i:s")
         ];
