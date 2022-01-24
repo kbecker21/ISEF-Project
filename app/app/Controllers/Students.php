@@ -8,6 +8,20 @@ use App\Models\UserModel;
 class Students extends ResourceController {
     use ResponseTrait;
 
+        // Answers by question
+    public function showAnswers($id = null){
+
+        $model = new AnswersModel();
+
+        $data['Answers'] = $model->where('Question_idQuestion', $id)->findAll();
+
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No Answers found');
+        }
+    }
+
         
     // all Subjects
     public function index(){
