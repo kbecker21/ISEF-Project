@@ -52,6 +52,8 @@ export class GameComponent implements OnInit {
 
     this.dummyGetNewQuestion();
 
+    this.dummyGetCurrentAnswers();
+
     this.getQuiz();
 
     this.getQuestion();
@@ -187,9 +189,6 @@ export class GameComponent implements OnInit {
       Approved: 1,
       CreateDate: ""
     }
-
-
-
     let question10: Question = {
       idQuestion: 10,
       category_idcategory: 1,
@@ -199,6 +198,35 @@ export class GameComponent implements OnInit {
     }
 
     this.questions.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
+
+  }
+
+  dummyGetCurrentAnswers() {
+    let answer1: Answer = {
+      idAnswers: 1,
+      Question_idQuestion: 1,
+      Description: "Präsident 1",
+      Truth: 0
+    }
+    let answer2: Answer = {
+      idAnswers: 2,
+      Question_idQuestion: 1,
+      Description: "Präsident 2",
+      Truth: 1
+    }
+    let answer3: Answer = {
+      idAnswers: 1,
+      Question_idQuestion: 3,
+      Description: "Präsident 3",
+      Truth: 0
+    }
+    let answer4: Answer = {
+      idAnswers: 4,
+      Question_idQuestion: 1,
+      Description: "Präsident 4",
+      Truth: 0
+    }
+    this.currentAnswers.push(answer1, answer2, answer3, answer4)
   }
 
   dummyCreateQuiz() {

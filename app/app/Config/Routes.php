@@ -49,10 +49,10 @@ $routes->post('login', 'Login::index');
 
 $routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' => 'authadmin']);
 
-$routes->get('students/getalluser', 'students::getAllUser', ['filter' => 'authuser']);
-$routes->get('students/showanswers', 'students::showAnswers', ['filter' => 'authuser']);
+$routes->get('getalluser', 'students::getAllUser', ['filter' => 'authuser']);
+$routes->get('showanswers/(:num)', 'students::showAnswers/$1', ['filter' => 'authuser']);
 
-$routes->get('quiz/getquestions/(:num)/(:num)', 'Quiz::getQuestions/$1/$2', ['filter' => 'authuser']);
+$routes->get('getquestions/(:num)/(:num)', 'Quiz::getQuestions/$1/$2', ['filter' => 'authuser']);
 /*
 
 

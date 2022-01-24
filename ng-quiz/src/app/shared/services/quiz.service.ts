@@ -26,7 +26,7 @@ export class QuizService {
     });
 
 
-    return this.http.get<any>(URL + '/quiz/getquestions/' + idSubject + "/" + idCategory, { headers: headers }).pipe(
+    return this.http.get<any>(URL + '/getquestions/' + idSubject + "/" + idCategory, { headers: headers }).pipe(
 
       map(responseData => {
 
@@ -60,13 +60,15 @@ export class QuizService {
       'Authorization': 'Bearer ' + loggedInUser.token
     });
 
-
-    return this.http.get<any>(URL + '/answer/' + idQuestion, { headers: headers }).pipe(
+    return this.http.get<any>(URL + '/showanswers/' + idQuestion, { headers: headers }).pipe(
 
       map(responseData => {
 
         if (!responseData || !responseData.Answers)
           return [];
+
+        console.log(responseData);
+
         const answerArray: Answer[] = [];
         responseData.Answers.forEach((answer) => {
           answerArray.push({
