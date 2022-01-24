@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Question } from '../shared/model/question.model';
 import { Answer } from '../shared/model/answer.model';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
 import { QuizService } from '../shared/services/quiz.service';
 import { AuthService } from '../shared/services/auth.service';
 import { User } from '../shared/model/user.model';
@@ -34,6 +33,7 @@ export class GameComponent implements OnInit {
 
   disableNextQuestionButton = true;
   disableAnswerButton = false;
+  displayEndGameButton = false;
 
 
   questionSub: Subscription = null;
@@ -92,26 +92,26 @@ export class GameComponent implements OnInit {
 
   selectAnswer(answer: Answer) {
     if (answer.Truth) {
-      this.openDialog(true, 'Super gemacht, weiter so.');
+      //alert('richtig');
     } else {
-      this.openDialog(false, 'Die richtige Antwort ist xy.');
+      //alert('falsch');
     }
     this.disableNextQuestionButton = false;
   }
 
-  openDialog(isCorrect: boolean, answer: string) {
-    this.dialog.open(DialogComponent, {
-      data: {
-        isCorrect: isCorrect,
-        answer: answer,
-      },
-    });
-  }
-
 
   nextQuestion() {
-    this.currentQuestion = this.questions[this.questionNumber];
-    this.questionNumber++;
+    if (this.questionNumber < 10) {
+      this.currentQuestion = this.questions[this.questionNumber];
+      this.questionNumber++;
+    }
+    if (this.questionNumber == 10) {
+      this.displayEndGameButton = true;
+    }
+  }
+
+  finishGame() {
+    // TODO: send result;
   }
 
   dummyGetNewQuestion() {
@@ -119,19 +119,18 @@ export class GameComponent implements OnInit {
     let question1: Question = {
       idQuestion: 1,
       category_idcategory: 1,
-      QuestionDescription: "Wer war der 44. Präsident der USA?",
+      QuestionDescription: "Wer war der 1. Präsident der USA?",
       Approved: 1,
       CreateDate: ""
     }
 
     let question2: Question = {
       idQuestion: 2,
-      category_idcategory: 2,
-      QuestionDescription: "Wer war der 1. Präsident der USA?",
+      category_idcategory: 1,
+      QuestionDescription: "Wer war der 2. Präsident der USA?",
       Approved: 1,
       CreateDate: ""
     }
-
 
     let question3: Question = {
       idQuestion: 3,
@@ -141,7 +140,65 @@ export class GameComponent implements OnInit {
       CreateDate: ""
     }
 
-    this.questions.push(question1, question2, question3);
+    let question4: Question = {
+      idQuestion: 4,
+      category_idcategory: 1,
+      QuestionDescription: "Wer war der 4. Präsident der USA?",
+      Approved: 1,
+      CreateDate: ""
+    }
+
+    let question5: Question = {
+      idQuestion: 5,
+      category_idcategory: 1,
+      QuestionDescription: "Wer war der 5. Präsident der USA?",
+      Approved: 1,
+      CreateDate: ""
+    }
+
+    let question6: Question = {
+      idQuestion: 6,
+      category_idcategory: 1,
+      QuestionDescription: "Wer war der 6. Präsident der USA?",
+      Approved: 1,
+      CreateDate: ""
+    }
+
+    let question7: Question = {
+      idQuestion: 7,
+      category_idcategory: 1,
+      QuestionDescription: "Wer war der 7. Präsident der USA?",
+      Approved: 1,
+      CreateDate: ""
+    }
+
+    let question8: Question = {
+      idQuestion: 8,
+      category_idcategory: 1,
+      QuestionDescription: "Wer war der 8. Präsident der USA?",
+      Approved: 1,
+      CreateDate: ""
+    }
+
+    let question9: Question = {
+      idQuestion: 9,
+      category_idcategory: 1,
+      QuestionDescription: "Wer war der 9. Präsident der USA?",
+      Approved: 1,
+      CreateDate: ""
+    }
+
+
+
+    let question10: Question = {
+      idQuestion: 10,
+      category_idcategory: 1,
+      QuestionDescription: "Wer war der 10. Präsident der USA?",
+      Approved: 1,
+      CreateDate: ""
+    }
+
+    this.questions.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
   }
 
   dummyCreateQuiz() {

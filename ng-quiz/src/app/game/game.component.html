@@ -34,5 +34,7 @@
     </mat-card-content>
 </mat-card>
 <button mat-flat-button color="primary" style="width: 100%;" [disabled]="disableNextQuestionButton"
-    (click)="nextQuestion()">Nächste
+    *ngIf="!displayEndGameButton" (click)="nextQuestion()">Nächste
     Frage</button>
+<button mat-flat-button color="warn" style="width: 100%;" (click)="finishGame()" *ngIf="displayEndGameButton">Spiel
+    beenden</button>

@@ -18,6 +18,8 @@ export class QuizService {
   constructor(private http: HttpClient) { }
 
 
+
+
   getQuestion(loggedInUser: User, idSubject: number, idCategory: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
