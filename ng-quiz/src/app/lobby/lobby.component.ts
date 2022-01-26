@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Quiz } from '../shared/model/quiz.model';
 import { User } from '../shared/model/user.model';
 import { Course } from '../shared/model/course.model';
@@ -8,6 +8,7 @@ import { LobbyService } from '../shared/services/lobby.service';
 import { UserService } from '../shared/services/user.service';
 import { CourseService } from '../shared/services/course.service';
 import { FormControl } from '@angular/forms';
+import { Category } from '../shared/model/category.model';
 
 
 @Component({
@@ -16,13 +17,15 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./lobby.component.css']
 })
 export class LobbyComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'subject', 'action'];
+  displayedColumns: string[] = ['name', 'subject', 'category', 'action'];
 
   loggedInUser: User = null;
 
   courses = new FormControl();
+  categories = new FormControl();
 
   dataSourceCourses: Course[] = [];
+  dataSourceCategories: Category[] = [];
 
   dataSource: Quiz[] = [];
   allQuizes: Quiz[] = [];
@@ -48,7 +51,7 @@ export class LobbyComponent implements OnInit {
   }
 
   initCurrentUser() {
-    this.dataSource.forEach(quiz => {
+    this.allQuizes.forEach(quiz => {
       if (this.loggedInUser.idUser == quiz.idCreatorUser || this.loggedInUser.idUser == quiz.idJoinerUser) {
         this.currentUserGame = quiz;
       }
@@ -58,8 +61,6 @@ export class LobbyComponent implements OnInit {
   initTable() {
     this.openedGamesSub = this.lobbyService.getAllOpenedGames(this.loggedInUser).subscribe(response => {
       this.allQuizes = response;
-      //console.log(response);
-      //this.dataSource = response;
       this.dataSource = response.filter(quiz => quiz.idJoinerUser === null);
       this.initCurrentUser();
     },
@@ -78,10 +79,13 @@ export class LobbyComponent implements OnInit {
       });
   }
 
+
+  initCategories() {
+    // TODO
+    // Use observable or bevaiosubject for selectedCourse and then load categories....
+  }
+
   onJoinGame(quiz: Quiz): void {
-
-    // TODO: nur möglich wenn Spieler nicht schon in einem SPiel ist
-
     this.joinedQuiz = this.lobbyService.joinQuiz(this.loggedInUser, quiz.idQuiz, this.loggedInUser.idUser).subscribe(response => {
       this.initTable();
     },
@@ -92,9 +96,6 @@ export class LobbyComponent implements OnInit {
   }
 
   onCreateGame() {
-
-    // TODO: nur möglich wenn Spieler nicht schon in einem SPiel ist
-
     const selectedCourseId = this.courses.value;
     this.createdQuiz = this.lobbyService.createQuiz(this.loggedInUser, selectedCourseId).subscribe(response => {
       this.initTable();

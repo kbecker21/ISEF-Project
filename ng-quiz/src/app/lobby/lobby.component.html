@@ -27,7 +27,17 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Wähle ein Modul</mat-label>
                     <mat-select disableRipple [formControl]="courses" [disabled]="currentUserGame != null">
-                        <mat-option *ngFor="let course of dataSourceCourses" [value]="course.id">{{course.Name}}
+                        <mat-option *ngFor="let course of dataSourceCourses" [value]="course.id">
+                            {{course.Name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="fill">
+                    <mat-label>Wähle eine Kategorie</mat-label>
+                    <mat-select disableRipple [formControl]="categories" [disabled]="currentUserGame != null">
+                        <mat-option *ngFor=" let category of dataSourceCategories" [value]="category.id">
+                            {{category.Name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -46,8 +56,13 @@
             </ng-container>
 
             <ng-container matColumnDef="subject">
-                <mat-header-cell *matHeaderCellDef> Kurs </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Modul </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.subject}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="category">
+                <mat-header-cell *matHeaderCellDef> Kategorie </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="action">

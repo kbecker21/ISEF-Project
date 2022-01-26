@@ -91,6 +91,7 @@ export class GameComponent implements OnInit {
   }
 
   initQuestionsInGame() {
+    // TODO: init idSubject, idCategory in initGame()
     const idSubject = 1;
     const idCategory = 1;
     this.questionSub = this.quizService.getQuestions(this.loggedInUser, idSubject, idCategory).subscribe(response => {
@@ -144,6 +145,9 @@ export class GameComponent implements OnInit {
     // TODO: send result;
   }
 
+  onFrageMelden() {
+    // TODO: send to Server
+  }
 
   openDialog(isCorrect: boolean, answer: string) {
     this.dialog.open(DialogComponent, {
