@@ -79,6 +79,9 @@ export class LobbyComponent implements OnInit {
   }
 
   onJoinGame(quiz: Quiz): void {
+
+    // TODO: nur möglich wenn Spieler nicht schon in einem SPiel ist
+
     this.joinedQuiz = this.lobbyService.joinQuiz(this.loggedInUser, quiz.idQuiz, this.loggedInUser.idUser).subscribe(response => {
       this.initTable();
     },
@@ -89,6 +92,9 @@ export class LobbyComponent implements OnInit {
   }
 
   onCreateGame() {
+
+    // TODO: nur möglich wenn Spieler nicht schon in einem SPiel ist
+
     const selectedCourseId = this.courses.value;
     this.createdQuiz = this.lobbyService.createQuiz(this.loggedInUser, selectedCourseId).subscribe(response => {
       this.initTable();

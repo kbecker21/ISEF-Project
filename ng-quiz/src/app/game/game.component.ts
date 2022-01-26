@@ -6,6 +6,8 @@ import { QuizService } from '../shared/services/quiz.service';
 import { AuthService } from '../shared/services/auth.service';
 import { User } from '../shared/model/user.model';
 import { Subscription } from 'rxjs';
+import { LobbyService } from '../shared/services/lobby.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @Component({
@@ -18,16 +20,16 @@ export class GameComponent implements OnInit {
   loggedInUser: User = null;
   userSub: Subscription = null;
 
-  player1 = null;
+  player1: User = null;
   player2 = null;
 
-  player1Points = 0;
-  player2Points = 0;
+  currentPlayerPoints = 0;
 
   questions: Question[] = [];
 
   currentQuestion: Question = null;
   currentAnswers: Answer[] = [];
+  currentCorrectAnswer: Answer = null;
 
   questionNumber = 0;
 
@@ -36,55 +38,77 @@ export class GameComponent implements OnInit {
   displayEndGameButton = false;
 
 
+  currentGameSub: Subscription = null;
   questionSub: Subscription = null;
   answersSub: Subscription = null;
 
 
-  constructor(private auth: AuthService, public dialog: MatDialog, private quizService: QuizService) { }
+  // TODO: erst prüfen ob genug Fragen geladen wurden etc....
+  // this.questions.length >=10
+  //showGame = this.currentQuestion != null && this.currentAnswers != null;
+  showGame = true;
+
+  constructor(private auth: AuthService, public dialog: MatDialog, private quizService: QuizService, private lobbyService: LobbyService) { }
 
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
       this.loggedInUser = user;
-      this.player1 = this.loggedInUser;
     });
-
-    this.dummyCreateQuiz();
-
-    this.dummyGetNewQuestion();
-
-    this.dummyGetCurrentAnswers();
-
-    this.getQuiz();
-
-    this.getQuestion();
-
-    this.getAnswers();
-
-
+    this.initGame();
   }
 
-  getQuiz() {
-    //TODO: setzt Spieler, Kurs, Kategorie
-  }
 
-  getQuestion() {
-    const idSubject = 1;
-    const idCategory = 1;
-    this.questionSub = this.quizService.getQuestion(this.loggedInUser, idSubject, idCategory).subscribe(response => {
-      // TODO: 
+  initGame() {
+    this.player1 = this.loggedInUser;
+
+
+    //   TODO: kann weg 
+    this.player2 = {
+      idUser: 2,
+      firstName: "Max",
+      lastName: "Mustermann"
+    };
+
+
+    this.currentGameSub = this.lobbyService.getAllOpenedGames(this.player1).subscribe(response => {
+      response.forEach(quiz => {
+        // TODO: set kurs
+        // TODO: set kategorie
+        if (quiz.idJoinerUser == this.player1.idUser && quiz.idCreatorUser != null) {
+          // TODO: this.player2 = getUser(quiz.idCreatorUser) 
+        }
+        if (quiz.idCreatorUser == this.player1.idUser && quiz.idJoinerUser != null) {
+          // TODO: this.player2 = getUser(quiz.idJoinerUser) 
+        }
+      });
     },
       errorMessage => {
         console.log(errorMessage);
       });
 
+    this.initQuestionsInGame();
 
-    this.currentQuestion = this.questions[this.questionNumber];
-    this.questionNumber++;
   }
 
-  getAnswers() {
-    const idQuestion = 1;
+  initQuestionsInGame() {
+    const idSubject = 1;
+    const idCategory = 1;
+    this.questionSub = this.quizService.getQuestions(this.loggedInUser, idSubject, idCategory).subscribe(response => {
+      this.questions = response;
+      this.currentQuestion = this.questions[this.questionNumber];
+      this.questionNumber++;
+      this.initAnswersForQuestion(this.currentQuestion.idQuestion);
+    },
+      errorMessage => {
+        console.log(errorMessage);
+      });
+  }
+
+
+
+  initAnswersForQuestion(idQuestion: number) {
     this.answersSub = this.quizService.getAnswers(this.loggedInUser, idQuestion).subscribe(response => {
+      this.currentCorrectAnswer = response.find(answer => answer.Truth == 1);
       this.currentAnswers = response;
     },
       errorMessage => {
@@ -93,12 +117,14 @@ export class GameComponent implements OnInit {
   }
 
   selectAnswer(answer: Answer) {
-    if (answer.Truth) {
-      //alert('richtig');
+    if (answer.Truth == 1) {
+      this.currentPlayerPoints += 10;
+      this.openDialog(true, 'Super gemacht, weiter so.');
     } else {
-      //alert('falsch');
+      this.openDialog(false, 'Die richtige Antwort ist: \n' + this.currentCorrectAnswer.Description);
     }
     this.disableNextQuestionButton = false;
+    this.disableAnswerButton = true;
   }
 
 
@@ -106,144 +132,27 @@ export class GameComponent implements OnInit {
     if (this.questionNumber < 10) {
       this.currentQuestion = this.questions[this.questionNumber];
       this.questionNumber++;
+      this.initAnswersForQuestion(this.currentQuestion.idQuestion);
     }
     if (this.questionNumber == 10) {
       this.displayEndGameButton = true;
     }
+    this.disableAnswerButton = false;
   }
 
   finishGame() {
     // TODO: send result;
   }
 
-  dummyGetNewQuestion() {
 
-    let question1: Question = {
-      idQuestion: 1,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 1. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    let question2: Question = {
-      idQuestion: 2,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 2. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    let question3: Question = {
-      idQuestion: 3,
-      category_idcategory: 3,
-      QuestionDescription: "Wer war der 3. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    let question4: Question = {
-      idQuestion: 4,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 4. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    let question5: Question = {
-      idQuestion: 5,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 5. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    let question6: Question = {
-      idQuestion: 6,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 6. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    let question7: Question = {
-      idQuestion: 7,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 7. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    let question8: Question = {
-      idQuestion: 8,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 8. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    let question9: Question = {
-      idQuestion: 9,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 9. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-    let question10: Question = {
-      idQuestion: 10,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 10. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    this.questions.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
-
+  openDialog(isCorrect: boolean, answer: string) {
+    this.dialog.open(DialogComponent, {
+      data: {
+        isCorrect: isCorrect,
+        answer: answer,
+      },
+    });
   }
 
-  dummyGetCurrentAnswers() {
-    let answer1: Answer = {
-      idAnswers: 1,
-      Question_idQuestion: 1,
-      Description: "Präsident 1",
-      Truth: 0
-    }
-    let answer2: Answer = {
-      idAnswers: 2,
-      Question_idQuestion: 1,
-      Description: "Präsident 2",
-      Truth: 1
-    }
-    let answer3: Answer = {
-      idAnswers: 1,
-      Question_idQuestion: 3,
-      Description: "Präsident 3",
-      Truth: 0
-    }
-    let answer4: Answer = {
-      idAnswers: 4,
-      Question_idQuestion: 1,
-      Description: "Präsident 4",
-      Truth: 0
-    }
-    this.currentAnswers.push(answer1, answer2, answer3, answer4)
-  }
-
-  dummyCreateQuiz() {
-    this.player1 = {
-      idUser: 1,
-      firstName: "Kevin",
-      lastName: "Becker"
-    };
-
-    this.player2 = {
-      idUser: 2,
-      firstName: "Max",
-      lastName: "Mustermann"
-    };
-
-
-
-  }
 
 }

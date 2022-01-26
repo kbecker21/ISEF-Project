@@ -1,0 +1,5 @@
+<h1 mat-dialog-title *ngIf="data.isCorrect">Deine Antwort ist richtig</h1>
+<h1 mat-dialog-title *ngIf="!data.isCorrect">Deine Antwort ist falsch</h1>
+<div mat-dialog-content>
+    {{data.answer}}
+</div>

@@ -52,6 +52,7 @@ import { LoadingScreenComponent } from './loading-screen/loading-screen.componen
 import { LoadingScreenInterceptor } from './shared/helpers/loading.interceptors';
 import { CourseDialogComponent } from './questions/course-dialog/course-dialog.component';
 import { CategoryDialogComponent } from './questions/category-dialog/category-dialog.component';
+import { DialogComponent } from './game/dialog/dialog.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { CategoryDialogComponent } from './questions/category-dialog/category-di
     AddAnswerDialogComponent,
     EditAnswerDialogComponent,
     LoadingScreenComponent,
-    CourseDialogComponent
+    CourseDialogComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
