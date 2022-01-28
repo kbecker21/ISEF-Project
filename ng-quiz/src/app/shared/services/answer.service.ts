@@ -53,6 +53,18 @@ export class AnswerService {
       catchError(handleError)
     );
   }
+
+  /**
+   * Prüft ob für die Frage bwreits eine Antwort als richtig deklariert ist.
+   * @param loggedInUser eingeloggter User
+   * @param answerId Die Antwort welche gelöscht werden soll.
+   * @returns xxxxxxxxx
+   */
+  checkUniqueAnswer(loggedInUser: User, $questionID: number, $answerID: number) {
+    return this.http.get<any>(URL + '/answerunique/' + $questionID + '/' + $answerID, { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
+    );
+  }
  
 
 }

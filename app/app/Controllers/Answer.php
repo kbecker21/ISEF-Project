@@ -113,4 +113,18 @@ class Answer extends ResourceController {
         }
     }
 
+    public function checkForUnique($questionID, $answerID){
+
+        $model = new AnswersModel();
+        
+        $data = $model->where('Question_idQuestion', $questionID)->where('Truth', 1)->where('idAnswers !=', $answerID)->countAllResults();
+        
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->respond(0);
+        }
+    }
+
+
 }

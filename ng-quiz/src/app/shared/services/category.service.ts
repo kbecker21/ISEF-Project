@@ -17,7 +17,6 @@ export class CategoryService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-
   find(loggedInUser: User, courseID: number) {
     return this.http.get<any>(getUrl(this.model) + '/course/' + courseID, { headers: setAuthHeader(loggedInUser.token) }).pipe(
       map(responseData => {

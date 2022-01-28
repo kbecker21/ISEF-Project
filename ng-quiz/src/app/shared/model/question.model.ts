@@ -7,4 +7,5 @@
     QuestionDescription: string,
     Approved: number,
     CreateDate: string, 
+    Flagged: number
 }

@@ -29,14 +29,14 @@ $routes->setAutoRoute(true);
  */
 
 
-$routes->get('category/course/(:num)', 'Category::showcourse/$1', ['filter' => 'authadmin']);
+$routes->get('category/course/(:num)', 'Category::showcourse/$1', ['filter' => 'authuser']);
  // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->resource('user',['filter' => 'authadmin']);
 $routes->resource('subject',['filter' => 'authadmin']);
-$routes->resource('category',['filter' => 'authadmin']);
-$routes->resource('question',['filter' => 'authadmin']);
-$routes->resource('answer',['filter' => 'authadmin']);
+$routes->resource('category',['filter' => 'authuser']);
+$routes->resource('question',['filter' => 'authuser']);
+$routes->resource('answer',['filter' => 'authuser']);
 
 
 $routes->resource('students',['filter' => 'authuser']);
@@ -47,7 +47,7 @@ $routes->post('register', 'Register::index');
 $routes->post('login', 'Login::index');
 
 
-$routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' => 'authadmin']);
+$routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' => 'authuser']);
 
 $routes->get('getalluser', 'students::getAllUser', ['filter' => 'authuser']);
 
@@ -68,6 +68,8 @@ $routes->get('getuser/(:num)', 'students::getUser/$1', ['filter' => 'authuser'])
 $routes->get('showanswers/(:num)', 'students::showAnswers/$1', ['filter' => 'authuser']);
 
 $routes->get('getranking', 'Quiz::getRanking', ['filter' => 'authuser']);
+
+$routes->get('answerunique/(:num)/(:num)', 'Answer::checkForUnique/$1/$2', ['filter' => 'authuser']);
 
 
 

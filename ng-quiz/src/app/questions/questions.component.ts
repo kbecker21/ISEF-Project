@@ -204,15 +204,25 @@ export class QuestionsComponent implements OnInit {
   }
 
   toggleTruth(answer: Answer) {    
-    if (answer.Truth == 1) {
-      answer.Truth = 0;      
-    } else {
-      answer.Truth = 1;
-    }          
-    this.answerService.update(this.loggedInUser, answer).subscribe(data => {
-      console.log(answer);
-      this.getbyCourse(this.courseName, this.courseShort, this.courseID);
-    });
+    
+    this.answerService.checkUniqueAnswer(this.loggedInUser, answer.Question_idQuestion, answer.idAnswers).subscribe(data => {
+      if  (data > 0) {
+        alert('Es darf nur eine richtige Antwort geben');
+        answer.Truth = 0;
+        this.getbyCourse(this.courseName, this.courseShort, this.courseID);        
+      } else {
+        if (answer.Truth == 1) {
+          answer.Truth = 0;      
+        } else {
+          answer.Truth = 1;
+        }          
+        this.answerService.update(this.loggedInUser, answer).subscribe(data => {
+          console.log(answer);
+          this.getbyCourse(this.courseName, this.courseShort, this.courseID);
+        });
+      }
+    });   
+    
   }
 
   newQuestion(categoryID) {

@@ -54,11 +54,11 @@ CREATE TABLE `answers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `answers` (`idAnswers`, `Question_idQuestion`, `Description`, `Truth`) VALUES
-(1, 1, 'Vorstand', 1),
-(2, 1, 'CFO', 1),
-(3, 1, 'Controller', 1),
-(4, 1, 'treseur', 1),
-(5, 2, 'Steuern', 1),
+(1, 1, 'Vorstand', 0),
+(2, 1, 'CFO', 0),
+(3, 1, 'Controller', 0),
+(4, 1, 'treseur', 0),
+(5, 2, 'Steuern', 0),
 (6, 4, 'Auszahlung', 0),
 (7, 4, 'Einzahlung', 0),
 (9, 4, 'Steuern', 1);

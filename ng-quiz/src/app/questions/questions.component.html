@@ -33,7 +33,7 @@
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
-      <div class="pull-right">
+      <div class="pull-right" *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()">
         <button mat-raised-button (click)="newCourse()" class="add"><mat-icon>add</mat-icon> Modul hinzufügen</button>
       </div>
     </mat-grid-tile>   
@@ -68,7 +68,7 @@
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
-      <div class="pull-right">        
+      <div class="pull-right" *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()">        
         <button mat-raised-button (click)="newCategory(courseID)" class="add">Kapitel hinzufügen</button>
         &nbsp;
         <button mat-raised-button (click)="editCourse(courseID)" class="edit">Kurs bearbeiten</button>
@@ -90,8 +90,8 @@
       
       <div>        
         <button mat-icon-button (click)="newQuestion(category.category.idcategory)" class="add" matTooltip="Frage hinzufügen"><mat-icon>quiz</mat-icon></button>
-        <button mat-icon-button (click)="editCategory(category.category.idcategory, category.category.Name)" class="edit" matTooltip="Kategorie editieren"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button (click)="deleteCategory(category.category.idcategory)" class="delete" matTooltip="Kategorie löschen"><mat-icon>delete</mat-icon></button>
+        <button mat-icon-button (click)="editCategory(category.category.idcategory, category.category.Name)" class="edit" matTooltip="Kategorie editieren" *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button (click)="deleteCategory(category.category.idcategory)" class="delete" matTooltip="Kategorie löschen" *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()"><mat-icon>delete</mat-icon></button>
     </div>
         <div class="questions">
             <div class="question" *ngFor="let question of category.questions">
@@ -103,13 +103,19 @@
                         <button matTooltip="Antwort hinzufügen" class="pull-right" (click)="newAnswer(question.question.idQuestion)" mat-icon-button color="accent">
                             <mat-icon >add</mat-icon>
                         </button>
-                        <mat-slide-toggle *ngIf="question.question.Approved === '1'; else approve" class="pull-right" matTooltip="Zurückziehen" checked (change)="toggleActivate(question.question)"></mat-slide-toggle>
+                        <div *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()">
+                        <mat-slide-toggle *ngIf="question.question.Approved === '1'; else approve" class="pull-right" matTooltip="Zurückziehen" checked (change)="toggleActivate(question.question)" ></mat-slide-toggle>
                         <ng-template  #approve>
                             <mat-slide-toggle class="pull-right" matTooltip="Genehmigen" (change)="toggleActivate(question.question)"></mat-slide-toggle>
                         </ng-template>
-                        
+                      </div>
+                        <div *ngIf="question.question.Flagged == 1">
+                          <mat-icon class='pull-right' color='warn' matTooltip="Frage wurde gemolden">flag</mat-icon>
+                      </div>
 
-                        <app-question-dialog [data]='question.question' (focusOut)='saveQuestion($event)'></app-question-dialog></h2>
+                        <app-question-dialog [data]='question.question' (focusOut)='saveQuestion($event)'></app-question-dialog>
+                      
+                      </h2>
                         
                     
                 </div>

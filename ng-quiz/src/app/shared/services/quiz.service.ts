@@ -39,7 +39,8 @@ export class QuizService {
             category_idcategory: idCategory,
             QuestionDescription: question.QuestionDescription,
             Approved: 1,    // TODO: wird nicht benötigt
-            CreateDate: ""  // TODO: wird nicht benötigt
+            CreateDate: "",  // TODO: wird nicht benötigt
+            Flagged: 0       // TODO: wird nicht benötigt
           });
         });
         return questionArray;
