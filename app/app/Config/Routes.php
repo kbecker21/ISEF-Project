@@ -67,6 +67,8 @@ $routes->get('getuser/(:num)', 'students::getUser/$1', ['filter' => 'authuser'])
 
 $routes->get('showanswers/(:num)', 'students::showAnswers/$1', ['filter' => 'authuser']);
 
+$routes->get('getranking', 'Quiz::getRanking', ['filter' => 'authuser']);
+
 
 
 /*

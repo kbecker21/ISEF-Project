@@ -4,12 +4,12 @@ use CodeIgniter\Model;
   
 class ResultsModel extends Model{
 
-	protected $table = 'quiz';
-    protected $primaryKey = 'idQuiz';
+    protected $table = 'results';
+    protected $primaryKey = 'idResults';
     protected $allowedFields = [
     'User_idUser',
     'Quiz_idQuiz',  
-	'Points',
+    'Points',
     'Winner'];
 
 }

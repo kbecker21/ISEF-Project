@@ -152,18 +152,22 @@ class Quiz extends ResourceController {
         }
     }
 
-/*
  public function getRanking(){
 
-        $model = new ResultsModel();
+        $ResultsModel = new ResultsModel();
 
-        $data = $model->orderBy('User_idUser ', 'DESC')->findAll();
+        $ResultsModel->select('results.User_idUser, user.FirstName, user.LastName, SUM(Points) AS "Total Points", SUM(Winner) AS "Total Wins"');
+        $ResultsModel->join('user', 'user.idUser = results.User_idUser', 'left');
+        $ResultsModel->orderBy('"Total Points"', 'ASC');
+        $ResultsModel->groupBy('results.User_idUser');
+
+        $data = $ResultsModel->findAll();
 
         if($data){
             return $this->respond($data);
         }else{
             return $this->failNotFound('No Quiz found');
         }
-    }*/
+    }
 
 }
