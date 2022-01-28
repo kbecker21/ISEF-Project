@@ -44,6 +44,7 @@ class AuthUser implements FilterInterface {
             $decoded = JWT::decode($token, $key, array("HS256"));
             $session = session();
             $session->set('idUser', $decoded->idUser);
+            $session->set('AccountLevel', $decoded->AccountLevel);
 
         } catch (Exception $ex) {
             $response = service('response');

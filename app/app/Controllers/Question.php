@@ -114,8 +114,8 @@ class Question extends ResourceController {
         $CategoryModel = new CategoryModel();
 
         $categories = $CategoryModel->where('Subject_idSubject', $id)->findAll();
-
-
+        $session = session();
+       
         if($categories){
 
             $result = [];
@@ -126,7 +126,13 @@ class Question extends ResourceController {
                     'category' => $category                                       
                 ];
 
-                $questions = $QuestionModel->where('Category_idCategory', $category['idcategory'])->findAll();
+                
+                if ($session->get('AccountLevel') == 3){
+                    $questions = $QuestionModel->where('Category_idCategory', $category['idcategory'])->where('Creator_idUser', $session->get('idUser'))->findAll();                    
+                } else {
+                    $questions = $QuestionModel->where('Category_idCategory', $category['idcategory'])->findAll();
+                } 
+               
 
 
                 foreach ($questions as $keyQ => $question) {
@@ -135,6 +141,7 @@ class Question extends ResourceController {
                         'question' => $question                     
                     ];
 
+                    
                     $answers = $AnswersModel->where('Question_idQuestion', $question['idQuestion'])->findAll();
 
                     foreach ($answers as $keyA => $answer) {
