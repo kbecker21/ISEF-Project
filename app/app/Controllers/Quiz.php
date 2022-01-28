@@ -3,6 +3,7 @@ use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\QuizModel;
 use App\Models\ResultsModel;
+use App\Models\QuestionModel;
 
 
 class Quiz extends ResourceController {

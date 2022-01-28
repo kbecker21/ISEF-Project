@@ -44,7 +44,7 @@ export class UserService {
     });
 
     // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
-    let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'Students/getalluser'
+    let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'getalluser'
 
     return this.http.get<any>(URL + '/' + usedController, { headers: headers }).pipe(
 

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Question } from '../shared/model/question.model';
 import { Answer } from '../shared/model/answer.model';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
 import { QuizService } from '../shared/services/quiz.service';
 import { AuthService } from '../shared/services/auth.service';
 import { User } from '../shared/model/user.model';
 import { Subscription } from 'rxjs';
+import { LobbyService } from '../shared/services/lobby.service';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @Component({
@@ -19,70 +20,96 @@ export class GameComponent implements OnInit {
   loggedInUser: User = null;
   userSub: Subscription = null;
 
-  player1 = null;
+  player1: User = null;
   player2 = null;
 
-  player1Points = 0;
-  player2Points = 0;
+  currentPlayerPoints = 0;
 
   questions: Question[] = [];
 
   currentQuestion: Question = null;
   currentAnswers: Answer[] = [];
+  currentCorrectAnswer: Answer = null;
 
   questionNumber = 0;
 
   disableNextQuestionButton = true;
   disableAnswerButton = false;
+  displayEndGameButton = false;
 
 
+  currentGameSub: Subscription = null;
   questionSub: Subscription = null;
   answersSub: Subscription = null;
 
 
-  constructor(private auth: AuthService, public dialog: MatDialog, private quizService: QuizService) { }
+  // TODO: erst prüfen ob genug Fragen geladen wurden etc....
+  // this.questions.length >=10
+  //showGame = this.currentQuestion != null && this.currentAnswers != null;
+  showGame = true;
+
+  constructor(private auth: AuthService, public dialog: MatDialog, private quizService: QuizService, private lobbyService: LobbyService) { }
 
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
       this.loggedInUser = user;
-      this.player1 = this.loggedInUser;
     });
-
-    this.dummyCreateQuiz();
-
-    this.dummyGetNewQuestion();
-
-    this.getQuiz();
-
-    this.getQuestion();
-
-    this.getAnswers();
-
-
+    this.initGame();
   }
 
-  getQuiz() {
-    //TODO: setzt Spieler, Kurs, Kategorie
-  }
 
-  getQuestion() {
-    const idSubject = 1;
-    const idCategory = 1;
-    this.questionSub = this.quizService.getQuestion(this.loggedInUser, idSubject, idCategory).subscribe(response => {
-      // TODO: 
+  initGame() {
+    this.player1 = this.loggedInUser;
+
+
+    //   TODO: kann weg 
+    this.player2 = {
+      idUser: 2,
+      firstName: "Max",
+      lastName: "Mustermann"
+    };
+
+
+    this.currentGameSub = this.lobbyService.getAllOpenedGames(this.player1).subscribe(response => {
+      response.forEach(quiz => {
+        // TODO: set kurs
+        // TODO: set kategorie
+        if (quiz.idJoinerUser == this.player1.idUser && quiz.idCreatorUser != null) {
+          // TODO: this.player2 = getUser(quiz.idCreatorUser) 
+        }
+        if (quiz.idCreatorUser == this.player1.idUser && quiz.idJoinerUser != null) {
+          // TODO: this.player2 = getUser(quiz.idJoinerUser) 
+        }
+      });
     },
       errorMessage => {
         console.log(errorMessage);
       });
 
+    this.initQuestionsInGame();
 
-    this.currentQuestion = this.questions[this.questionNumber];
-    this.questionNumber++;
   }
 
-  getAnswers() {
-    const idQuestion = 1;
+  initQuestionsInGame() {
+    // TODO: init idSubject, idCategory in initGame()
+    const idSubject = 1;
+    const idCategory = 1;
+    this.questionSub = this.quizService.getQuestions(this.loggedInUser, idSubject, idCategory).subscribe(response => {
+      this.questions = response;
+      this.currentQuestion = this.questions[this.questionNumber];
+      this.questionNumber++;
+      this.initAnswersForQuestion(this.currentQuestion.idQuestion);
+    },
+      errorMessage => {
+        console.log(errorMessage);
+      });
+  }
+
+
+
+  initAnswersForQuestion(idQuestion: number) {
     this.answersSub = this.quizService.getAnswers(this.loggedInUser, idQuestion).subscribe(response => {
+      this.currentCorrectAnswer = response.find(answer => answer.Truth == 1);
       this.currentAnswers = response;
     },
       errorMessage => {
@@ -91,12 +118,35 @@ export class GameComponent implements OnInit {
   }
 
   selectAnswer(answer: Answer) {
-    if (answer.Truth) {
+    if (answer.Truth == 1) {
+      this.currentPlayerPoints += 10;
       this.openDialog(true, 'Super gemacht, weiter so.');
     } else {
-      this.openDialog(false, 'Die richtige Antwort ist xy.');
+      this.openDialog(false, 'Die richtige Antwort ist: \n' + this.currentCorrectAnswer.Description);
     }
     this.disableNextQuestionButton = false;
+    this.disableAnswerButton = true;
+  }
+
+
+  nextQuestion() {
+    if (this.questionNumber < 10) {
+      this.currentQuestion = this.questions[this.questionNumber];
+      this.questionNumber++;
+      this.initAnswersForQuestion(this.currentQuestion.idQuestion);
+    }
+    if (this.questionNumber == 10) {
+      this.displayEndGameButton = true;
+    }
+    this.disableAnswerButton = false;
+  }
+
+  finishGame() {
+    // TODO: send result;
+  }
+
+  onFrageMelden() {
+    // TODO: send to Server
   }
 
   openDialog(isCorrect: boolean, answer: string) {
@@ -108,57 +158,5 @@ export class GameComponent implements OnInit {
     });
   }
 
-
-  nextQuestion() {
-    this.currentQuestion = this.questions[this.questionNumber];
-    this.questionNumber++;
-  }
-
-  dummyGetNewQuestion() {
-
-    let question1: Question = {
-      idQuestion: 1,
-      category_idcategory: 1,
-      QuestionDescription: "Wer war der 44. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    let question2: Question = {
-      idQuestion: 2,
-      category_idcategory: 2,
-      QuestionDescription: "Wer war der 1. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-
-    let question3: Question = {
-      idQuestion: 3,
-      category_idcategory: 3,
-      QuestionDescription: "Wer war der 3. Präsident der USA?",
-      Approved: 1,
-      CreateDate: ""
-    }
-
-    this.questions.push(question1, question2, question3);
-  }
-
-  dummyCreateQuiz() {
-    this.player1 = {
-      idUser: 1,
-      firstName: "Kevin",
-      lastName: "Becker"
-    };
-
-    this.player2 = {
-      idUser: 2,
-      firstName: "Max",
-      lastName: "Mustermann"
-    };
-
-
-
-  }
 
 }

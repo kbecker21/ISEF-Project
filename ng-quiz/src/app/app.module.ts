@@ -20,11 +20,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatListModule} from '@angular/material/list';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -53,6 +53,7 @@ import { LoadingScreenInterceptor } from './shared/helpers/loading.interceptors'
 import { CourseDialogComponent } from './questions/course-dialog/course-dialog.component';
 import { CategoryDialogComponent } from './questions/category-dialog/category-dialog.component';
 import { DialogComponent } from './game/dialog/dialog.component';
+
 
 @NgModule({
   declarations: [

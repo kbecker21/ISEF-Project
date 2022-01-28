@@ -1,38 +1,54 @@
-<mat-card>
-    <h3>
-        <span style="text-align: center;">
-            <b>Du </b> spielst gegen
-            <b>{{player2.firstName}} {{player2.lastName}}</b>
-        </span>
-        <span style="float: right;">Kategorie: <b>Testkategorie</b></span>
-        <span style="float: right;margin-right: 20px;">Kurs: <b>Testkurs</b></span>
-        <span style="float: right;margin-right: 20px;">Punkte: <b>{{player1Points}}</b></span>
-    </h3>
-</mat-card>
+<div *ngIf="showGame">
+    <mat-card>
+        <h3>
+            <span style="text-align: center;">
+                <b>Du </b> spielst gegen
+                <b>{{player2.firstName}} {{player2.lastName}}</b>
+            </span>
+            <span style="float: right;">Kategorie: <b>Testkategorie</b></span>
+            <span style="float: right;margin-right: 20px;">Kurs: <b>Testkurs</b></span>
+            <span style="float: right;margin-right: 20px;">Punkte: <b>{{currentPlayerPoints}}</b></span>
+        </h3>
+    </mat-card>
 
-<mat-card>
-    <mat-card-title-group>
-        <mat-card-subtitle>Frage {{questionNumber}} von 10</mat-card-subtitle>
-    </mat-card-title-group>
-    <mat-card-content>
-        <h1>{{currentQuestion.QuestionDescription}}</h1>
-    </mat-card-content>
-</mat-card>
+    <mat-card>
+        <mat-card-title-group>
+            <mat-card-subtitle>
+                Frage {{questionNumber}} von 10
+                <button mat-button (click)="onFrageMelden()" color="warn" style="right:20px; position: absolute;">Frage
+                    melden</button>
+            </mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-card-content>
+            <h1>{{currentQuestion.QuestionDescription}}</h1>
+        </mat-card-content>
+    </mat-card>
 
-<mat-card>
-    <mat-card-title-group>
-        <mat-card-subtitle>Antwort</mat-card-subtitle>
-    </mat-card-title-group>
-    <mat-card-content>
-        <button mat-stroked-button *ngFor="let answer of currentAnswers" [disabled]="disableAnswerButton"
-            style=" width: 100%; padding: 5px; margin-top: 5px;margin-bottom:5px;background-color: rgb(240, 240, 240);"
-            (click)="selectAnswer(answer)">
-            <div style=" text-align: left;">
-                {{answer.Description}}
-            </div>
-        </button>
-    </mat-card-content>
-</mat-card>
-<button mat-flat-button color="primary" style="width: 100%;" [disabled]="disableNextQuestionButton"
-    (click)="nextQuestion()">Nächste
-    Frage</button>
+    <mat-card>
+        <mat-card-title-group>
+            <mat-card-subtitle>Antwort</mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-card-content>
+            <button mat-stroked-button *ngFor="let answer of currentAnswers" [disabled]="disableAnswerButton"
+                style=" width: 100%; padding: 5px; margin-top: 5px;margin-bottom:5px;background-color: rgb(240, 240, 240);"
+                (click)="selectAnswer(answer)">
+                <div style=" text-align: left;">
+                    {{answer.Description}}
+                </div>
+            </button>
+        </mat-card-content>
+    </mat-card>
+    <button mat-flat-button color="primary" style="width: 100%;" [disabled]="disableNextQuestionButton"
+        *ngIf="!displayEndGameButton" (click)="nextQuestion()">Nächste
+        Frage</button>
+    <button mat-flat-button color="warn" style="width: 100%;" (click)="finishGame()" *ngIf="displayEndGameButton">Spiel
+        beenden</button>
+
+</div>
+
+<div *ngIf="!showGame">
+    Fragen können nicht geladen werden. <br>
+    Es exisiert kein Spiel. <br>
+    Nicht genügend Fragen im System. <br>
+    .....
+</div>
