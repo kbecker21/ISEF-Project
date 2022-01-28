@@ -2,6 +2,7 @@
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Models\QuizModel;
+use App\Models\ResultsModel;
 
 
 class Quiz extends ResourceController {
@@ -33,7 +34,7 @@ class Quiz extends ResourceController {
 
         $data = [
             'Subject_idSubject'  => $this->request->getVar('Subject_idSubject'),
-            'Category_idcategory'  => $this->request->getVar('Category_idcategory'),
+            'category_idcategory'  => $this->request->getVar('category_idcategory'),
             'Creator_idUser' => $session->get('idUser'), 
             'PlayDate'  => date("Y-m-d H:i:s")
         ];
@@ -45,6 +46,32 @@ class Quiz extends ResourceController {
           'error'    => null,
           'messages' => [
               'success' => 'Quiz created successfully'
+          ]
+      ];
+      
+      return $this->respondCreated($response);
+
+    }
+
+        // postResults
+    public function postResult() {
+
+        $model = new ResultsModel();
+
+        $data = [
+            'User_idUser'  => $this->request->getVar('User_idUser'),
+            'Quiz_idQuiz'  => $this->request->getVar('Quiz_idQuiz'),
+            'Points' => $this->request->getVar('Points'), 
+            'Winner'  => $this->request->getVar('Winner')
+        ];
+
+        $model->insert($data);
+
+        $response = [
+          'status'   => 201,
+          'error'    => null,
+          'messages' => [
+              'success' => 'Results added successfully'
           ]
       ];
       
@@ -91,4 +118,51 @@ class Quiz extends ResourceController {
             return $this->failNotFound('No User found');
         }
     }
+
+        // getGameByCreator
+    public function getGameByCreator($id = null){
+      $model = new QuizModel();
+      $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name, quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1');
+      $model->where('quiz.Creator_idUser', $id);
+      $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
+      $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
+      $data['Quiz'] = $model->find();
+
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No Quiz found');
+        }
+    }
+
+        // getGameByJoiner
+    public function getGameByJoiner($id = null){
+      $model = new QuizModel();
+      $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name, quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1');
+      $model->where('quiz.Joiner_idUser1', $id);
+      $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
+      $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
+      $data['Quiz'] = $model->findAll();
+
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No Quiz found');
+        }
+    }
+
+/*
+ public function getRanking(){
+
+        $model = new ResultsModel();
+
+        $data = $model->orderBy('User_idUser ', 'DESC')->findAll();
+
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No Quiz found');
+        }
+    }*/
+
 }

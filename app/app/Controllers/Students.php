@@ -22,6 +22,19 @@ class Students extends ResourceController {
         }
     }
 
+
+    public function getUser($id = null){
+
+        $model = new UserModel();
+        $model->select('idUser, FirstName, LastName, Email');
+        $data = $model->find($id);
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No User found');
+        }
+    }
+
         
     // all Subjects
     public function index(){

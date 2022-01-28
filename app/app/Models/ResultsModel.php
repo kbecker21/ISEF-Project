@@ -2,15 +2,14 @@
 use CodeIgniter\Model;
 
   
-class QuizModel extends Model{
+class ResultsModel extends Model{
 
 	protected $table = 'quiz';
     protected $primaryKey = 'idQuiz';
     protected $allowedFields = [
-    'Subject_idSubject',
-    'category_idcategory',  
-	'PlayDate',
-    'Creator_idUser',
-    'Joiner_idUser1'];
+    'User_idUser',
+    'Quiz_idQuiz',  
+	'Points',
+    'Winner'];
 
 }

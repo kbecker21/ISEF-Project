@@ -49,10 +49,21 @@ $routes->post('login', 'Login::index');
 
 $routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' => 'authadmin']);
 
-$routes->get('students/getalluser', 'students::getAllUser', ['filter' => 'authuser']);
-$routes->get('students/showanswers', 'students::showAnswers', ['filter' => 'authuser']);
+$routes->get('getalluser', 'students::getAllUser', ['filter' => 'authuser']);
+$routes->get('showanswers', 'students::showAnswers', ['filter' => 'authuser']);
 
-$routes->get('quiz/getquestions/(:num)/(:num)', 'Quiz::getQuestions/$1/$2', ['filter' => 'authuser']);
+$routes->get('getquestions/(:num)/(:num)', 'Quiz::getQuestions/$1/$2', ['filter' => 'authuser']);
+
+$routes->post('postResult', 'Quiz::postResult', ['filter' => 'authuser']);
+$routes->get('getGameByCreator/(:num)', 'Quiz::getGameByCreator/$1', ['filter' => 'authuser']);
+$routes->get('getGameByJoiner/(:num)', 'Quiz::getGameByJoiner/$1', ['filter' => 'authuser']);
+$routes->get('getRanking', 'Quiz::getRanking', ['filter' => 'authuser']);
+
+$routes->get('getquestionbycreator/(:num)', 'Question::getQuestionByCreator/$1', ['filter' => 'authuser']);
+
+$routes->get('getuser/(:num)', 'students::getUser/$1', ['filter' => 'authuser']);
+
+
 /*
 
 

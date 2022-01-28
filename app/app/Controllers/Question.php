@@ -159,4 +159,18 @@ class Question extends ResourceController {
         }
     }
 
+    // Category of course
+    public function getQuestionByCreator($id = null){
+
+        $model = new QuestionModel();
+
+        $data = $model->where('Creator_idUser', $id)->findAll();
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No Quetions found');
+        }
+    }
+
+
 }
