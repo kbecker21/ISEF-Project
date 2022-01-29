@@ -15,9 +15,9 @@ export class AccountLevelPipe implements PipeTransform {
    * @returns Status
    */
   transform(value: any) {
-    if (value === 4)
+    if (value == 4)
       return 'Tutor';
-    if (value === 5)
+    if (value == 5)
       return 'Admin';
     return 'Student';
   }

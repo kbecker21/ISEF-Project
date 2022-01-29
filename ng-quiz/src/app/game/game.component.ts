@@ -60,8 +60,6 @@ export class GameComponent implements OnInit {
 
   initGame() {
     this.player1 = this.loggedInUser;
-
-
     //   TODO: kann weg 
     this.player2 = {
       idUser: 2,
@@ -70,30 +68,18 @@ export class GameComponent implements OnInit {
     };
 
 
-    this.currentGameSub = this.lobbyService.getAllOpenedGames(this.player1).subscribe(response => {
-      response.forEach(quiz => {
-        // TODO: set kurs
-        // TODO: set kategorie
-        if (quiz.idJoinerUser == this.player1.idUser && quiz.idCreatorUser != null) {
-          // TODO: this.player2 = getUser(quiz.idCreatorUser) 
-        }
-        if (quiz.idCreatorUser == this.player1.idUser && quiz.idJoinerUser != null) {
-          // TODO: this.player2 = getUser(quiz.idJoinerUser) 
-        }
-      });
-    },
-      errorMessage => {
-        console.log(errorMessage);
-      });
+    //TODO: this.currentGameSub = lobbyService.getGameForCurrentPlayer()
+    // TODO: init idSubject, idCategory in initGame()
 
     this.initQuestionsInGame();
 
   }
 
   initQuestionsInGame() {
-    // TODO: init idSubject, idCategory in initGame()
+    // TODO const kann weg wenn in initGame gesetzt
     const idSubject = 1;
     const idCategory = 1;
+
     this.questionSub = this.quizService.getQuestions(this.loggedInUser, idSubject, idCategory).subscribe(response => {
       this.questions = response;
       this.currentQuestion = this.questions[this.questionNumber];

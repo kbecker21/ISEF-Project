@@ -13,6 +13,7 @@ export interface DialogData {
   lastName: string;
   email: string;
   accountLevel: number;
+  userId: number
 }
 
 @Component({
@@ -66,9 +67,16 @@ export class UserEditComponent implements OnInit, OnDestroy {
    * Sendet Daten an Service.
    */
   onSubmit(): void {
-    this.userService.updateUser(this.loggedInUser, this.loggedInUser).subscribe(response => {
-      console.log(response);
-    });
+
+    let formAccountLevel = this.form.value.userData.accountlevel;
+    let newAccountLevel = formAccountLevel != null ? formAccountLevel : this.data.accountLevel;
+
+    console.log('User:' + this.data.userId + ' AccLvl: ' + newAccountLevel);
+
+    // this.userService.updateUser(this.loggedInUser, this.data.userId, newAccountLevel).subscribe(response => {
+    //   console.log(response);
+    // });
+
   }
 
   /**

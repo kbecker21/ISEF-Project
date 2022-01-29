@@ -27,7 +27,8 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Wähle ein Modul</mat-label>
                     <mat-select disableRipple [formControl]="courses" [disabled]="currentUserGame != null">
-                        <mat-option *ngFor="let course of dataSourceCourses" [value]="course.id">
+                        <mat-option *ngFor="let course of dataSourceCourses" [value]="course.id"
+                            (click)="onSelectCourse(course)">
                             {{course.Name}}
                         </mat-option>
                     </mat-select>
@@ -35,7 +36,8 @@
                 <br>
                 <mat-form-field appearance="fill">
                     <mat-label>Wähle eine Kategorie</mat-label>
-                    <mat-select disableRipple [formControl]="categories" [disabled]="currentUserGame != null">
+                    <mat-select disableRipple [formControl]="categories" [disabled]="currentUserGame != null"
+                        [(ngModel)]="selectedCategoryId">
                         <mat-option *ngFor=" let category of dataSourceCategories" [value]="category.id">
                             {{category.Name}}
                         </mat-option>

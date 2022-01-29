@@ -22,16 +22,16 @@ export class UserService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  // TODO: erst fertigstellen bevor Kommentar.
-  getUser(userId: number) {
 
-    // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
-    //let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me'
-
-    return this.http.get<any>(URL + '/user/' + userId).pipe(
+  getUser(loggedInUser: User, userId: number) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + loggedInUser.token
+    });
+    return this.http.get<any>(URL + '/user/' + userId, { headers: headers }).pipe(
       catchError(this.handleError)
     );
   }
+
 
   /**
    * Ermittelt aller Nutzer im System.
@@ -101,16 +101,22 @@ export class UserService {
     });
 
     // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
-    let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me'
+    let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me';
 
-    return this.http.patch<any>(
-      URL + '/' + usedController + '/' + user.idUser,
-      {
-        accountLevel: user.accountLevel
-      }, { headers: headers }
+
+    return this.http.put<any>(URL + '/' + usedController, user, { headers: headers }
     ).pipe(
       catchError(this.handleError)
     );
+
+    // return this.http.patch<any>(
+    //   URL + '/' + usedController + '/' + user.idUser,
+    //   {
+    //     accountLevel: user.accountLevel
+    //   }, { headers: headers }
+    // ).pipe(
+    //   catchError(this.handleError)
+    // );
   }
 
 
