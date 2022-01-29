@@ -48,7 +48,7 @@ export class GameComponent implements OnInit {
   //showGame = this.currentQuestion != null && this.currentAnswers != null;
   showGame = true;
 
-  constructor(private auth: AuthService, public dialog: MatDialog, private quizService: QuizService, private lobbyService: LobbyService) { }
+  constructor(private auth: AuthService, public dialog: MatDialog, private quizService: QuizService) { }
 
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -67,6 +67,9 @@ export class GameComponent implements OnInit {
       lastName: "Mustermann"
     };
 
+    this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
+      console.log(game);
+    });
 
     //TODO: this.currentGameSub = lobbyService.getGameForCurrentPlayer()
     // TODO: init idSubject, idCategory in initGame()

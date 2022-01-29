@@ -86,7 +86,28 @@ export class QuizService {
 
 
 
+  getGameByPlayer(loggedInUser: User) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + loggedInUser.token
+    });
 
+    return this.http.get<any>(URL + '/getGameByPlayer/' + loggedInUser.idUser, { headers: headers }).pipe(
+
+      map(responseData => {
+
+        if (!responseData)
+          return [];
+
+        return responseData
+
+
+
+      }),
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
+    );
+  }
 
 
 

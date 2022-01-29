@@ -56,8 +56,9 @@ $routes->get('getalluser', 'students::getAllUser', ['filter' => 'authuser']);
 $routes->get('getquestions/(:num)/(:num)', 'Quiz::getQuestions/$1/$2', ['filter' => 'authuser']);
 
 $routes->post('postResult', 'Quiz::postResult', ['filter' => 'authuser']);
-$routes->get('getGameByCreator/(:num)', 'Quiz::getGameByCreator/$1', ['filter' => 'authuser']);
-$routes->get('getGameByJoiner/(:num)', 'Quiz::getGameByJoiner/$1', ['filter' => 'authuser']);
+
+$routes->get('getGameByPlayer/(:num)', 'Quiz::getGameByPlayer/$1', ['filter' => 'authuser']);
+
 $routes->get('getRanking', 'Quiz::getRanking', ['filter' => 'authuser']);
 
 $routes->get('getquestionbycreator/(:num)', 'Question::getQuestionByCreator/$1', ['filter' => 'authuser']);

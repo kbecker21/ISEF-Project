@@ -120,11 +120,13 @@ class Quiz extends ResourceController {
         }
     }
 
-        // getGameByCreator
-    public function getGameByCreator($id = null){
+        // getGameByPlayer
+    public function getGameByPlayer($id = null){
       $model = new QuizModel();
       $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name, quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1');
       $model->where('quiz.Creator_idUser', $id);
+      $model->or_where('quiz.Joiner_idUser1', $id);
+      $model->where('quiz.Finish', NULL);
       $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
       $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
       $data['Quiz'] = $model->find();
@@ -136,21 +138,7 @@ class Quiz extends ResourceController {
         }
     }
 
-        // getGameByJoiner
-    public function getGameByJoiner($id = null){
-      $model = new QuizModel();
-      $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name, quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1');
-      $model->where('quiz.Joiner_idUser1', $id);
-      $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
-      $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
-      $data['Quiz'] = $model->findAll();
 
-        if($data){
-            return $this->respond($data);
-        }else{
-            return $this->failNotFound('No Quiz found');
-        }
-    }
 
  public function getRanking(){
 

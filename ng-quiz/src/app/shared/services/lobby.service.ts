@@ -28,6 +28,8 @@ export class LobbyService {
         if (!responseData || !responseData.Quiz)
           return [];
 
+        console.log(responseData.Quiz);
+
         const gamesArray: Quiz[] = [];
 
         responseData.Quiz.forEach((quiz) => {
