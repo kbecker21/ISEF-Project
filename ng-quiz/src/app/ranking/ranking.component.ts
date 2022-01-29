@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { User } from '../shared/model/user.model';
 import { Users } from '../shared/model/users.model';
 import { AuthService } from '../shared/services/auth.service';
+import { RankingService } from '../shared/services/ranking.service';
 import { UserService } from '../shared/services/user.service';
 
 
@@ -25,7 +26,7 @@ export class RankingComponent implements OnInit {
   allSearchUsers: Subscription = null;
   dataSource: Users[] = [];
 
-  constructor(private auth: AuthService, private userService: UserService) { }
+  constructor(private auth: AuthService, private rankingService: RankingService) { }
 
 
   ngOnInit(): void {
@@ -37,9 +38,8 @@ export class RankingComponent implements OnInit {
   }
 
   initTable() {
-    // TODO: API anpassen
-    this.allSearchUsers = this.userService.getUsers(this.loggedInUser).subscribe(response => {
-      this.dataSource = response;
+    this.allSearchUsers = this.rankingService.getRanking(this.loggedInUser).subscribe(response => {
+      console.log(response);
     },
       errorMessage => {
         console.log(errorMessage);

@@ -56,7 +56,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   openDialog(element: Users): void {
     const dialogRef = this.dialog.open(UserEditComponent, {
       width: '350px',
-      data: { accountLevel: element.accountLevel },
+      data: { accountLevel: element.accountLevel, userId: element.id },
     });
   }
 

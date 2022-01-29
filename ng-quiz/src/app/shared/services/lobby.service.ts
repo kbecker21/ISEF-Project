@@ -51,12 +51,12 @@ export class LobbyService {
     );
   }
 
-  createQuiz(loggedInUser: User, subjectId: number) {
+  createQuiz(loggedInUser: User, subjectId: number, categoryId: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
 
-    return this.http.post<any>(URL + '/quiz', { Subject_idSubject: subjectId }, { headers: headers })
+    return this.http.post<any>(URL + '/quiz', { Subject_idSubject: subjectId, category_idcategory: categoryId }, { headers: headers })
       .pipe(
         catchError(errorRes => {
           return throwError(errorRes);
