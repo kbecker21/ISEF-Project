@@ -28,8 +28,6 @@ export class LobbyService {
         if (!responseData || !responseData.Quiz)
           return [];
 
-        console.log(responseData.Quiz);
-
         const gamesArray: Quiz[] = [];
 
         responseData.Quiz.forEach((quiz) => {
@@ -41,7 +39,9 @@ export class LobbyService {
             idJoinerUser: quiz.Joiner_idUser1,
             firstNameCreator: quiz.FirstName,
             lastNameCreator: quiz.LastName,
-            subject: quiz.Name
+            subject: quiz.SubjectName,
+            idCategory: quiz.idcategory,
+            category: quiz.CategoryName
           });
         });
 

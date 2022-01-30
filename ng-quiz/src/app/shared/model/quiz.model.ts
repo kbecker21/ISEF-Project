@@ -9,6 +9,8 @@ export interface Quiz {
     idJoinerUser: number,
     firstNameCreator: string,
     lastNameCreator: string,
-    subject: string
+    subject: string,
+    idCategory: number,
+    category: string
 }
 
