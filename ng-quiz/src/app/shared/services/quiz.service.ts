@@ -26,8 +26,6 @@ export class QuizService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
-
-
     return this.http.get<any>(URL + '/getquestions/' + idSubject + "/" + idCategory, { headers: headers }).pipe(
       map(responseData => {
         if (!responseData || !responseData.questions)

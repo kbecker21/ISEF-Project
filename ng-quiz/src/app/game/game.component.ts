@@ -8,6 +8,7 @@ import { User } from '../shared/model/user.model';
 import { Subscription } from 'rxjs';
 import { LobbyService } from '../shared/services/lobby.service';
 import { DialogComponent } from './dialog/dialog.component';
+import { QuestionsService } from '../shared/services/questions.service';
 
 
 @Component({
@@ -48,7 +49,7 @@ export class GameComponent implements OnInit {
   //showGame = this.currentQuestion != null && this.currentAnswers != null;
   showGame = true;
 
-  constructor(private auth: AuthService, public dialog: MatDialog, private quizService: QuizService) { }
+  constructor(private auth: AuthService, public dialog: MatDialog, private quizService: QuizService, private questionService: QuestionsService) { }
 
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -135,7 +136,14 @@ export class GameComponent implements OnInit {
   }
 
   onFrageMelden() {
-    // TODO: send to Server
+    this.currentQuestion["Flagged"] = 1;
+    this.questionService.update(this.loggedInUser, this.currentQuestion).subscribe(response => {
+      console.log(response);
+      // TODO: Nachricht "Frage wurde gemeldet"
+    },
+      errorMessage => {
+        console.log(errorMessage);
+      });
   }
 
   openDialog(isCorrect: boolean, answer: string) {

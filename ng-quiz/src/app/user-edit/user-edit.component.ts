@@ -73,9 +73,13 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
     console.log('User:' + this.data.userId + ' AccLvl: ' + newAccountLevel);
 
-    // this.userService.updateUser(this.loggedInUser, this.data.userId, newAccountLevel).subscribe(response => {
-    //   console.log(response);
-    // });
+    this.userService.getUser(this.loggedInUser, this.data.userId).subscribe(updatedUser => {
+      this.userService.updateUser(this.loggedInUser, updatedUser, newAccountLevel).subscribe(response => {
+        console.log(response);
+      });
+    });
+
+
 
   }
 

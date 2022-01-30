@@ -28,10 +28,11 @@ export class UserService {
       'Authorization': 'Bearer ' + loggedInUser.token
     });
     return this.http.get<any>(URL + '/user/' + userId, { headers: headers }).pipe(
-      catchError(this.handleError)
+      catchError(errorRes => {
+        return throwError(errorRes);
+      })
     );
   }
-
 
   /**
    * Ermittelt aller Nutzer im System.
@@ -95,29 +96,22 @@ export class UserService {
    * @param usedController genutzer Controller
    * @returns xxxxxxxxx
    */
-  updateUser(loggedInUser: User, user: User) {
+  updateUser(loggedInUser: User, user: User, newAccountLevel: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
 
-    // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
-    let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me';
+    // Attribut accountLevel heißt auf dem Server AccountLevel_idAccountLevel
+    delete Object.assign(user, { ["AccountLevel_idAccountLevel"]: user["accountLevel"] })["accountLevel"];
+    // set newAccountLevel
+    user["AccountLevel_idAccountLevel"] = newAccountLevel;
 
-
-    return this.http.put<any>(URL + '/' + usedController, user, { headers: headers }
+    return this.http.put<any>(URL + '/user', user, { headers: headers }
     ).pipe(
       catchError(this.handleError)
     );
-
-    // return this.http.patch<any>(
-    //   URL + '/' + usedController + '/' + user.idUser,
-    //   {
-    //     accountLevel: user.accountLevel
-    //   }, { headers: headers }
-    // ).pipe(
-    //   catchError(this.handleError)
-    // );
   }
+
 
 
   /**

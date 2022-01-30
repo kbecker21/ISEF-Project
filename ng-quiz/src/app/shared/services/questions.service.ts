@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { User } from '../model/user.model';
 import { Question } from '../model/question.model';
 import { AuthService } from './auth.service';
-import { setAuthHeader, getUrl, getUrlById, handleError} from '../helpers';
+import { setAuthHeader, getUrl, getUrlById, handleError } from '../helpers';
 
 const URL = 'http://localhost:8000';
 
@@ -23,30 +23,30 @@ export class QuestionsService {
     );
   }
 
-   /**
-   * Löscht einen Kurs.
-   * @param loggedInUser eingeloggter User
-   * @param questionId Der Kurs der gelöscht werden soll.
-   * @returns xxxxxxxxx
-   */
-    delete(loggedInUser: User, questionId: number) {
-            
-      return this.http.delete<any>(getUrlById(this.model, questionId), { headers: setAuthHeader(loggedInUser.token) }).pipe(
-        catchError(handleError)
-      );
-    }
+  /**
+  * Löscht einen Kurs.
+  * @param loggedInUser eingeloggter User
+  * @param questionId Der Kurs der gelöscht werden soll.
+  * @returns xxxxxxxxx
+  */
+  delete(loggedInUser: User, questionId: number) {
 
-    create(loggedInUser: User, question: Question) {
-      console.log(question);
-      return this.http.post(getUrl(this.model), question, { headers: setAuthHeader(loggedInUser.token) }).pipe(
-        catchError(handleError)
-      );
-    }
-  
-    update(loggedInUser: User, question: Question) {
-      return this.http.put(getUrlById(this.model, question.idQuestion), question, { headers: setAuthHeader(loggedInUser.token) }).pipe(
-        catchError(handleError)
-      );
-    } 
+    return this.http.delete<any>(getUrlById(this.model, questionId), { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
+    );
+  }
+
+  create(loggedInUser: User, question: Question) {
+    console.log(question);
+    return this.http.post(getUrl(this.model), question, { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
+    );
+  }
+
+  update(loggedInUser: User, question: Question) {
+    return this.http.put(getUrlById(this.model, question.idQuestion), question, { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
+    );
+  }
 
 }
