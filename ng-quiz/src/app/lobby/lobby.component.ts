@@ -10,6 +10,7 @@ import { CourseService } from '../shared/services/course.service';
 import { FormControl } from '@angular/forms';
 import { Category } from '../shared/model/category.model';
 import { CategoryService } from '../shared/services/category.service';
+import { QuizService } from '../shared/services/quiz.service';
 
 
 @Component({
@@ -19,6 +20,8 @@ import { CategoryService } from '../shared/services/category.service';
 })
 export class LobbyComponent implements OnInit {
   displayedColumns: string[] = ['name', 'subject', 'category', 'action'];
+
+  successMsg = false;
 
   loggedInUser: User = null;
 
@@ -43,7 +46,7 @@ export class LobbyComponent implements OnInit {
   createdQuiz: Subscription = null;
   selectedCategorySub: Subscription = null;
 
-  constructor(private auth: AuthService, private userService: UserService, private lobbyService: LobbyService, private courseService: CourseService, private categoryService: CategoryService) { }
+  constructor(private auth: AuthService, private userService: UserService, private lobbyService: LobbyService, private courseService: CourseService, private quizService: QuizService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.currentUserSub = this.auth.user.subscribe(user => {
@@ -56,11 +59,9 @@ export class LobbyComponent implements OnInit {
   }
 
   initCurrentUser() {
-    this.allQuizes.forEach(quiz => {
-      if (this.loggedInUser.idUser == quiz.idCreatorUser || this.loggedInUser.idUser == quiz.idJoinerUser) {
-        this.currentUserGame = quiz;
-      }
-    });
+    this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
+      this.currentUserGame = game[0];
+    })
   }
 
   initTable() {
@@ -114,6 +115,14 @@ export class LobbyComponent implements OnInit {
   onCreateGame() {
     this.createdQuiz = this.lobbyService.createQuiz(this.loggedInUser, this.selectedCourse.id, this.selectedCategoryId).subscribe(response => {
       this.initTable();
+
+
+      this.successMsg = true;
+      setTimeout(() => {
+        this.successMsg = false;
+      }, 5000)
+
+
     },
       errorMessage => {
         console.log(errorMessage);

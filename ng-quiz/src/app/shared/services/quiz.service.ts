@@ -4,6 +4,7 @@ import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Answer } from '../model/answer.model';
 import { Question } from '../model/question.model';
+import { Quiz } from '../model/quiz.model';
 import { User } from '../model/user.model';
 import { LobbyService } from './lobby.service';
 
@@ -93,11 +94,29 @@ export class QuizService {
 
       map(responseData => {
 
-        if (!responseData)
+        if (!responseData || !responseData.Quiz)
           return [];
 
-        return responseData
+        console.log(responseData.Quiz);
 
+        const gamesArray: Quiz[] = [];
+
+        responseData.Quiz.forEach((quiz) => {
+          gamesArray.push({
+            idQuiz: quiz.idQuiz,
+            idSubject: quiz.Subject_idSubject,
+            playDate: quiz.PlayDate,
+            idCreatorUser: quiz.Creator_idUser,
+            idJoinerUser: quiz.Joiner_idUser1,
+            firstNameCreator: quiz.FirstName,
+            lastNameCreator: quiz.LastName,
+            subject: quiz.SubjectName,
+            idCategory: quiz.idcategory,
+            category: quiz.CategoryName
+          });
+        });
+
+        return gamesArray;
 
 
       }),

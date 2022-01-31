@@ -1,3 +1,6 @@
+<div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="successMsg">
+    <strong>Spiel erfolgreich erstellt</strong>
+</div>
 <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile>
         <mat-card>
@@ -10,6 +13,8 @@
                     <b>Organisator:</b> {{currentUserGame.firstNameCreator}} {{currentUserGame.lastNameCreator}}
                     <br>
                     <b>Spiel:</b> {{currentUserGame.subject}}
+                    <br>
+                    <b>Kategorie:</b> {{currentUserGame.category}}
                     <hr>
                     <button mat-stroked-button [routerLink]="['/game']" routerLinkActive="is-active">zum Spiel</button>
                 </span>

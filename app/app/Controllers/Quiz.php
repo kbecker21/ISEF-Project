@@ -124,10 +124,11 @@ class Quiz extends ResourceController {
         // getGameByPlayer
     public function getGameByPlayer($id = null){
       $model = new QuizModel();
-      $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name, quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1');
+      $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name AS SubjectName,category.idcategory, category.Name AS CategoryName,  quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1');
       $model->where('quiz.Creator_idUser', $id);
       $model->orWhere('quiz.Joiner_idUser1', $id);
       $model->where('quiz.Finish', NULL);
+      $model->join('category', 'category.idcategory = quiz.category_idcategory', 'left');
       $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
       $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
       $data['Quiz'] = $model->find();
