@@ -19,7 +19,12 @@ export class UserService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-
+  /**
+   * Ermittelt einen Benutzer.
+   * @param loggedInUser aktuell eingeloggter Benutzer
+   * @param userId Benutzer ID
+   * @returns Benutzer
+   */
   getUser(loggedInUser: User, userId: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token

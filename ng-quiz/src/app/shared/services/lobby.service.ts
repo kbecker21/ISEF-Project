@@ -9,10 +9,20 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Diese Komponente implementiert den LobbyService. 
+ * Der Service stellt alle nötigen HTTP-Funktionen zum Abrufen, Erstellen und Hinzufügen von Benutzern eines Spiels bereit.
+ */
 export class LobbyService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
+  /**
+   * Ermittelt alle aktuell geöffneten Spiele
+   * @param loggedInUser aktuell eingeloggter Benutzer
+   * @returns alle offene Spiele
+   */
   getAllOpenedGames(loggedInUser: User) {
     // get all created Quizeswhere is still no second player
     // return from server: alles aus Quiz + created User data
@@ -48,6 +58,13 @@ export class LobbyService {
     );
   }
 
+  /**
+   * Erstellt ein neues Quiz für ein Benutzer, ein Modul und eine Kategorie
+   * @param loggedInUser eingeloggter Benutzer
+   * @param subjectId  ID des Moduls
+   * @param categoryId  ID der Kategorie
+   * @returns Quiz wurde erstellt
+   */
   createQuiz(loggedInUser: User, subjectId: number, categoryId: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
@@ -59,6 +76,13 @@ export class LobbyService {
       );
   }
 
+  /**
+   * Fügt einen Benutzer einem Spiel hinzu.
+   * @param loggedInUser eingeloggter Benutzer
+   * @param idQuiz ID des Quiz
+   * @param idJoinerUser ID des hinzugefügten Benutzer
+   * @returns Benutzer wurde hinzugefügt
+   */
   joinQuiz(loggedInUser: User, idQuiz: number, idJoinerUser: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
