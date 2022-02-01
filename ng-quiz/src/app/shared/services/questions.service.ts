@@ -1,13 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { User } from '../model/user.model';
 import { Question } from '../model/question.model';
 import { AuthService } from './auth.service';
 import { setAuthHeader, getUrl, getUrlById, handleError } from '../helpers';
-
-const URL = 'http://localhost:8000';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +15,7 @@ export class QuestionsService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   getByCourse(loggedInUser: User, courseID: number) {
-    return this.http.get<any>(URL + '/questionsbycourse/' + courseID, { headers: setAuthHeader(loggedInUser.token) }).pipe(
+    return this.http.get<any>(getUrlById('questionsbycourse', courseID), { headers: setAuthHeader(loggedInUser.token) }).pipe(
       catchError(handleError)
     );
   }

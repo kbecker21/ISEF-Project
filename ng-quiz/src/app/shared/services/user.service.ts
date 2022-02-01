@@ -1,13 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { getUrl, getUrlById, handleError } from '../helpers';
 import { User } from '../model/user.model';
 import { Users } from '../model/users.model';
 import { AuthService } from './auth.service';
-
-// TODO: Bei Integration anpassen
-const URL = 'http://localhost:8000';
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +24,8 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
-    return this.http.get<any>(URL + '/user/' + userId, { headers: headers }).pipe(
-      catchError(errorRes => {
-        return throwError(errorRes);
-      })
+    return this.http.get<any>(getUrlById('user', userId), { headers: headers }).pipe(
+      catchError(handleError)
     );
   }
 
@@ -47,7 +42,7 @@ export class UserService {
     // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
     let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'getalluser'
 
-    return this.http.get<any>(URL + '/' + usedController, { headers: headers }).pipe(
+    return this.http.get<any>(getUrl(usedController), { headers: headers }).pipe(
 
       map(responseData => {
 
@@ -83,9 +78,7 @@ export class UserService {
 
 
       }),
-      catchError(errorRes => {
-        return throwError(errorRes);
-      })
+      catchError(handleError)
     );
   }
 
@@ -106,9 +99,9 @@ export class UserService {
     // set newAccountLevel
     user["AccountLevel_idAccountLevel"] = newAccountLevel;
 
-    return this.http.put<any>(URL + '/user', user, { headers: headers }
+    return this.http.put<any>(getUrl('user'), user, { headers: headers }
     ).pipe(
-      catchError(this.handleError)
+      catchError(handleError)
     );
   }
 
@@ -128,27 +121,9 @@ export class UserService {
     // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
     let usedController = loggedInUser.accountLevel === 5 ? 'user' : 'me'
 
-    return this.http.delete<any>(URL + '/' + usedController + '/' + userId, { headers: headers }).pipe(
-      catchError(this.handleError)
+    return this.http.delete<any>(getUrlById(usedController, userId), { headers: headers }).pipe(
+      catchError(handleError)
     );
   }
 
-
-  /**
-   * Behandelt Fehlermeldungen
-   * @param errorRes Error
-   * @returns xxxxxxxxx
-   */
-  private handleError(errorRes: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred!';
-    if (!errorRes.error || !errorRes.error.error) {
-      return throwError(errorMessage);
-    }
-    switch (errorRes.error.error.message) {
-      case 'Foo':
-        errorMessage = 'Foo';
-        break;
-    }
-    return throwError(errorMessage);
-  }
 }

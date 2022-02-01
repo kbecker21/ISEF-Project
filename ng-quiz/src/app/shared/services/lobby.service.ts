@@ -1,13 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { getUrl, getUrlById, handleError } from '../helpers';
 import { Quiz } from '../model/quiz.model';
 import { User } from '../model/user.model';
 import { AuthService } from './auth.service';
-
-// TODO: Bei Integration anpassen
-const URL = 'http://localhost:8000';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +19,7 @@ export class LobbyService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
-    return this.http.get<any>(URL + '/quiz', { headers: headers }).pipe(
+    return this.http.get<any>(getUrl('quiz'), { headers: headers }).pipe(
       map(responseData => {
 
         if (!responseData || !responseData.Quiz)
@@ -47,9 +44,7 @@ export class LobbyService {
 
         return gamesArray;
       }),
-      catchError(errorRes => {
-        return throwError(errorRes);
-      })
+      catchError(handleError)
     );
   }
 
@@ -58,11 +53,9 @@ export class LobbyService {
       'Authorization': 'Bearer ' + loggedInUser.token
     });
 
-    return this.http.post<any>(URL + '/quiz', { Subject_idSubject: subjectId, category_idcategory: categoryId }, { headers: headers })
+    return this.http.post<any>(getUrl('quiz'), { Subject_idSubject: subjectId, category_idcategory: categoryId }, { headers: headers })
       .pipe(
-        catchError(errorRes => {
-          return throwError(errorRes);
-        })
+        catchError(handleError)
       );
   }
 
@@ -71,11 +64,9 @@ export class LobbyService {
       'Authorization': 'Bearer ' + loggedInUser.token
     });
 
-    return this.http.patch<any>(URL + '/quiz' + '/' + idQuiz, { Joiner_idUser1: idJoinerUser }, { headers: headers })
+    return this.http.patch<any>(getUrlById('quiz', idQuiz), { Joiner_idUser1: idJoinerUser }, { headers: headers })
       .pipe(
-        catchError(errorRes => {
-          return throwError(errorRes);
-        })
+        catchError(handleError)
       );
   }
 

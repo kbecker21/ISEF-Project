@@ -7,8 +7,6 @@ import { Course } from '../model/course.model';
 import { AuthService } from './auth.service';
 import { setAuthHeader, getUrl, getUrlById, handleError } from '../helpers';
 
-// TODO: Bei Integration anpassen
-const URL = 'http://localhost:8000';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +21,7 @@ export class CourseService {
     // Wenn der eingeloggte User keine Adminrechte hat, wird eine andere Schnittstelle angesprochen. 
     let usedController = loggedInUser.accountLevel === 5 ? 'subject' : 'Students'
 
-    return this.http.get<any>(URL + '/' + usedController, { headers: setAuthHeader(loggedInUser.token) }).pipe(
+    return this.http.get<any>(getUrl(usedController), { headers: setAuthHeader(loggedInUser.token) }).pipe(
       map(responseData => {
         if (!responseData || !responseData.Subject)
           return [];

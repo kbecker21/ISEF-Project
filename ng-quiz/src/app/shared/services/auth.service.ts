@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 
 import { User } from '../model/user.model';
+import { getUrl } from '../helpers';
 
 @Injectable({ providedIn: 'root' })
 
@@ -28,7 +29,7 @@ export class AuthService {
   signup(firstname: string, lastname: string, email: string, password: string) {
     return this.http
       .post<any>(
-        'http://localhost:8000/register',
+        getUrl('register'),
         {
           firstname: firstname,
           lastname: lastname,
@@ -50,7 +51,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<any>(
-        'http://localhost:8000/login',
+        getUrl('login'),
         {
           email: email,
           password: password

@@ -1,33 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { getUrlById, getUrlByIdId, handleError } from '../helpers';
 import { Answer } from '../model/answer.model';
 import { Question } from '../model/question.model';
 import { Quiz } from '../model/quiz.model';
 import { User } from '../model/user.model';
-import { LobbyService } from './lobby.service';
 
-// TODO: Bei Integration anpassen
-const URL = 'http://localhost:8000';
 @Injectable({
-
   providedIn: 'root'
 })
 export class QuizService {
-
-
-
   constructor(private http: HttpClient) { }
-
-
-
 
   getQuestions(loggedInUser: User, idSubject: number, idCategory: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
-    return this.http.get<any>(URL + '/getquestions/' + idSubject + "/" + idCategory, { headers: headers }).pipe(
+    return this.http.get<any>(getUrlByIdId('getquestions', idSubject, idCategory), { headers: headers }).pipe(
       map(responseData => {
         if (!responseData || !responseData.questions)
           return [];
@@ -44,9 +34,7 @@ export class QuizService {
         });
         return questionArray;
       }),
-      catchError(errorRes => {
-        return throwError(errorRes);
-      })
+      catchError(handleError)
     );
   }
 
@@ -56,7 +44,7 @@ export class QuizService {
       'Authorization': 'Bearer ' + loggedInUser.token
     });
 
-    return this.http.get<any>(URL + '/showanswers/' + idQuestion, { headers: headers }).pipe(
+    return this.http.get<any>(getUrlById('showanswers', idQuestion), { headers: headers }).pipe(
 
       map(responseData => {
 
@@ -77,9 +65,7 @@ export class QuizService {
 
 
       }),
-      catchError(errorRes => {
-        return throwError(errorRes);
-      })
+      catchError(handleError)
     );
   }
 
@@ -90,7 +76,7 @@ export class QuizService {
       'Authorization': 'Bearer ' + loggedInUser.token
     });
 
-    return this.http.get<any>(URL + '/getGameByPlayer/' + loggedInUser.idUser, { headers: headers }).pipe(
+    return this.http.get<any>(getUrlById('getGameByPlayer', loggedInUser.idUser), { headers: headers }).pipe(
 
       map(responseData => {
 
@@ -120,9 +106,7 @@ export class QuizService {
 
 
       }),
-      catchError(errorRes => {
-        return throwError(errorRes);
-      })
+      catchError(handleError)
     );
   }
 

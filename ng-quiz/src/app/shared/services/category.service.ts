@@ -5,9 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { User } from '../model/user.model';
 import { Category } from '../model/category.model';
 import { AuthService } from './auth.service';
-import { setAuthHeader, getUrl, getUrlById, handleError} from '../helpers';
-
-const URL = 'http://localhost:8000';
+import { setAuthHeader, getUrl, getUrlById, handleError } from '../helpers';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +19,9 @@ export class CategoryService {
     return this.http.get<any>(getUrl(this.model) + '/course/' + courseID, { headers: setAuthHeader(loggedInUser.token) }).pipe(
       map(responseData => {
         if (!responseData || !responseData.Category)
-        
-        return [];
-        
+
+          return [];
+
         const categoryArray: Category[] = [];
         console.log(responseData);
         responseData.Category.forEach((category) => {
@@ -32,7 +30,7 @@ export class CategoryService {
             Subject_idSubject: category.Subject_idSubject,
             Name: category.Name,
             Creator: category.Creator_idUser,
-            CreateDate: category.CreateDate                       
+            CreateDate: category.CreateDate
           });
         });
         console.log(categoryArray);
@@ -58,18 +56,18 @@ export class CategoryService {
     );
   }
 
-   /**
-   * Löscht eine Kategorie.
-   * @param loggedInUser eingeloggter User
-   * @param categorieId Der Kurs der gelöscht werden soll.
-   * @returns xxxxxxxxx
-   */
-    delete(loggedInUser: User, categorieId: number) {
-            
-      return this.http.delete<any>(getUrlById(this.model, categorieId), { headers: setAuthHeader(loggedInUser.token) }).pipe(
-        catchError(handleError)
-      );
-    }
+  /**
+  * Löscht eine Kategorie.
+  * @param loggedInUser eingeloggter User
+  * @param categorieId Der Kurs der gelöscht werden soll.
+  * @returns xxxxxxxxx
+  */
+  delete(loggedInUser: User, categorieId: number) {
 
-  
+    return this.http.delete<any>(getUrlById(this.model, categorieId), { headers: setAuthHeader(loggedInUser.token) }).pipe(
+      catchError(handleError)
+    );
+  }
+
+
 }
