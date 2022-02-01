@@ -103,8 +103,8 @@ export class UserService {
     delete Object.assign(user, { ["AccountLevel_idAccountLevel"]: user["accountLevel"] })["accountLevel"];
     // set newAccountLevel
     user["AccountLevel_idAccountLevel"] = newAccountLevel;
-
-    return this.http.put<any>(getUrl('user'), user, { headers: headers }
+    console.log(user);
+    return this.http.put<any>(getUrlById('user', user.idUser), user, { headers: headers }
     ).pipe(
       catchError(handleError)
     );

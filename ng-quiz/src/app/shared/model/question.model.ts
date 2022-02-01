@@ -6,6 +6,6 @@
     category_idcategory: number,
     QuestionDescription: string,
     Approved: number,
-    CreateDate: string, 
-    Flagged: number
+    Flagged: number,
+    CreateDate: string    
 }

@@ -150,6 +150,8 @@ class Quiz extends ResourceController {
         $ResultsModel->join('user', 'user.idUser = results.User_idUser', 'left');
         $ResultsModel->orderBy('"Total Points"', 'ASC');
         $ResultsModel->groupBy('results.User_idUser');
+        $ResultsModel->groupBy('user.FirstName');
+        $ResultsModel->groupBy('user.LastName');
 
         $data = $ResultsModel->findAll();
 

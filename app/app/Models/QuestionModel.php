@@ -12,7 +12,8 @@ class QuestionModel extends Model{
     'Creator_idUser',
     'Approved',
     'Approver_idUser', 
-    'CreateDate'
+    'CreateDate',
+    'Flagged'
 ];
 
 }

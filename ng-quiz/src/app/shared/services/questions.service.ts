@@ -41,6 +41,7 @@ export class QuestionsService {
   }
 
   update(loggedInUser: User, question: Question) {
+    console.log(question);
     return this.http.put(getUrlById(this.model, question.idQuestion), question, { headers: setAuthHeader(loggedInUser.token) }).pipe(
       catchError(handleError)
     );
