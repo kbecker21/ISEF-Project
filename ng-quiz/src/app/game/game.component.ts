@@ -21,6 +21,8 @@ export class GameComponent implements OnInit {
   loggedInUser: User = null;
   userSub: Subscription = null;
 
+  successMsg = false;
+
   player1: User = null;
   player2 = null;
 
@@ -138,8 +140,11 @@ export class GameComponent implements OnInit {
   onFrageMelden() {
     this.currentQuestion["Flagged"] = 1;
     this.questionService.update(this.loggedInUser, this.currentQuestion).subscribe(response => {
-      console.log(response);
-      // TODO: Nachricht "Frage wurde gemeldet"
+
+      this.successMsg = true;
+      setTimeout(() => {
+        this.successMsg = false;
+      }, 5000)
     },
       errorMessage => {
         console.log(errorMessage);

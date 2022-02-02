@@ -146,9 +146,9 @@ class Quiz extends ResourceController {
 
         $ResultsModel = new ResultsModel();
 
-        $ResultsModel->select('results.User_idUser, user.FirstName, user.LastName, SUM(Points) AS "Total Points", SUM(Winner) AS "Total Wins"');
+        $ResultsModel->select('results.User_idUser, user.FirstName, user.LastName, SUM(Points) AS TotalPoints, SUM(Winner) AS TotalWins');
         $ResultsModel->join('user', 'user.idUser = results.User_idUser', 'left');
-        $ResultsModel->orderBy('"Total Points"', 'ASC');
+        $ResultsModel->orderBy('TotalPoints', 'ASC');
         $ResultsModel->groupBy('results.User_idUser');
         $ResultsModel->groupBy('user.FirstName');
         $ResultsModel->groupBy('user.LastName');

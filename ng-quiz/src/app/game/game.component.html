@@ -1,3 +1,6 @@
+<div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="successMsg">
+    <strong>Frage wurde gemeldet</strong>
+</div>
 <div *ngIf="showGame">
     <mat-card>
         <h3>
@@ -20,7 +23,6 @@
             </mat-card-subtitle>
         </mat-card-title-group>
         <mat-card-content>
-            {{currentQuestion | json}}
             <h1>{{currentQuestion.QuestionDescription}}</h1>
         </mat-card-content>
     </mat-card>
