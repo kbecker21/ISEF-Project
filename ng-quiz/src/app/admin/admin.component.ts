@@ -23,6 +23,8 @@ export class AdminComponent implements OnInit, OnDestroy {
   userSub: Subscription = null;
   allUsers: Subscription = null;
 
+  closeDiaSub: Subscription = null;
+
   dataSource: Users[] = [];
 
 
@@ -58,6 +60,14 @@ export class AdminComponent implements OnInit, OnDestroy {
       width: '350px',
       data: { accountLevel: element.accountLevel, userId: element.id },
     });
+
+    // Sobald der Dialog geschlossen wurde, muss die Tabelle aktualisert werden.
+    this.closeDiaSub = this.dialog.afterAllClosed.subscribe(response => {
+      this.initTable();
+    },
+      errorMessage => {
+        console.log(errorMessage);
+      });
   }
 
   onDelete(id: number) {

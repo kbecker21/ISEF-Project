@@ -71,11 +71,9 @@ export class UserEditComponent implements OnInit, OnDestroy {
     let formAccountLevel = this.form.value.userData.accountlevel;
     let newAccountLevel = formAccountLevel != null ? formAccountLevel : this.data.accountLevel;
 
-    console.log('User:' + this.data.userId + ' AccLvl: ' + newAccountLevel);
-
     this.userService.getUser(this.loggedInUser, this.data.userId).subscribe(updatedUser => {
       this.userService.updateUser(this.loggedInUser, updatedUser, newAccountLevel).subscribe(response => {
-        console.log(response);
+        this.dialogRef.close();
       });
     });
 
