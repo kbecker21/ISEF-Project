@@ -60,13 +60,7 @@
 
 </div>
 
-<mat-card *ngIf="!showGame" style="text-align: center;">
-    <h1>Ein Fehler ist aufgetreten</h1>
-    <b>Bitte wenden Sie sich an die Administratoren.</b>
-    <!--
-        Mögliche Fehler sind:
-        Fragen können nicht geladen werden.
-        Es exisiert kein Spiel.
-         Nicht genügend Fragen im System.
-    -->
-</mat-card>
+
+<div *ngIf="!showGame" style="text-align: center;">
+    <mat-spinner style=" display: inline-block; margin-top: 100px;"></mat-spinner>
+</div>

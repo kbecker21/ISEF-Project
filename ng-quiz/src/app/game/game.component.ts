@@ -93,18 +93,17 @@ export class GameComponent implements OnInit {
 
       this.userService.getUser(this.loggedInUser, idForPlayer2).subscribe(response => {
         this.player2 = response;
+
+        // Initialisere alle Fragen, erst nachdem beide Teilnehmer geladen werden konnten.
+        this.initQuestionsInGame();
       });
 
-      // Initialisere die erste Frage
-      this.initQuestionsInGame();
+
     });
 
   }
 
   initQuestionsInGame() {
-
-    console.log(this.currentSubjectId);
-    console.log(this.currentCategoryId);
     this.questionSub = this.quizService.getQuestions(this.loggedInUser, this.currentSubjectId, this.currentCategoryId).subscribe(response => {
       this.questions = response;
 
@@ -120,7 +119,7 @@ export class GameComponent implements OnInit {
   }
 
   checkAllData() {
-    return this.currentQuestion != null && this.currentAnswers != null && this.questions.length >= 10;
+    return this.currentQuestion != null && this.currentAnswers != null && this.questions.length >= 10 && this.player1 != null && this.player2 != null;
   }
 
 
@@ -128,10 +127,6 @@ export class GameComponent implements OnInit {
     this.answersSub = this.quizService.getAnswers(this.loggedInUser, idQuestion).subscribe(response => {
       this.currentCorrectAnswer = response.find(answer => answer.Truth == 1);
       this.currentAnswers = response;
-
-      console.log('currentAnswers');
-      console.log(this.currentAnswers);
-
     },
       errorMessage => {
         console.log(errorMessage);
@@ -153,16 +148,16 @@ export class GameComponent implements OnInit {
 
   nextQuestion() {
     console.log('questionNumber:' + this.questionNumber);
-    if (this.questionNumber < 10) {
+    if (this.questionNumber < 9) {
       this.currentQuestion = this.questions[this.questionNumber];
       this.questionNumber++;
       this.initAnswersForQuestion(this.currentQuestion.idQuestion);
     }
-    if (this.questionNumber == 10) {
+    if (this.questionNumber == 9) {
       this.currentQuestion = this.questions[this.questionNumber];
       this.initAnswersForQuestion(this.currentQuestion.idQuestion);
     }
-    if (this.questionNumber > 10) {
+    if (this.questionNumber > 9) {
       this.displayEndGameButton = true;
     }
     this.disableAnswerButton = false;
