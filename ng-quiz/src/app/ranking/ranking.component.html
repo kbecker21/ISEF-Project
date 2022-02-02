@@ -1,28 +1,27 @@
-<mat-tab-group mat-align-tabs="start">
-    <mat-tab label="Nutzer">
-        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-            <ng-container matColumnDef="firstName">
-                <mat-header-cell *matHeaderCellDef> Vorname </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
-            </ng-container>
+    <ng-container matColumnDef="FirstName">
+        <mat-header-cell *matHeaderCellDef> Vorname
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.FirstName}} </mat-cell>
+    </ng-container>
 
-            <ng-container matColumnDef="lastName">
-                <mat-header-cell *matHeaderCellDef> Nachname </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.lastName}} </mat-cell>
-            </ng-container>
+    <ng-container matColumnDef="LastName">
+        <mat-header-cell *matHeaderCellDef> Nachname </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.LastName}} </mat-cell>
+    </ng-container>
 
-            <ng-container matColumnDef="points">
-                <mat-header-cell *matHeaderCellDef> Punkte </mat-header-cell>
-                <mat-cell *matCellDef="let element"> --- </mat-cell>
-            </ng-container>
+    <ng-container matColumnDef="TotalPoints">
+        <mat-header-cell *matHeaderCellDef> Punkte </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.TotalPoints}} </mat-cell>
+    </ng-container>
 
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <ng-container matColumnDef="TotalWins">
+        <mat-header-cell *matHeaderCellDef> Siege </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.TotalWins}} </mat-cell>
+    </ng-container>
 
-        </mat-table>
-    </mat-tab>
-    <mat-tab label="Fragen">
-        Fragen Rangliste
-    </mat-tab>
-</mat-tab-group>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

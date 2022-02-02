@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from '../shared/model/user.model';
-import { Users } from '../shared/model/users.model';
 import { AuthService } from '../shared/services/auth.service';
 import { RankingService } from '../shared/services/ranking.service';
-import { UserService } from '../shared/services/user.service';
 
+
+interface Ranking {
+  FirstName: string,
+  LastName: string,
+  TotalPoints: number,
+  TotalWins: number,
+  User_idUser: number
+}
 
 @Component({
   selector: 'app-ranking',
@@ -13,18 +19,19 @@ import { UserService } from '../shared/services/user.service';
   styleUrls: ['./ranking.component.css']
 })
 
+
 /**
  * Diese Komponente implementiert die Rangliste.
  */
 export class RankingComponent implements OnInit {
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'points'];
+  displayedColumns: string[] = ['FirstName', 'LastName', 'TotalPoints', 'TotalWins'];
 
   loggedInUser: User = null;
   userSub: Subscription = null;
 
   allSearchUsers: Subscription = null;
-  dataSource: Users[] = [];
+  dataSource: Ranking[] = [];
 
   constructor(private auth: AuthService, private rankingService: RankingService) { }
 
@@ -39,7 +46,7 @@ export class RankingComponent implements OnInit {
 
   initTable() {
     this.allSearchUsers = this.rankingService.getRanking(this.loggedInUser).subscribe(response => {
-      console.log(response);
+      this.dataSource = response;
     },
       errorMessage => {
         console.log(errorMessage);
