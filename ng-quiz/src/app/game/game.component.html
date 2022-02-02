@@ -6,10 +6,10 @@
         <h3>
             <span style="text-align: center;">
                 <b>Du </b> spielst gegen
-                <b>{{player2.firstName}} {{player2.lastName}}</b>
+                <b>{{player2.FirstName}} {{player2.LastName}}</b>
             </span>
-            <span style="float: right;">Kategorie: <b>Testkategorie</b></span>
-            <span style="float: right;margin-right: 20px;">Kurs: <b>Testkurs</b></span>
+            <span style="float: right;">Kategorie: <b>{{currentCategory}}</b></span>
+            <span style="float: right;margin-right: 20px;">Kurs: <b>{{currentSubject}}</b></span>
             <span style="float: right;margin-right: 20px;">Punkte: <b>{{currentPlayerPoints}}</b></span>
         </h3>
     </mat-card>
@@ -44,14 +44,29 @@
     <button mat-flat-button color="primary" style="width: 100%;" [disabled]="disableNextQuestionButton"
         *ngIf="!displayEndGameButton" (click)="nextQuestion()">Nächste
         Frage</button>
+
+
+    <mat-card *ngIf="displayEndGameButton">
+        <mat-card-title-group>
+            <mat-card-subtitle>Alle Fragen beantwortet.</mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-card-content>
+            Dein Ergebnis im Kurs <b>Testkurs</b> und der Kategorie <b>Testkategorie</b> sind
+            <b>{{currentPlayerPoints}}</b> Punkte.
+        </mat-card-content>
+    </mat-card>
     <button mat-flat-button color="warn" style="width: 100%;" (click)="finishGame()" *ngIf="displayEndGameButton">Spiel
         beenden</button>
 
 </div>
 
-<div *ngIf="!showGame">
-    Fragen können nicht geladen werden. <br>
-    Es exisiert kein Spiel. <br>
-    Nicht genügend Fragen im System. <br>
-    .....
-</div>
+<mat-card *ngIf="!showGame" style="text-align: center;">
+    <h1>Ein Fehler ist aufgetreten</h1>
+    <b>Bitte wenden Sie sich an die Administratoren.</b>
+    <!--
+        Mögliche Fehler sind:
+        Fragen können nicht geladen werden.
+        Es exisiert kein Spiel.
+         Nicht genügend Fragen im System.
+    -->
+</mat-card>

@@ -83,14 +83,12 @@ export class QuizService {
         if (!responseData || !responseData.Quiz)
           return [];
 
-        console.log(responseData.Quiz);
-
         const gamesArray: Quiz[] = [];
 
         responseData.Quiz.forEach((quiz) => {
           gamesArray.push({
             idQuiz: quiz.idQuiz,
-            idSubject: quiz.Subject_idSubject,
+            idSubject: quiz.idSubject,
             playDate: quiz.PlayDate,
             idCreatorUser: quiz.Creator_idUser,
             idJoinerUser: quiz.Joiner_idUser1,

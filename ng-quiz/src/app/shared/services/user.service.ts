@@ -29,7 +29,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
-    return this.http.get<any>(getUrlById('user', userId), { headers: headers }).pipe(
+    return this.http.get<any>(getUrlById('getuser', userId), { headers: headers }).pipe(
       catchError(handleError)
     );
   }
