@@ -1,7 +1,8 @@
 <div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="successMsg">
     <strong>Frage wurde gemeldet</strong>
 </div>
-<div *ngIf="showGame">
+
+<div *ngIf="runGame || endGame">
     <mat-card>
         <h3>
             <span style="text-align: center;">
@@ -13,7 +14,9 @@
             <span style="float: right;margin-right: 20px;">Punkte: <b>{{currentPlayerPoints}}</b></span>
         </h3>
     </mat-card>
+</div>
 
+<div *ngIf="runGame">
     <mat-card *ngIf="currentQuestion">
         <mat-card-title-group>
             <mat-card-subtitle>
@@ -41,12 +44,13 @@
             </button>
         </mat-card-content>
     </mat-card>
-    <button mat-flat-button color="primary" style="width: 100%;" [disabled]="disableNextQuestionButton"
-        *ngIf="!displayEndGameButton" (click)="nextQuestion()">Nächste
+    <button mat-flat-button color="primary" style="width: 100%;" [disabled]="disableNextQuestionButton" *ngIf="runGame"
+        (click)="nextQuestion()">Nächste
         Frage</button>
+</div>
 
-
-    <mat-card *ngIf="displayEndGameButton">
+<div *ngIf="endGame">
+    <mat-card>
         <mat-card-title-group>
             <mat-card-subtitle>Alle Fragen beantwortet.</mat-card-subtitle>
         </mat-card-title-group>
@@ -55,12 +59,11 @@
             <b>{{currentPlayerPoints}}</b> Punkte.
         </mat-card-content>
     </mat-card>
-    <button mat-flat-button color="warn" style="width: 100%;" (click)="finishGame()" *ngIf="displayEndGameButton">Spiel
+    <button mat-flat-button color="warn" style="width: 100%;" (click)="finishGame()">Spiel
         beenden</button>
-
 </div>
 
 
-<div *ngIf="!showGame" style="text-align: center;">
+<div *ngIf="loadGame" style="text-align: center;">
     <mat-spinner style=" display: inline-block; margin-top: 100px;"></mat-spinner>
 </div>

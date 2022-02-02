@@ -6,7 +6,7 @@ import { QuizService } from '../shared/services/quiz.service';
 import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/services/user.service';
 import { User } from '../shared/model/user.model';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
 import { DialogComponent } from './dialog/dialog.component';
 import { QuestionsService } from '../shared/services/questions.service';
 
@@ -46,17 +46,24 @@ export class GameComponent implements OnInit {
   currentCorrectAnswer: Answer = null;
 
   questionNumber = 0;
+  answeredNumber = 0;
 
   disableNextQuestionButton = true;
   disableAnswerButton = false;
-  displayEndGameButton = false;
+
+
 
 
   currentGameSub: Subscription = null;
   questionSub: Subscription = null;
   answersSub: Subscription = null;
 
-  showGame = false;
+
+  runGame = false;
+  endGame = false;
+  loadGame = true;
+
+
 
 
   constructor(private auth: AuthService, private userService: UserService, public dialog: MatDialog, private quizService: QuizService, private questionService: QuestionsService) { }
@@ -75,7 +82,7 @@ export class GameComponent implements OnInit {
     this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
 
       if (game.length > 1) {
-        this.showGame = false;
+        throwError('Das Spiel konnte nicht initialisiert werden.');
       }
 
       // Setze Kurs und Kategorie
@@ -111,7 +118,8 @@ export class GameComponent implements OnInit {
       this.nextQuestion();
 
       // Prüfe ob alle benötigten Daten vorhanden sind
-      this.showGame = this.checkAllData();
+      this.runGame = this.checkAllData();
+      this.loadGame = !this.checkAllData();
     },
       errorMessage => {
         console.log(errorMessage);
@@ -142,25 +150,23 @@ export class GameComponent implements OnInit {
     }
     this.disableNextQuestionButton = false;
     this.disableAnswerButton = true;
+    this.answeredNumber++;
   }
 
 
 
   nextQuestion() {
-    console.log('questionNumber:' + this.questionNumber);
-    if (this.questionNumber < 9) {
+    if (this.questionNumber < 10) {
       this.currentQuestion = this.questions[this.questionNumber];
       this.questionNumber++;
       this.initAnswersForQuestion(this.currentQuestion.idQuestion);
     }
-    if (this.questionNumber == 9) {
-      this.currentQuestion = this.questions[this.questionNumber];
-      this.initAnswersForQuestion(this.currentQuestion.idQuestion);
-    }
-    if (this.questionNumber > 9) {
-      this.displayEndGameButton = true;
+    if (this.answeredNumber == 10) {
+      this.runGame = false;
+      this.endGame = true;
     }
     this.disableAnswerButton = false;
+    this.disableNextQuestionButton = true;
   }
 
   finishGame() {
