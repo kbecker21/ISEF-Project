@@ -58,7 +58,7 @@ class Quiz extends ResourceController {
         // postResults
     public function postResult() {
 
-        $model = new ResultsModel();
+        $modelResult = new ResultsModel();
 
         $data = [
             'User_idUser'  => $this->request->getVar('User_idUser'),
@@ -67,7 +67,7 @@ class Quiz extends ResourceController {
             'Winner'  => $this->request->getVar('Winner')
         ];
 
-        $model->insert($data);
+        $modelResult->insert($data);
 
         $response = [
           'status'   => 201,
@@ -127,7 +127,8 @@ class Quiz extends ResourceController {
       $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name AS SubjectName,category.idcategory, category.Name AS CategoryName,  quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1');
       $model->where('quiz.Creator_idUser', $id);
       $model->orWhere('quiz.Joiner_idUser1', $id);
-      $model->where('quiz.Finish', NULL);
+      $model->where('quiz.FinishCreator', NULL);  
+      $model->where('quiz.FinishJoiner', NULL);       
       $model->join('category', 'category.idcategory = quiz.category_idcategory', 'left');
       $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
       $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
@@ -161,5 +162,26 @@ class Quiz extends ResourceController {
             return $this->failNotFound('No Quiz found');
         }
     }
+
+        // delete 
+        public function delete($id = null){
+
+            $model = new QuizModel();
+    
+            $data = $model->find($id);
+            if($data){
+                $model->delete($id);
+                $response = [
+                    'status'   => 200,
+                    'error'    => null,
+                    'messages' => [
+                        'success' => 'Quiz successfully deleted'
+                    ]
+                ];
+                return $this->respondDeleted($response);
+            }else{
+                return $this->failNotFound('No Quiz found');
+            }
+        }
 
 }

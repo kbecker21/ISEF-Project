@@ -114,7 +114,7 @@ export class QuizService {
       'Authorization': 'Bearer ' + loggedInUser.token
     });
 
-    return this.http.post<any>(getUrl('postResult'), { User_idUser: loggedInUser.idUser, Quiz_idQuiz: idQuiz, Points: pts }, { headers: headers })
+    return this.http.post<any>(getUrl('postResult'), { User_idUser: loggedInUser.idUser, Quiz_idQuiz: idQuiz, Points: pts, Winner: null }, { headers: headers })
       .pipe(
         catchError(handleError)
       );
