@@ -46,6 +46,8 @@ export class LobbyComponent implements OnInit {
   createdQuiz: Subscription = null;
   selectedCategorySub: Subscription = null;
 
+  loadLobby = true;
+
   constructor(private auth: AuthService, private userService: UserService, private lobbyService: LobbyService, private courseService: CourseService, private quizService: QuizService, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -60,7 +62,10 @@ export class LobbyComponent implements OnInit {
 
   initCurrentUser() {
     this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
-      this.currentUserGame = game[0];
+      if (game.length == 1) {
+        this.currentUserGame = game[0];
+      }
+      this.loadLobby = false;
     })
   }
 

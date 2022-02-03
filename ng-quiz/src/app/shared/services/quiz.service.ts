@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
-import { getUrlById, getUrlByIdId, handleError } from '../helpers';
+import { getUrl, getUrlById, getUrlByIdId, handleError } from '../helpers';
 import { Answer } from '../model/answer.model';
 import { Question } from '../model/question.model';
 import { Quiz } from '../model/quiz.model';
@@ -109,5 +109,15 @@ export class QuizService {
   }
 
 
+  finishQuiz(loggedInUser: User, idQuiz: number, pts: number,) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + loggedInUser.token
+    });
+
+    return this.http.post<any>(getUrl('postResult'), { User_idUser: loggedInUser.idUser, Quiz_idQuiz: idQuiz, Points: pts }, { headers: headers })
+      .pipe(
+        catchError(handleError)
+      );
+  }
 
 }

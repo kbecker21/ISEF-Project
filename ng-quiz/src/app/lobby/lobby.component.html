@@ -1,7 +1,7 @@
 <div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="successMsg">
     <strong>Spiel erfolgreich erstellt</strong>
 </div>
-<mat-grid-list cols="2" rowHeight="2:1">
+<mat-grid-list cols="2" rowHeight="2:1" *ngIf="!loadLobby">
     <mat-grid-tile>
         <mat-card>
             <mat-card-title-group>
@@ -85,3 +85,7 @@
         </mat-table>
     </mat-grid-tile>
 </mat-grid-list>
+
+<div *ngIf="loadLobby" style="text-align: center;">
+    <mat-spinner style=" display: inline-block; margin-top: 100px;"></mat-spinner>
+</div>

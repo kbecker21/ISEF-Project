@@ -2,6 +2,25 @@
     <strong>Frage wurde gemeldet</strong>
 </div>
 
+<div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="sentGame">
+    <strong>Ergebnis wurde übermittelt.</strong>
+</div>
+
+
+<div *ngIf="noGameExists">
+    <mat-card>
+        <h3>Es exisiert kein Spiel für dich. <br> Bitte gehe in die <a [routerLink]="['/lobby']"
+                routerLinkActive="is-active">Lobby</a> und erstelle ein Spiel oder tritt einem
+            bereits erstellten Spiel bei.</h3>
+    </mat-card>
+</div>
+
+<div *ngIf="moreGamesExists">
+    <mat-card>
+        <h3>Das Spiel konnte nicht initialisiert werden. Bitte melde dich an die Administratoren.</h3>
+    </mat-card>
+</div>
+
 <div *ngIf="runGame || endGame">
     <mat-card>
         <h3>
@@ -55,7 +74,7 @@
             <mat-card-subtitle>Alle Fragen beantwortet.</mat-card-subtitle>
         </mat-card-title-group>
         <mat-card-content>
-            Dein Ergebnis im Kurs <b>Testkurs</b> und der Kategorie <b>Testkategorie</b> sind
+            Dein Ergebnis im Kurs <b>{{currentSubject}}</b> und der Kategorie <b>{{currentCategory}}</b> sind
             <b>{{currentPlayerPoints}}</b> Punkte.
         </mat-card-content>
     </mat-card>

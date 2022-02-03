@@ -9,6 +9,7 @@ import { User } from '../shared/model/user.model';
 import { Subscription, throwError } from 'rxjs';
 import { DialogComponent } from './dialog/dialog.component';
 import { QuestionsService } from '../shared/services/questions.service';
+import { Router } from '@angular/router';
 
 interface Player2 {
   Email: string,
@@ -31,6 +32,8 @@ export class GameComponent implements OnInit {
 
   player1: User = null;
   player2: Player2 = null;
+
+  currentQuizId = null
 
   currentSubject = null;
   currentSubjectId = null;
@@ -58,15 +61,19 @@ export class GameComponent implements OnInit {
   questionSub: Subscription = null;
   answersSub: Subscription = null;
 
+  closeDiaSub: Subscription = null;
 
   runGame = false;
   endGame = false;
   loadGame = true;
+  noGameExists = false;
+  moreGamesExists = false;
+  sentGame = false;
 
 
 
 
-  constructor(private auth: AuthService, private userService: UserService, public dialog: MatDialog, private quizService: QuizService, private questionService: QuestionsService) { }
+  constructor(private auth: AuthService, private router: Router, private userService: UserService, public dialog: MatDialog, private quizService: QuizService, private questionService: QuestionsService) { }
 
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -82,8 +89,18 @@ export class GameComponent implements OnInit {
     this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
 
       if (game.length > 1) {
-        throwError('Das Spiel konnte nicht initialisiert werden.');
+        this.moreGamesExists = true;
+        this.loadGame = false;
+        return;
       }
+      else if (game.length == 0) {
+        this.noGameExists = true;
+        this.loadGame = false;
+        return;
+      }
+
+      // Setze Quiz
+      this.currentQuizId = game[0].idQuiz;
 
       // Setze Kurs und Kategorie
       this.currentSubject = game[0].subject;
@@ -101,8 +118,13 @@ export class GameComponent implements OnInit {
       this.userService.getUser(this.loggedInUser, idForPlayer2).subscribe(response => {
         this.player2 = response;
 
+
+        console.log('inside  this.userService.getUse');
+        console.log(response);
+
         // Initialisere alle Fragen, erst nachdem beide Teilnehmer geladen werden konnten.
         this.initQuestionsInGame();
+
       });
 
 
@@ -120,6 +142,7 @@ export class GameComponent implements OnInit {
       // Prüfe ob alle benötigten Daten vorhanden sind
       this.runGame = this.checkAllData();
       this.loadGame = !this.checkAllData();
+
     },
       errorMessage => {
         console.log(errorMessage);
@@ -161,16 +184,17 @@ export class GameComponent implements OnInit {
       this.questionNumber++;
       this.initAnswersForQuestion(this.currentQuestion.idQuestion);
     }
-    if (this.answeredNumber == 10) {
-      this.runGame = false;
-      this.endGame = true;
-    }
     this.disableAnswerButton = false;
     this.disableNextQuestionButton = true;
   }
 
   finishGame() {
-    // TODO: send result;
+    this.quizService.finishQuiz(this.loggedInUser, this.currentQuizId, this.currentPlayerPoints).subscribe(response => {
+      this.sentGame = true;
+      setTimeout(() => {
+        this.router.navigate(['/ranking']);
+      }, 5000)
+    });
   }
 
   onFrageMelden() {
@@ -194,6 +218,17 @@ export class GameComponent implements OnInit {
         answer: answer,
       },
     });
+
+
+    this.closeDiaSub = this.dialog.afterAllClosed.subscribe(response => {
+      if (this.answeredNumber == 10) {
+        this.runGame = false;
+        this.endGame = true;
+      }
+    },
+      errorMessage => {
+        console.log(errorMessage);
+      });
   }
 
 
