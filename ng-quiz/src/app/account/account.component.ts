@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from '../shared/model/user.model';
 import { AuthService } from '../shared/services/auth.service';
+import { QuizService } from '../shared/services/quiz.service';
 import { UserService } from '../shared/services/user.service';
 import { UserEditComponent } from '../user-edit/user-edit.component';
 
@@ -21,10 +22,12 @@ export class AccountComponent implements OnInit, OnDestroy {
   loggedInUser: User = null;
   userSub: Subscription = null;
 
+  historySub: Subscription = null;
+
   dataSource: [];
   displayedColumns: string[] = ['date', 'player1', 'result', 'player2'];
 
-  constructor(private auth: AuthService, private userService: UserService, private router: Router, public dialog: MatDialog) { }
+  constructor(private auth: AuthService, private userService: UserService, private router: Router, public dialog: MatDialog, private quizService: QuizService) { }
 
 
   /**
@@ -37,6 +40,16 @@ export class AccountComponent implements OnInit, OnDestroy {
       errorMessage => {
         console.log(errorMessage);
       })
+  }
+
+  initTable() {
+    this.historySub = this.quizService.getPlayerHistory(this.loggedInUser).subscribe(response => {
+      // TODO: not done yet
+      // dataSource = response;
+    },
+      errorMessage => {
+        console.log(errorMessage);
+      });
   }
 
   /**
