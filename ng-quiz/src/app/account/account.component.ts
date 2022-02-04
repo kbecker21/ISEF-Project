@@ -21,6 +21,9 @@ export class AccountComponent implements OnInit, OnDestroy {
   loggedInUser: User = null;
   userSub: Subscription = null;
 
+  dataSource: [];
+  displayedColumns: string[] = ['date', 'player1', 'result', 'player2'];
+
   constructor(private auth: AuthService, private userService: UserService, private router: Router, public dialog: MatDialog) { }
 
 
