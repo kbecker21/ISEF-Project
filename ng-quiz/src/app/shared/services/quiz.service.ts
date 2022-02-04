@@ -120,4 +120,16 @@ export class QuizService {
       );
   }
 
+  deleteGame(loggedInUser: User, idQuiz: number) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + loggedInUser.token
+    });
+
+    return this.http.delete<any>(getUrlById('quiz', idQuiz), { headers: headers })
+      .pipe(
+        catchError(handleError)
+      );
+  }
+
+
 }

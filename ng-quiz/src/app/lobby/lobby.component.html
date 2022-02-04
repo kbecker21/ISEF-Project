@@ -1,6 +1,9 @@
 <div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="successMsg">
     <strong>Spiel erfolgreich erstellt</strong>
 </div>
+<div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="cancelGameMsg">
+    <strong>Spiel abgebrochen</strong>
+</div>
 <mat-grid-list cols="2" rowHeight="2:1" *ngIf="!loadLobby">
     <mat-grid-tile>
         <mat-card>
@@ -16,6 +19,7 @@
                     <br>
                     <b>Kategorie:</b> {{currentUserGame.category}}
                     <hr>
+                    <button mat-stroked-button color="warn" (click)="cancelGame()">Spiel abbrechen</button>
                     <button mat-stroked-button [routerLink]="['/game']" routerLinkActive="is-active">zum Spiel</button>
                 </span>
                 <span *ngIf="currentUserGame === null">Nimmt aktuell an keinen Spiel teil.</span>

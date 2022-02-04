@@ -22,6 +22,7 @@ export class LobbyComponent implements OnInit {
   displayedColumns: string[] = ['name', 'subject', 'category', 'action'];
 
   successMsg = false;
+  cancelGameMsg = false;
 
   loggedInUser: User = null;
 
@@ -132,6 +133,23 @@ export class LobbyComponent implements OnInit {
       errorMessage => {
         console.log(errorMessage);
       });
+  }
+
+  cancelGame() {
+
+    if (confirm('Möchtest du sicher das Spiel abbrechen?')) {
+      this.quizService.deleteGame(this.loggedInUser, this.currentUserGame.idQuiz).subscribe(response => {
+        this.cancelGameMsg = true;
+        setTimeout(() => {
+          this.cancelGameMsg = false;
+        }, 5000)
+      },
+        errorMessage => {
+          console.log(errorMessage);
+        });
+    }
+
+
   }
 
 
