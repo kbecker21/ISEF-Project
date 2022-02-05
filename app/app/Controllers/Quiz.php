@@ -187,4 +187,27 @@ class Quiz extends ResourceController {
             }
         }
 
+/* WORK IN PROGRESS
+Spielhistorie: Wann hat Spieler gegen wen gespielt und mit welchem SpielErgebnis mit Datum 2. Spieler; 
+Wer hat gewonnen?
+        // getGameByPlayer
+    public function getPlayerHistory(){
+      $model = new QuizModel();
+      $session = session();
+
+
+      $model->select('quiz.idQuiz, subject.Name AS SubjectName, quiz.PlayDate,  quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1');
+      $model->where('quiz.Creator_idUser', $session->get('idUser'));
+      $model->orWhere('quiz.Joiner_idUser1', $session->get('idUser'))
+      $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
+      $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
+      $data['Quiz'] = $model->find();
+
+        if($data){
+            return $this->respond($data);
+        }else{
+            return $this->failNotFound('No Quiz found');
+        }
+    }
+*/
 }
