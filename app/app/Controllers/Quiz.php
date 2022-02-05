@@ -147,6 +147,8 @@ class Quiz extends ResourceController {
 
         $ResultsModel = new ResultsModel();
 
+        $this->updateWinner();
+
         $ResultsModel->select('results.User_idUser, user.FirstName, user.LastName, SUM(Points) AS TotalPoints, SUM(Winner) AS TotalWins');
         $ResultsModel->join('user', 'user.idUser = results.User_idUser', 'left');
         $ResultsModel->orderBy('TotalPoints', 'ASC');
@@ -209,5 +211,14 @@ Wer hat gewonnen?
             return $this->failNotFound('No Quiz found');
         }
     }
-*/
+
+    private function updateWinner() {
+
+    $ResultsModel = new ResultsModel();
+
+    $data = $ResultsModel->findAll();
+
+    foreach()
+    }    
+    */
 }
