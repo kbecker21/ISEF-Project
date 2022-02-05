@@ -166,11 +166,14 @@ class Quiz extends ResourceController {
         // delete 
         public function delete($id = null){
 
-            $model = new QuizModel();
+            $ResultsModel = new ResultsModel();
+
+            $QuizModel = new QuizModel();
     
-            $data = $model->find($id);
+            $data = $QuizModel->find($id);
             if($data){
-                $model->delete($id);
+                $ResultsModel->where('Quiz_idQuiz', $id)->delete();
+                $QuizModel->delete($id);
                 $response = [
                     'status'   => 200,
                     'error'    => null,
