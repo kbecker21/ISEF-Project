@@ -209,8 +209,29 @@ class Quiz extends ResourceController {
 
     private function updateWinner() {
 
-    $ResultsModel = new ResultsModel();
+        $ResultsModel = new ResultsModel();
 
-    $data = $ResultsModel->findAll();
+        $data = $ResultsModel->orderBy('Quiz_idQuiz', 'DESC')->findAll();
+
+        foreach ($data as $Quiz_idQuiz => $Nummer ) {
+            $model = new ResultsModel();
+            $model->where('results.Quiz_idQuiz', $Nummer["Quiz_idQuiz"]);
+            $model->where('results.User_idUser !=', $Nummer["User_idUser"]);
+            $data1 = $model->find();
+            if ($Nummer["Points"] > $data1[0]["Points"]){
+
+                $winner = [
+                    'Quiz_idQuiz' => $Nummer["Quiz_idQuiz"],
+                    'User_idUser' => $Nummer["User_idUser"],
+                    'Points' => $Nummer["Points"],
+                    'Winner'  => 1
+                ];
+
+                $model->where('results.User_idUser', $Nummer["User_idUser"]);
+                $model->update($Nummer["Quiz_idQuiz"], $winner);
+          
+            } 
+
+        }
     }    
 }
