@@ -1,160 +1,249 @@
-
-<!--   <div *ngIf="isLoading" style="position: relative">
-  <mat-progress-spinner 
-    color="primary" 
-    mode="indeterminate"
-    [fullscreen]="true"
-    >
-  </mat-progress-spinner>
-</div> -->
-
-
-
-<!-- <mat-drawer-container autosize  >
-  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
-    <p>Auto-resizing sidenav</p>    
-  </mat-drawer>
-
-  <div class="example-sidenav-content">
-    
-    <button mat-icon-button (click)="drawer.toggle()">
-      <mat-icon >menu</mat-icon>
-    </button>
-  </div>
-
-</mat-drawer-container> -->
-
 <div *ngIf="!courseID">
-  
   <mat-grid-list cols="4" rowHeight="100px">
     <mat-grid-tile [colspan]="3">
       <div class="pull-left">
-        <h1 ><mat-icon>face</mat-icon> Bitte wähle ein Modul aus </h1> 
+        <h1><mat-icon>face</mat-icon> Bitte wähle ein Modul aus</h1>
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
-      <div class="pull-right" *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()">
-        <button mat-raised-button (click)="newCourse()" class="add"><mat-icon>add</mat-icon> Modul hinzufügen</button>
+      <div
+        class="pull-right"
+        *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()"
+      >
+        <button mat-raised-button (click)="newCourse()" class="add">
+          <mat-icon>add</mat-icon> Modul hinzufügen
+        </button>
       </div>
-    </mat-grid-tile>   
-  </mat-grid-list> 
-  
+    </mat-grid-tile>
+  </mat-grid-list>
+
   <mat-table [dataSource]="courseList" class="mat-elevation-z8">
-    
     <!-- FirstName Column -->
     <ng-container matColumnDef="Name">
-        <mat-header-cell *matHeaderCellDef> Modulname </mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="getbyCourse(element.Name, element.ShortName, element.id)" style="cursor: pointer;"> {{element.Name}}</mat-cell>        
+      <mat-header-cell *matHeaderCellDef> Modulname </mat-header-cell>
+      <mat-cell
+        *matCellDef="let element"
+        (click)="getbyCourse(element.Name, element.ShortName, element.id)"
+        style="cursor: pointer"
+      >
+        {{ element.Name }}</mat-cell
+      >
     </ng-container>
 
     <ng-container matColumnDef="ShortName">
       <mat-header-cell *matHeaderCellDef> Kurzbezeichnung </mat-header-cell>
-      <mat-cell *matCellDef="let element" (click)="getbyCourse(element.Name, element.ShortName, element.id)" style="cursor: pointer;"> {{element.ShortName}} </mat-cell>
-  </ng-container>
-
+      <mat-cell
+        *matCellDef="let element"
+        (click)="getbyCourse(element.Name, element.ShortName, element.id)"
+        style="cursor: pointer"
+      >
+        {{ element.ShortName }}
+      </mat-cell>
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedCourseColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedCourseColumns;"></mat-row>
-</mat-table>
-
+    <mat-row *matRowDef="let row; columns: displayedCourseColumns"></mat-row>
+  </mat-table>
 </div>
 
-<mat-accordion *ngIf="courseID"> 
-
-  <mat-grid-list cols="2" rowHeight="100px">
+<mat-accordion *ngIf="courseID">
+  <mat-grid-list cols="4" rowHeight="100px">
     <mat-grid-tile>
       <div class="pull-left">
-        <h1> <button mat-icon-button  (click)="loadCourses()" matTooltip="Modulübersicht"><mat-icon>arrow_back</mat-icon></button> {{ courseName }}</h1> 
+        <h1>
+          <button
+            mat-icon-button
+            (click)="loadCourses()"
+            matTooltip="Modulübersicht"
+          >
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+          {{ courseName }}
+        </h1>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile>
-      <div class="pull-right" *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()">        
-        <button mat-raised-button (click)="newCategory(courseID)" class="add">Kapitel hinzufügen</button>
+    <mat-grid-tile [colspan]="3">
+      <div
+        class="pull-right"
+        *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()"
+      >
+        <button mat-raised-button (click)="newCategory(courseID)" class="add">
+          Kapitel hinzufügen
+        </button>
         &nbsp;
-        <button mat-raised-button (click)="editCourse(courseID)" class="edit">Kurs bearbeiten</button>
+        <button mat-raised-button (click)="editCourse(courseID)" class="edit">
+          Kurs bearbeiten
+        </button>
+        <mat-icon
+          color="warn"
+          matBadge="{{ countFlagged }}"
+          matBadgeColor="warn"
+          matBadgeSize="small"
+          >flag</mat-icon
+        >
         &nbsp;
-        <button mat-raised-button (click)="deleteCourse(courseID)" class="delete">Kurs löschen</button>       
+        <mat-slide-toggle
+          *ngIf="onlyFlagged; else noFlag"
+          matTooltip="Alle anzeigen"
+          checked
+          (change)="toggleOnlyFlagged(courseID)"
+        ></mat-slide-toggle>
+        <ng-template #noFlag>
+          <mat-slide-toggle
+            matTooltip="Nur markierte anzeigen"
+            (change)="toggleOnlyFlagged(courseID)"
+          ></mat-slide-toggle>
+        </ng-template>
+        &nbsp;
+        <button
+          mat-raised-button
+          (click)="deleteCourse(courseID)"
+          class="delete"
+        >
+          Kurs löschen
+        </button>
       </div>
-    </mat-grid-tile>   
-  </mat-grid-list> 
+    </mat-grid-tile>
+  </mat-grid-list>
 
-    <div *ngFor="let category of dataSource" class="question-panel">
-   
-      <mat-expansion-panel (click)="setPanelID(category.category.idcategory)" class="question-expansion-panel" [expanded]="panel === category.category.idcategory">
+  <div *ngFor="let category of dataSource" class="question-panel">
+    <mat-expansion-panel
+      (click)="setPanelID(category.category.idcategory)"
+      class="question-expansion-panel"
+      [expanded]="panel === category.category.idcategory"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title>
-            <h1>{{category.category.Name}}</h1>            
-        </mat-panel-title> 
-              
+          <h1>{{ category.category.Name }}</h1>
+        </mat-panel-title>
       </mat-expansion-panel-header>
-      
-      <div>        
-        <button mat-icon-button (click)="newQuestion(category.category.idcategory)" class="add" matTooltip="Frage hinzufügen"><mat-icon>quiz</mat-icon></button>
-        <button mat-icon-button (click)="editCategory(category.category.idcategory, category.category.Name)" class="edit" matTooltip="Kategorie editieren" *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()"><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button (click)="deleteCategory(category.category.idcategory)" class="delete" matTooltip="Kategorie löschen" *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()"><mat-icon>delete</mat-icon></button>
-    </div>
-        <div class="questions">
-            <div class="question" *ngFor="let question of category.questions">
-                <div class="question-text">
-                    <h2> 
-                        <button class="pull-right" (click)="deleteQuestion(question.question)" mat-icon-button color="warn">
-                            <mat-icon >delete</mat-icon>
-                        </button>
-                        <button matTooltip="Antwort hinzufügen" class="pull-right" (click)="newAnswer(question.question.idQuestion)" mat-icon-button color="accent">
-                            <mat-icon >add</mat-icon>
-                        </button>
-                        <div *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()">
-                        <mat-slide-toggle *ngIf="question.question.Approved === '1'; else approve" class="pull-right" matTooltip="Zurückziehen" checked (change)="toggleActivate(question.question)" ></mat-slide-toggle>
-                        <ng-template  #approve>
-                            <mat-slide-toggle class="pull-right" matTooltip="Genehmigen" (change)="toggleActivate(question.question)"></mat-slide-toggle>
-                        </ng-template>
-                      </div>
-                        <div *ngIf="question.question.Flagged == 1">
-                          <mat-icon class='pull-right' color='warn' matTooltip="Frage wurde gemolden">flag</mat-icon>
-                      </div>
 
-                        <app-question-dialog [data]='question.question' (focusOut)='saveQuestion($event)'></app-question-dialog>
-                      
-                      </h2>
-                        
-                    
-                </div>
-
-                <mat-grid-list [cols]="6" rowHeight="2:0.5" *ngFor="let answer of question.answers" class="cell" >
-                  <mat-grid-tile>
-                    <div class="pull-left">
-                    <mat-checkbox  name="Truth" [value]="answer.answer.idAnswers" [checked]="answer.answer.Truth === '1'" (change)="toggleTruth(answer.answer)"></mat-checkbox>
-                  </div>
-                  </mat-grid-tile>
-                  <mat-grid-tile [colspan]="4" >
-                    <div style="width: 100%;" class="pull-left">
-                      <app-edit-answer-dialog [data]='answer.answer' (focusOut)='saveAnswer($event)'></app-edit-answer-dialog>
-                    </div>
-                  </mat-grid-tile>
-                  <mat-grid-tile>
-                    <div class="pull-right">
-                    <button (click)="deleteAnswer(answer.answer)" mat-icon-button color="warn" >
-                      <mat-icon >delete</mat-icon>
-                    </button>
-                  </div>
-                  </mat-grid-tile>
-                  <mat-divider></mat-divider>                  
-                </mat-grid-list>
-                
-                           
-                
+      <div>
+        <button
+          mat-icon-button
+          (click)="newQuestion(category.category.idcategory)"
+          class="add"
+          matTooltip="Frage hinzufügen"
+        >
+          <mat-icon>quiz</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="
+            editCategory(category.category.idcategory, category.category.Name)
+          "
+          class="edit"
+          matTooltip="Kategorie editieren"
+          *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="deleteCategory(category.category.idcategory)"
+          class="delete"
+          matTooltip="Kategorie löschen"
+          *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="questions">
+        <div class="question" *ngFor="let question of category.questions">
+          <div class="question-text">
+            <h2>
+              <button
+                class="pull-right"
+                (click)="deleteQuestion(question.question)"
+                mat-icon-button
+                color="warn"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button
+                matTooltip="Antwort hinzufügen"
+                class="pull-right"
+                (click)="newAnswer(question.question.idQuestion)"
+                mat-icon-button
+                color="accent"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+              <div *ngIf="loggedInUser.isAdmin() || loggedInUser.isTutor()">
+                <mat-slide-toggle
+                  *ngIf="question.question.Approved === '1'; else approve"
+                  class="pull-right"
+                  matTooltip="Zurückziehen"
+                  checked
+                  (change)="toggleActivate(question.question)"
+                ></mat-slide-toggle>
+                <ng-template #approve>
+                  <mat-slide-toggle
+                    class="pull-right"
+                    matTooltip="Genehmigen"
+                    (change)="toggleActivate(question.question)"
+                  ></mat-slide-toggle>
+                </ng-template>
               </div>
-               
-                
-            
-            </div>
-            
-        
-    </mat-expansion-panel>   
-</div> 
-  </mat-accordion>
+              <div *ngIf="question.question.Flagged == 1">
+                <button
+                  matTooltip="Antwort hinzufügen"
+                  class="pull-right"
+                  color="warn"
+                  matTooltip="Meldung entfernen"
+                  (click)="toggleFlagged(question.question)"
+                  mat-icon-button
+                >
+                  <mat-icon>flag</mat-icon>
+                </button>
+              </div>
 
+              <app-question-dialog
+                [data]="question.question"
+                (focusOut)="saveQuestion($event)"
+              ></app-question-dialog>
+            </h2>
+          </div>
 
-
-
-
+          <mat-grid-list
+            [cols]="6"
+            rowHeight="2:0.5"
+            *ngFor="let answer of question.answers"
+            class="cell"
+          >
+            <mat-grid-tile>
+              <div class="pull-left">
+                <mat-checkbox
+                  name="Truth"
+                  [value]="answer.answer.idAnswers"
+                  [checked]="answer.answer.Truth === '1'"
+                  (change)="toggleTruth(answer.answer)"
+                ></mat-checkbox>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="4">
+              <div style="width: 100%" class="pull-left">
+                <app-edit-answer-dialog
+                  [data]="answer.answer"
+                  (focusOut)="saveAnswer($event)"
+                ></app-edit-answer-dialog>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="pull-right">
+                <button
+                  (click)="deleteAnswer(answer.answer)"
+                  mat-icon-button
+                  color="warn"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </mat-grid-tile>
+            <mat-divider></mat-divider>
+          </mat-grid-list>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </div>
+</mat-accordion>

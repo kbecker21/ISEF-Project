@@ -1,0 +1,2210 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ng-quiz documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ng-quiz documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  GameComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/game/game.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-game</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./game.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./game.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#answeredNumber" >answeredNumber</a>
+                            </li>
+                            <li>
+                                <a href="#answersSub" >answersSub</a>
+                            </li>
+                            <li>
+                                <a href="#closeDiaSub" >closeDiaSub</a>
+                            </li>
+                            <li>
+                                <a href="#currentAnswers" >currentAnswers</a>
+                            </li>
+                            <li>
+                                <a href="#currentCategory" >currentCategory</a>
+                            </li>
+                            <li>
+                                <a href="#currentCategoryId" >currentCategoryId</a>
+                            </li>
+                            <li>
+                                <a href="#currentCorrectAnswer" >currentCorrectAnswer</a>
+                            </li>
+                            <li>
+                                <a href="#currentGameSub" >currentGameSub</a>
+                            </li>
+                            <li>
+                                <a href="#currentPlayerPoints" >currentPlayerPoints</a>
+                            </li>
+                            <li>
+                                <a href="#currentQuestion" >currentQuestion</a>
+                            </li>
+                            <li>
+                                <a href="#currentQuizId" >currentQuizId</a>
+                            </li>
+                            <li>
+                                <a href="#currentSubject" >currentSubject</a>
+                            </li>
+                            <li>
+                                <a href="#currentSubjectId" >currentSubjectId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialog" >dialog</a>
+                            </li>
+                            <li>
+                                <a href="#disableAnswerButton" >disableAnswerButton</a>
+                            </li>
+                            <li>
+                                <a href="#disableNextQuestionButton" >disableNextQuestionButton</a>
+                            </li>
+                            <li>
+                                <a href="#endGame" >endGame</a>
+                            </li>
+                            <li>
+                                <a href="#loadGame" >loadGame</a>
+                            </li>
+                            <li>
+                                <a href="#loggedInUser" >loggedInUser</a>
+                            </li>
+                            <li>
+                                <a href="#moreGamesExists" >moreGamesExists</a>
+                            </li>
+                            <li>
+                                <a href="#noGameExists" >noGameExists</a>
+                            </li>
+                            <li>
+                                <a href="#player1" >player1</a>
+                            </li>
+                            <li>
+                                <a href="#player2" >player2</a>
+                            </li>
+                            <li>
+                                <a href="#questionNumber" >questionNumber</a>
+                            </li>
+                            <li>
+                                <a href="#questions" >questions</a>
+                            </li>
+                            <li>
+                                <a href="#questionSub" >questionSub</a>
+                            </li>
+                            <li>
+                                <a href="#runGame" >runGame</a>
+                            </li>
+                            <li>
+                                <a href="#sentGame" >sentGame</a>
+                            </li>
+                            <li>
+                                <a href="#successMsg" >successMsg</a>
+                            </li>
+                            <li>
+                                <a href="#userSub" >userSub</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkAllData" >checkAllData</a>
+                            </li>
+                            <li>
+                                <a href="#finishGame" >finishGame</a>
+                            </li>
+                            <li>
+                                <a href="#initAnswersForQuestion" >initAnswersForQuestion</a>
+                            </li>
+                            <li>
+                                <a href="#initGame" >initGame</a>
+                            </li>
+                            <li>
+                                <a href="#initQuestionsInGame" >initQuestionsInGame</a>
+                            </li>
+                            <li>
+                                <a href="#nextQuestion" >nextQuestion</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onFrageMelden" >onFrageMelden</a>
+                            </li>
+                            <li>
+                                <a href="#openDialog" >openDialog</a>
+                            </li>
+                            <li>
+                                <a href="#selectAnswer" >selectAnswer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(auth: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, dialog: MatDialog, quizService: <a href="../injectables/QuizService.html" target="_self">QuizService</a>, questionService: <a href="../injectables/QuestionsService.html" target="_self">QuestionsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/game/game.component.ts:71</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>auth</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialog</td>
+                                                  
+                                                        <td>
+                                                                    <code>MatDialog</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>quizService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/QuizService.html" target="_self" >QuizService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>questionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/QuestionsService.html" target="_self" >QuestionsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkAllData"></a>
+                    <span class="name">
+                        <span ><b>checkAllData</b></span>
+                        <a href="#checkAllData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkAllData()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/app/game/game.component.ts:152</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="finishGame"></a>
+                    <span class="name">
+                        <span ><b>finishGame</b></span>
+                        <a href="#finishGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>finishGame()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="191"
+                            class="link-to-prism">src/app/game/game.component.ts:191</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initAnswersForQuestion"></a>
+                    <span class="name">
+                        <span ><b>initAnswersForQuestion</b></span>
+                        <a href="#initAnswersForQuestion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initAnswersForQuestion(idQuestion: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/app/game/game.component.ts:157</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>idQuestion</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initGame"></a>
+                    <span class="name">
+                        <span ><b>initGame</b></span>
+                        <a href="#initGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initGame()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/game/game.component.ts:87</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initQuestionsInGame"></a>
+                    <span class="name">
+                        <span ><b>initQuestionsInGame</b></span>
+                        <a href="#initQuestionsInGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initQuestionsInGame()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/app/game/game.component.ts:135</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextQuestion"></a>
+                    <span class="name">
+                        <span ><b>nextQuestion</b></span>
+                        <a href="#nextQuestion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>nextQuestion()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="181"
+                            class="link-to-prism">src/app/game/game.component.ts:181</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/app/game/game.component.ts:78</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onFrageMelden"></a>
+                    <span class="name">
+                        <span ><b>onFrageMelden</b></span>
+                        <a href="#onFrageMelden"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onFrageMelden()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="200"
+                            class="link-to-prism">src/app/game/game.component.ts:200</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openDialog"></a>
+                    <span class="name">
+                        <span ><b>openDialog</b></span>
+                        <a href="#openDialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openDialog(isCorrect: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, answer: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="214"
+                            class="link-to-prism">src/app/game/game.component.ts:214</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>isCorrect</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>answer</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectAnswer"></a>
+                    <span class="name">
+                        <span ><b>selectAnswer</b></span>
+                        <a href="#selectAnswer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectAnswer(answer: <a href="../interfaces/Answer.html" target="_self">Answer</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="167"
+                            class="link-to-prism">src/app/game/game.component.ts:167</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>answer</td>
+                                    <td>
+                                                <code><a href="../interfaces/Answer.html" target="_self" >Answer</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="answeredNumber"></a>
+                    <span class="name">
+                        <span ><b>answeredNumber</b></span>
+                        <a href="#answeredNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/game/game.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="answersSub"></a>
+                    <span class="name">
+                        <span ><b>answersSub</b></span>
+                        <a href="#answersSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/game/game.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeDiaSub"></a>
+                    <span class="name">
+                        <span ><b>closeDiaSub</b></span>
+                        <a href="#closeDiaSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/game/game.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentAnswers"></a>
+                    <span class="name">
+                        <span ><b>currentAnswers</b></span>
+                        <a href="#currentAnswers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Answer.html" target="_self" >Answer[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/game/game.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentCategory"></a>
+                    <span class="name">
+                        <span ><b>currentCategory</b></span>
+                        <a href="#currentCategory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/game/game.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentCategoryId"></a>
+                    <span class="name">
+                        <span ><b>currentCategoryId</b></span>
+                        <a href="#currentCategoryId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/game/game.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentCorrectAnswer"></a>
+                    <span class="name">
+                        <span ><b>currentCorrectAnswer</b></span>
+                        <a href="#currentCorrectAnswer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Answer.html" target="_self" >Answer</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/game/game.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentGameSub"></a>
+                    <span class="name">
+                        <span ><b>currentGameSub</b></span>
+                        <a href="#currentGameSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/game/game.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentPlayerPoints"></a>
+                    <span class="name">
+                        <span ><b>currentPlayerPoints</b></span>
+                        <a href="#currentPlayerPoints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/game/game.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentQuestion"></a>
+                    <span class="name">
+                        <span ><b>currentQuestion</b></span>
+                        <a href="#currentQuestion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Question.html" target="_self" >Question</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/game/game.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentQuizId"></a>
+                    <span class="name">
+                        <span ><b>currentQuizId</b></span>
+                        <a href="#currentQuizId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/game/game.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentSubject"></a>
+                    <span class="name">
+                        <span ><b>currentSubject</b></span>
+                        <a href="#currentSubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/game/game.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentSubjectId"></a>
+                    <span class="name">
+                        <span ><b>currentSubjectId</b></span>
+                        <a href="#currentSubjectId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/game/game.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dialog"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>dialog</b></span>
+                        <a href="#dialog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MatDialog</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/game/game.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disableAnswerButton"></a>
+                    <span class="name">
+                        <span ><b>disableAnswerButton</b></span>
+                        <a href="#disableAnswerButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/game/game.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disableNextQuestionButton"></a>
+                    <span class="name">
+                        <span ><b>disableNextQuestionButton</b></span>
+                        <a href="#disableNextQuestionButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/game/game.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="endGame"></a>
+                    <span class="name">
+                        <span ><b>endGame</b></span>
+                        <a href="#endGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/game/game.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadGame"></a>
+                    <span class="name">
+                        <span ><b>loadGame</b></span>
+                        <a href="#loadGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/game/game.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loggedInUser"></a>
+                    <span class="name">
+                        <span ><b>loggedInUser</b></span>
+                        <a href="#loggedInUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/game/game.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="moreGamesExists"></a>
+                    <span class="name">
+                        <span ><b>moreGamesExists</b></span>
+                        <a href="#moreGamesExists"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/game/game.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="noGameExists"></a>
+                    <span class="name">
+                        <span ><b>noGameExists</b></span>
+                        <a href="#noGameExists"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/game/game.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="player1"></a>
+                    <span class="name">
+                        <span ><b>player1</b></span>
+                        <a href="#player1"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/game/game.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="player2"></a>
+                    <span class="name">
+                        <span ><b>player2</b></span>
+                        <a href="#player2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Player2.html" target="_self" >Player2</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/game/game.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="questionNumber"></a>
+                    <span class="name">
+                        <span ><b>questionNumber</b></span>
+                        <a href="#questionNumber"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/game/game.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="questions"></a>
+                    <span class="name">
+                        <span ><b>questions</b></span>
+                        <a href="#questions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Question.html" target="_self" >Question[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/game/game.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="questionSub"></a>
+                    <span class="name">
+                        <span ><b>questionSub</b></span>
+                        <a href="#questionSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/game/game.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="runGame"></a>
+                    <span class="name">
+                        <span ><b>runGame</b></span>
+                        <a href="#runGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/game/game.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sentGame"></a>
+                    <span class="name">
+                        <span ><b>sentGame</b></span>
+                        <a href="#sentGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/game/game.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="successMsg"></a>
+                    <span class="name">
+                        <span ><b>successMsg</b></span>
+                        <a href="#successMsg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/game/game.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userSub"></a>
+                    <span class="name">
+                        <span ><b>userSub</b></span>
+                        <a href="#userSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/game/game.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Question } from &#x27;../shared/model/question.model&#x27;;
+import { Answer } from &#x27;../shared/model/answer.model&#x27;;
+import { MatDialog } from &#x27;@angular/material/dialog&#x27;;
+import { QuizService } from &#x27;../shared/services/quiz.service&#x27;;
+import { AuthService } from &#x27;../shared/services/auth.service&#x27;;
+import { UserService } from &#x27;../shared/services/user.service&#x27;;
+import { User } from &#x27;../shared/model/user.model&#x27;;
+import { Subscription, throwError } from &#x27;rxjs&#x27;;
+import { DialogComponent } from &#x27;./dialog/dialog.component&#x27;;
+import { QuestionsService } from &#x27;../shared/services/questions.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+interface Player2 {
+  Email: string,
+  FirstName: string,
+  LastName: string,
+  idUser: number;
+}
+
+@Component({
+  selector: &#x27;app-game&#x27;,
+  templateUrl: &#x27;./game.component.html&#x27;,
+  styleUrls: [&#x27;./game.component.css&#x27;]
+})
+export class GameComponent implements OnInit {
+
+  loggedInUser: User &#x3D; null;
+  userSub: Subscription &#x3D; null;
+
+  successMsg &#x3D; false;
+
+  player1: User &#x3D; null;
+  player2: Player2 &#x3D; null;
+
+  currentQuizId &#x3D; null
+
+  currentSubject &#x3D; null;
+  currentSubjectId &#x3D; null;
+  currentCategory &#x3D; null;
+  currentCategoryId &#x3D; null;
+
+  currentPlayerPoints &#x3D; 0;
+
+  questions: Question[] &#x3D; [];
+
+  currentQuestion: Question &#x3D; null;
+  currentAnswers: Answer[] &#x3D; [];
+  currentCorrectAnswer: Answer &#x3D; null;
+
+  questionNumber &#x3D; 0;
+  answeredNumber &#x3D; 0;
+
+  disableNextQuestionButton &#x3D; true;
+  disableAnswerButton &#x3D; false;
+
+
+
+
+  currentGameSub: Subscription &#x3D; null;
+  questionSub: Subscription &#x3D; null;
+  answersSub: Subscription &#x3D; null;
+
+  closeDiaSub: Subscription &#x3D; null;
+
+  runGame &#x3D; false;
+  endGame &#x3D; false;
+  loadGame &#x3D; true;
+  noGameExists &#x3D; false;
+  moreGamesExists &#x3D; false;
+  sentGame &#x3D; false;
+
+
+
+
+  constructor(private auth: AuthService, private router: Router, private userService: UserService, public dialog: MatDialog, private quizService: QuizService, private questionService: QuestionsService) { }
+
+  ngOnInit(): void {
+    this.userSub &#x3D; this.auth.user.subscribe(user &#x3D;&gt; {
+      this.loggedInUser &#x3D; user;
+    });
+    this.initGame();
+
+  }
+
+
+  initGame() {
+
+    this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game &#x3D;&gt; {
+
+      if (game.length &gt; 1) {
+        this.moreGamesExists &#x3D; true;
+        this.loadGame &#x3D; false;
+        return;
+      }
+      else if (game.length &#x3D;&#x3D; 0) {
+        this.noGameExists &#x3D; true;
+        this.loadGame &#x3D; false;
+        return;
+      }
+
+      // Setze Quiz
+      this.currentQuizId &#x3D; game[0].idQuiz;
+
+      // Setze Kurs und Kategorie
+      this.currentSubject &#x3D; game[0].subject;
+      this.currentSubjectId &#x3D; game[0].idSubject;
+      this.currentCategory &#x3D; game[0].category;
+      this.currentCategoryId &#x3D; game[0].idCategory;
+
+      // Setze Spieler 1 und Spieler 2
+      const idCreator &#x3D; game[0].idCreatorUser;
+      const idJoiner &#x3D; game[0].idJoinerUser
+
+      this.player1 &#x3D; this.loggedInUser;
+      const idForPlayer2 &#x3D; this.loggedInUser.idUser &#x3D;&#x3D; idCreator ? idJoiner : idCreator;
+
+      this.userService.getUser(this.loggedInUser, idForPlayer2).subscribe(response &#x3D;&gt; {
+        this.player2 &#x3D; response;
+
+
+        console.log(&#x27;inside  this.userService.getUse&#x27;);
+        console.log(response);
+
+        // Initialisere alle Fragen, erst nachdem beide Teilnehmer geladen werden konnten.
+        this.initQuestionsInGame();
+
+      });
+
+
+    });
+
+  }
+
+  initQuestionsInGame() {
+    this.questionSub &#x3D; this.quizService.getQuestions(this.loggedInUser, this.currentSubjectId, this.currentCategoryId).subscribe(response &#x3D;&gt; {
+      this.questions &#x3D; response;
+
+      // init first question
+      this.nextQuestion();
+
+      // Prüfe ob alle benötigten Daten vorhanden sind
+      this.runGame &#x3D; this.checkAllData();
+      this.loadGame &#x3D; !this.checkAllData();
+
+    },
+      errorMessage &#x3D;&gt; {
+        console.log(errorMessage);
+      });
+  }
+
+  checkAllData() {
+    return this.currentQuestion !&#x3D; null &amp;&amp; this.currentAnswers !&#x3D; null &amp;&amp; this.questions.length &gt;&#x3D; 10 &amp;&amp; this.player1 !&#x3D; null &amp;&amp; this.player2 !&#x3D; null;
+  }
+
+
+  initAnswersForQuestion(idQuestion: number) {
+    this.answersSub &#x3D; this.quizService.getAnswers(this.loggedInUser, idQuestion).subscribe(response &#x3D;&gt; {
+      this.currentCorrectAnswer &#x3D; response.find(answer &#x3D;&gt; answer.Truth &#x3D;&#x3D; 1);
+      this.currentAnswers &#x3D; response;
+    },
+      errorMessage &#x3D;&gt; {
+        console.log(errorMessage);
+      });
+  }
+
+  selectAnswer(answer: Answer) {
+    if (answer.Truth &#x3D;&#x3D; 1) {
+      this.currentPlayerPoints +&#x3D; 10;
+      this.openDialog(true, &#x27;Super gemacht, weiter so.&#x27;);
+    } else {
+      this.openDialog(false, &#x27;Die richtige Antwort ist: \n&#x27; + this.currentCorrectAnswer.Description);
+    }
+    this.disableNextQuestionButton &#x3D; false;
+    this.disableAnswerButton &#x3D; true;
+    this.answeredNumber++;
+  }
+
+
+
+  nextQuestion() {
+    if (this.questionNumber &lt; 10) {
+      this.currentQuestion &#x3D; this.questions[this.questionNumber];
+      this.questionNumber++;
+      this.initAnswersForQuestion(this.currentQuestion.idQuestion);
+    }
+    this.disableAnswerButton &#x3D; false;
+    this.disableNextQuestionButton &#x3D; true;
+  }
+
+  finishGame() {
+    this.quizService.finishQuiz(this.loggedInUser, this.currentQuizId, this.currentPlayerPoints).subscribe(response &#x3D;&gt; {
+      this.sentGame &#x3D; true;
+      setTimeout(() &#x3D;&gt; {
+        this.router.navigate([&#x27;/ranking&#x27;]);
+      }, 5000)
+    });
+  }
+
+  onFrageMelden() {
+    this.currentQuestion[&quot;Flagged&quot;] &#x3D; 1;
+    this.questionService.update(this.loggedInUser, this.currentQuestion).subscribe(response &#x3D;&gt; {
+
+      this.successMsg &#x3D; true;
+      setTimeout(() &#x3D;&gt; {
+        this.successMsg &#x3D; false;
+      }, 5000)
+    },
+      errorMessage &#x3D;&gt; {
+        console.log(errorMessage);
+      });
+  }
+
+  openDialog(isCorrect: boolean, answer: string) {
+    this.dialog.open(DialogComponent, {
+      data: {
+        isCorrect: isCorrect,
+        answer: answer,
+      },
+    });
+
+
+    this.closeDiaSub &#x3D; this.dialog.afterAllClosed.subscribe(response &#x3D;&gt; {
+      if (this.answeredNumber &#x3D;&#x3D; 10) {
+        this.runGame &#x3D; false;
+        this.endGame &#x3D; true;
+      }
+    },
+      errorMessage &#x3D;&gt; {
+        console.log(errorMessage);
+      });
+  }
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;alert alert-success&quot; role&#x3D;&quot;alert&quot; style&#x3D;&quot;text-align: center;&quot; *ngIf&#x3D;&quot;successMsg&quot;&gt;
+    &lt;strong&gt;Frage wurde gemeldet&lt;/strong&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;alert alert-success&quot; role&#x3D;&quot;alert&quot; style&#x3D;&quot;text-align: center;&quot; *ngIf&#x3D;&quot;sentGame&quot;&gt;
+    &lt;strong&gt;Ergebnis wurde übermittelt.&lt;/strong&gt;
+&lt;/div&gt;
+
+
+&lt;div *ngIf&#x3D;&quot;noGameExists&quot;&gt;
+    &lt;mat-card&gt;
+        &lt;h3&gt;Es exisiert kein Spiel für dich. &lt;br&gt; Bitte gehe in die &lt;a [routerLink]&#x3D;&quot;[&#x27;/lobby&#x27;]&quot;
+                routerLinkActive&#x3D;&quot;is-active&quot;&gt;Lobby&lt;/a&gt; und erstelle ein Spiel oder tritt einem
+            bereits erstellten Spiel bei.&lt;/h3&gt;
+    &lt;/mat-card&gt;
+&lt;/div&gt;
+
+&lt;div *ngIf&#x3D;&quot;moreGamesExists&quot;&gt;
+    &lt;mat-card&gt;
+        &lt;h3&gt;Das Spiel konnte nicht initialisiert werden. Bitte melde dich an die Administratoren.&lt;/h3&gt;
+    &lt;/mat-card&gt;
+&lt;/div&gt;
+
+&lt;div *ngIf&#x3D;&quot;runGame || endGame&quot;&gt;
+    &lt;mat-card&gt;
+        &lt;h3&gt;
+            &lt;span style&#x3D;&quot;text-align: center;&quot;&gt;
+                &lt;b&gt;Du &lt;/b&gt; spielst gegen
+                &lt;b&gt;{{player2.FirstName}} {{player2.LastName}}&lt;/b&gt;
+            &lt;/span&gt;
+            &lt;span style&#x3D;&quot;float: right;&quot;&gt;Kategorie: &lt;b&gt;{{currentCategory}}&lt;/b&gt;&lt;/span&gt;
+            &lt;span style&#x3D;&quot;float: right;margin-right: 20px;&quot;&gt;Kurs: &lt;b&gt;{{currentSubject}}&lt;/b&gt;&lt;/span&gt;
+            &lt;span style&#x3D;&quot;float: right;margin-right: 20px;&quot;&gt;Punkte: &lt;b&gt;{{currentPlayerPoints}}&lt;/b&gt;&lt;/span&gt;
+        &lt;/h3&gt;
+    &lt;/mat-card&gt;
+&lt;/div&gt;
+
+&lt;div *ngIf&#x3D;&quot;runGame&quot;&gt;
+    &lt;mat-card *ngIf&#x3D;&quot;currentQuestion&quot;&gt;
+        &lt;mat-card-title-group&gt;
+            &lt;mat-card-subtitle&gt;
+                Frage {{questionNumber}} von 10
+                &lt;button mat-button (click)&#x3D;&quot;onFrageMelden()&quot; color&#x3D;&quot;warn&quot; style&#x3D;&quot;right:20px; position: absolute;&quot;&gt;Frage
+                    melden&lt;/button&gt;
+            &lt;/mat-card-subtitle&gt;
+        &lt;/mat-card-title-group&gt;
+        &lt;mat-card-content&gt;
+            &lt;h1&gt;{{currentQuestion.QuestionDescription}}&lt;/h1&gt;
+        &lt;/mat-card-content&gt;
+    &lt;/mat-card&gt;
+
+    &lt;mat-card&gt;
+        &lt;mat-card-title-group&gt;
+            &lt;mat-card-subtitle&gt;Antwort&lt;/mat-card-subtitle&gt;
+        &lt;/mat-card-title-group&gt;
+        &lt;mat-card-content&gt;
+            &lt;button mat-stroked-button *ngFor&#x3D;&quot;let answer of currentAnswers&quot; [disabled]&#x3D;&quot;disableAnswerButton&quot;
+                style&#x3D;&quot; width: 100%; padding: 5px; margin-top: 5px;margin-bottom:5px;background-color: rgb(240, 240, 240);&quot;
+                (click)&#x3D;&quot;selectAnswer(answer)&quot;&gt;
+                &lt;div style&#x3D;&quot; text-align: left;&quot;&gt;
+                    {{answer.Description}}
+                &lt;/div&gt;
+            &lt;/button&gt;
+        &lt;/mat-card-content&gt;
+    &lt;/mat-card&gt;
+    &lt;button mat-flat-button color&#x3D;&quot;primary&quot; style&#x3D;&quot;width: 100%;&quot; [disabled]&#x3D;&quot;disableNextQuestionButton&quot; *ngIf&#x3D;&quot;runGame&quot;
+        (click)&#x3D;&quot;nextQuestion()&quot;&gt;Nächste
+        Frage&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div *ngIf&#x3D;&quot;endGame&quot;&gt;
+    &lt;mat-card&gt;
+        &lt;mat-card-title-group&gt;
+            &lt;mat-card-subtitle&gt;Alle Fragen beantwortet.&lt;/mat-card-subtitle&gt;
+        &lt;/mat-card-title-group&gt;
+        &lt;mat-card-content&gt;
+            Dein Ergebnis im Kurs &lt;b&gt;{{currentSubject}}&lt;/b&gt; und der Kategorie &lt;b&gt;{{currentCategory}}&lt;/b&gt; sind
+            &lt;b&gt;{{currentPlayerPoints}}&lt;/b&gt; Punkte.
+        &lt;/mat-card-content&gt;
+    &lt;/mat-card&gt;
+    &lt;button mat-flat-button color&#x3D;&quot;warn&quot; style&#x3D;&quot;width: 100%;&quot; (click)&#x3D;&quot;finishGame()&quot;&gt;Spiel
+        beenden&lt;/button&gt;
+&lt;/div&gt;
+
+
+&lt;div *ngIf&#x3D;&quot;loadGame&quot; style&#x3D;&quot;text-align: center;&quot;&gt;
+    &lt;mat-spinner style&#x3D;&quot; display: inline-block; margin-top: 100px;&quot;&gt;&lt;/mat-spinner&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./game.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">mat-card {
+   margin-bottom: 10px;
+ }
+
+.cdk-focused.mat-stroked-button{
+   background-color: #4fc3f7 !important;
+ }
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="successMsg">    <strong>Frage wurde gemeldet</strong></div><div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="sentGame">    <strong>Ergebnis wurde übermittelt.</strong></div><div *ngIf="noGameExists">    <mat-card>        <h3>Es exisiert kein Spiel für dich. <br> Bitte gehe in die <a [routerLink]="[\'/lobby\']"                routerLinkActive="is-active">Lobby</a> und erstelle ein Spiel oder tritt einem            bereits erstellten Spiel bei.</h3>    </mat-card></div><div *ngIf="moreGamesExists">    <mat-card>        <h3>Das Spiel konnte nicht initialisiert werden. Bitte melde dich an die Administratoren.</h3>    </mat-card></div><div *ngIf="runGame || endGame">    <mat-card>        <h3>            <span style="text-align: center;">                <b>Du </b> spielst gegen                <b>{{player2.FirstName}} {{player2.LastName}}</b>            </span>            <span style="float: right;">Kategorie: <b>{{currentCategory}}</b></span>            <span style="float: right;margin-right: 20px;">Kurs: <b>{{currentSubject}}</b></span>            <span style="float: right;margin-right: 20px;">Punkte: <b>{{currentPlayerPoints}}</b></span>        </h3>    </mat-card></div><div *ngIf="runGame">    <mat-card *ngIf="currentQuestion">        <mat-card-title-group>            <mat-card-subtitle>                Frage {{questionNumber}} von 10                <button mat-button (click)="onFrageMelden()" color="warn" style="right:20px; position: absolute;">Frage                    melden</button>            </mat-card-subtitle>        </mat-card-title-group>        <mat-card-content>            <h1>{{currentQuestion.QuestionDescription}}</h1>        </mat-card-content>    </mat-card>    <mat-card>        <mat-card-title-group>            <mat-card-subtitle>Antwort</mat-card-subtitle>        </mat-card-title-group>        <mat-card-content>            <button mat-stroked-button *ngFor="let answer of currentAnswers" [disabled]="disableAnswerButton"                style=" width: 100%; padding: 5px; margin-top: 5px;margin-bottom:5px;background-color: rgb(240, 240, 240);"                (click)="selectAnswer(answer)">                <div style=" text-align: left;">                    {{answer.Description}}                </div>            </button>        </mat-card-content>    </mat-card>    <button mat-flat-button color="primary" style="width: 100%;" [disabled]="disableNextQuestionButton" *ngIf="runGame"        (click)="nextQuestion()">Nächste        Frage</button></div><div *ngIf="endGame">    <mat-card>        <mat-card-title-group>            <mat-card-subtitle>Alle Fragen beantwortet.</mat-card-subtitle>        </mat-card-title-group>        <mat-card-content>            Dein Ergebnis im Kurs <b>{{currentSubject}}</b> und der Kategorie <b>{{currentCategory}}</b> sind            <b>{{currentPlayerPoints}}</b> Punkte.        </mat-card-content>    </mat-card>    <button mat-flat-button color="warn" style="width: 100%;" (click)="finishGame()">Spiel        beenden</button></div><div *ngIf="loadGame" style="text-align: center;">    <mat-spinner style=" display: inline-block; margin-top: 100px;"></mat-spinner></div></div>'
+    var COMPONENTS = [{'name': 'AccountComponent', 'selector': 'app-account'},{'name': 'AddAnswerDialogComponent', 'selector': 'app-add-answer-dialog'},{'name': 'AddQuestionDialogComponent', 'selector': 'app-add-question-dialog'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'CategoryDialogComponent', 'selector': 'app-category-dialog'},{'name': 'CourseDialogComponent', 'selector': 'app-course-dialog'},{'name': 'DialogComponent', 'selector': 'app-dialog'},{'name': 'EditAnswerDialogComponent', 'selector': 'app-edit-answer-dialog'},{'name': 'ErrorPageComponent', 'selector': 'app-error-page'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'GameComponent', 'selector': 'app-game'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoadingScreenComponent', 'selector': 'app-loading-screen'},{'name': 'LobbyComponent', 'selector': 'app-lobby'},{'name': 'QuestionDialogComponent', 'selector': 'app-question-dialog'},{'name': 'QuestionsComponent', 'selector': 'app-questions'},{'name': 'RankingComponent', 'selector': 'app-ranking'},{'name': 'UserEditComponent', 'selector': 'app-user-edit'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
+    var ACTUAL_COMPONENT = {'name': 'GameComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GameComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,20 +1,34 @@
 <mat-dialog-content [formGroup]="form" class="pool-form">
-  
-    <mat-form-field>
-        <mat-label>Kurs</mat-label>
-        <input matInput placeholder="Kurs" 
-        type="text" formControlName="Name" required>
-    </mat-form-field>
+  <mat-form-field>
+    <mat-label>Kurs</mat-label>
+    <input
+      matInput
+      placeholder="Kurs"
+      type="text"
+      formControlName="Name"
+      required
+    />
+  </mat-form-field>
 
-    <mat-form-field >
-        <mat-label>Abkürzung</mat-label>
-        <input matInput placeholder="Abkürzung" 
-        type="text" formControlName="ShortName" required>
-    </mat-form-field>    
- 
+  <mat-form-field>
+    <mat-label>Abkürzung</mat-label>
+    <input
+      matInput
+      placeholder="Abkürzung"
+      type="text"
+      formControlName="ShortName"
+      required
+    />
+  </mat-form-field>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="mat-raised-button"(click)="close()">Close</button>
-    <button [disabled]="form.invalid" class="mat-raised-button mat-primary"(click)="save()">Save</button>
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button
+    [disabled]="form.invalid"
+    class="mat-raised-button mat-primary"
+    (click)="save()"
+  >
+    Save
+  </button>
 </mat-dialog-actions>

@@ -107,7 +107,7 @@ class Question extends ResourceController {
     }
 
     // Questions by Course
-    public function showbycourse($id = null){
+    public function showbycourse($id = null, $flagged = null){
 
         $QuestionModel = new QuestionModel();
         $AnswersModel = new AnswersModel();
@@ -130,10 +130,12 @@ class Question extends ResourceController {
                 if ($session->get('AccountLevel') == 3){
                     $questions = $QuestionModel->where('Category_idCategory', $category['idcategory'])->where('Creator_idUser', $session->get('idUser'))->findAll();                    
                 } else {
-                    $questions = $QuestionModel->where('Category_idCategory', $category['idcategory'])->findAll();
+                    if ($flagged == 'flagged'){                        
+                        $questions = $QuestionModel->where('Category_idCategory', $category['idcategory'])->where('flagged', 1)->findAll();
+                    } else {
+                        $questions = $QuestionModel->where('Category_idCategory', $category['idcategory'])->findAll();
+                    }                    
                 } 
-               
-
 
                 foreach ($questions as $keyQ => $question) {
 
@@ -165,6 +167,28 @@ class Question extends ResourceController {
             ]);
         }
     }
+
+
+    // Count Flagged Questions
+    public function countFlaggedQuestions($id = null) {
+        $QuestionModel = new QuestionModel();        
+        $CategoryModel = new CategoryModel();
+
+        $categories = $CategoryModel->where('Subject_idSubject', $id)->findAll();
+
+        $count = 0;
+
+        foreach ($categories as $category) {
+
+            $questions = $QuestionModel->where('Category_idCategory', $category['idcategory'])->where('flagged', 1)->countAllResults();
+                                  
+            $count += $questions;
+        } 
+
+        return $this->respond($count);
+
+    }
+
 
     // Category of course
     public function getQuestionByCreator($id = null){

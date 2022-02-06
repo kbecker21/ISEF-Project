@@ -1,0 +1,1740 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ng-quiz documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">ng-quiz documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  LobbyComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/lobby/lobby.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-lobby</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./lobby.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./lobby.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#allCoursesSub" >allCoursesSub</a>
+                            </li>
+                            <li>
+                                <a href="#allQuizes" >allQuizes</a>
+                            </li>
+                            <li>
+                                <a href="#cancelGameMsg" >cancelGameMsg</a>
+                            </li>
+                            <li>
+                                <a href="#categories" >categories</a>
+                            </li>
+                            <li>
+                                <a href="#courses" >courses</a>
+                            </li>
+                            <li>
+                                <a href="#createdQuiz" >createdQuiz</a>
+                            </li>
+                            <li>
+                                <a href="#currentUserGame" >currentUserGame</a>
+                            </li>
+                            <li>
+                                <a href="#currentUserSub" >currentUserSub</a>
+                            </li>
+                            <li>
+                                <a href="#dataSource" >dataSource</a>
+                            </li>
+                            <li>
+                                <a href="#dataSourceCategories" >dataSourceCategories</a>
+                            </li>
+                            <li>
+                                <a href="#dataSourceCourses" >dataSourceCourses</a>
+                            </li>
+                            <li>
+                                <a href="#displayedColumns" >displayedColumns</a>
+                            </li>
+                            <li>
+                                <a href="#joinedQuiz" >joinedQuiz</a>
+                            </li>
+                            <li>
+                                <a href="#loadLobby" >loadLobby</a>
+                            </li>
+                            <li>
+                                <a href="#loggedInUser" >loggedInUser</a>
+                            </li>
+                            <li>
+                                <a href="#openedGamesSub" >openedGamesSub</a>
+                            </li>
+                            <li>
+                                <a href="#selectedCategoryId" >selectedCategoryId</a>
+                            </li>
+                            <li>
+                                <a href="#selectedCategorySub" >selectedCategorySub</a>
+                            </li>
+                            <li>
+                                <a href="#selectedCourse" >selectedCourse</a>
+                            </li>
+                            <li>
+                                <a href="#successMsg" >successMsg</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelGame" >cancelGame</a>
+                            </li>
+                            <li>
+                                <a href="#initCategories" >initCategories</a>
+                            </li>
+                            <li>
+                                <a href="#initCourses" >initCourses</a>
+                            </li>
+                            <li>
+                                <a href="#initCurrentUser" >initCurrentUser</a>
+                            </li>
+                            <li>
+                                <a href="#initTable" >initTable</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onCreateGame" >onCreateGame</a>
+                            </li>
+                            <li>
+                                <a href="#onJoinGame" >onJoinGame</a>
+                            </li>
+                            <li>
+                                <a href="#onSelectCourse" >onSelectCourse</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(auth: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, lobbyService: <a href="../injectables/LobbyService.html" target="_self">LobbyService</a>, courseService: <a href="../injectables/CourseService.html" target="_self">CourseService</a>, quizService: <a href="../injectables/QuizService.html" target="_self">QuizService</a>, categoryService: <a href="../injectables/CategoryService.html" target="_self">CategoryService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/lobby/lobby.component.ts:50</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>auth</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>lobbyService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LobbyService.html" target="_self" >LobbyService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>courseService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CourseService.html" target="_self" >CourseService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>quizService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/QuizService.html" target="_self" >QuizService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>categoryService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CategoryService.html" target="_self" >CategoryService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelGame"></a>
+                    <span class="name">
+                        <span ><b>cancelGame</b></span>
+                        <a href="#cancelGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelGame()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/app/lobby/lobby.component.ts:138</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initCategories"></a>
+                    <span class="name">
+                        <span ><b>initCategories</b></span>
+                        <a href="#initCategories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initCategories()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/app/lobby/lobby.component.ts:112</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initCourses"></a>
+                    <span class="name">
+                        <span ><b>initCourses</b></span>
+                        <a href="#initCourses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initCourses()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/lobby/lobby.component.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initCurrentUser"></a>
+                    <span class="name">
+                        <span ><b>initCurrentUser</b></span>
+                        <a href="#initCurrentUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initCurrentUser()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/app/lobby/lobby.component.ts:64</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTable"></a>
+                    <span class="name">
+                        <span ><b>initTable</b></span>
+                        <a href="#initTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initTable()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/lobby/lobby.component.ts:73</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/app/lobby/lobby.component.ts:54</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCreateGame"></a>
+                    <span class="name">
+                        <span ><b>onCreateGame</b></span>
+                        <a href="#onCreateGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCreateGame()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/app/lobby/lobby.component.ts:121</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onJoinGame"></a>
+                    <span class="name">
+                        <span ><b>onJoinGame</b></span>
+                        <a href="#onJoinGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onJoinGame(quiz: <a href="../interfaces/Quiz.html" target="_self">Quiz</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/lobby/lobby.component.ts:97</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>quiz</td>
+                                    <td>
+                                                <code><a href="../interfaces/Quiz.html" target="_self" >Quiz</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSelectCourse"></a>
+                    <span class="name">
+                        <span ><b>onSelectCourse</b></span>
+                        <a href="#onSelectCourse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSelectCourse(course: <a href="../interfaces/Course.html" target="_self">Course</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/lobby/lobby.component.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>course</td>
+                                    <td>
+                                                <code><a href="../interfaces/Course.html" target="_self" >Course</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allCoursesSub"></a>
+                    <span class="name">
+                        <span ><b>allCoursesSub</b></span>
+                        <a href="#allCoursesSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/lobby/lobby.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="allQuizes"></a>
+                    <span class="name">
+                        <span ><b>allQuizes</b></span>
+                        <a href="#allQuizes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Quiz.html" target="_self" >Quiz[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/lobby/lobby.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelGameMsg"></a>
+                    <span class="name">
+                        <span ><b>cancelGameMsg</b></span>
+                        <a href="#cancelGameMsg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/lobby/lobby.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="categories"></a>
+                    <span class="name">
+                        <span ><b>categories</b></span>
+                        <a href="#categories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormControl()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/lobby/lobby.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="courses"></a>
+                    <span class="name">
+                        <span ><b>courses</b></span>
+                        <a href="#courses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new FormControl()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/lobby/lobby.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createdQuiz"></a>
+                    <span class="name">
+                        <span ><b>createdQuiz</b></span>
+                        <a href="#createdQuiz"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/lobby/lobby.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUserGame"></a>
+                    <span class="name">
+                        <span ><b>currentUserGame</b></span>
+                        <a href="#currentUserGame"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Quiz.html" target="_self" >Quiz</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/lobby/lobby.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentUserSub"></a>
+                    <span class="name">
+                        <span ><b>currentUserSub</b></span>
+                        <a href="#currentUserSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/lobby/lobby.component.ts:43</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSource"></a>
+                    <span class="name">
+                        <span ><b>dataSource</b></span>
+                        <a href="#dataSource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Quiz.html" target="_self" >Quiz[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/lobby/lobby.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSourceCategories"></a>
+                    <span class="name">
+                        <span ><b>dataSourceCategories</b></span>
+                        <a href="#dataSourceCategories"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Category.html" target="_self" >Category[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/lobby/lobby.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataSourceCourses"></a>
+                    <span class="name">
+                        <span ><b>dataSourceCourses</b></span>
+                        <a href="#dataSourceCourses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Course.html" target="_self" >Course[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/lobby/lobby.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayedColumns"></a>
+                    <span class="name">
+                        <span ><b>displayedColumns</b></span>
+                        <a href="#displayedColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[&#x27;name&#x27;, &#x27;subject&#x27;, &#x27;category&#x27;, &#x27;action&#x27;]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/lobby/lobby.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="joinedQuiz"></a>
+                    <span class="name">
+                        <span ><b>joinedQuiz</b></span>
+                        <a href="#joinedQuiz"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/lobby/lobby.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadLobby"></a>
+                    <span class="name">
+                        <span ><b>loadLobby</b></span>
+                        <a href="#loadLobby"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/lobby/lobby.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loggedInUser"></a>
+                    <span class="name">
+                        <span ><b>loggedInUser</b></span>
+                        <a href="#loggedInUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/User.html" target="_self" >User</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/lobby/lobby.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openedGamesSub"></a>
+                    <span class="name">
+                        <span ><b>openedGamesSub</b></span>
+                        <a href="#openedGamesSub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/lobby/lobby.component.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedCategoryId"></a>
+                    <span class="name">
+                        <span ><b>selectedCategoryId</b></span>
+                        <a href="#selectedCategoryId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/lobby/lobby.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedCategorySub"></a>
+                    <span class="name">
+                        <span ><b>selectedCategorySub</b></span>
+                        <a href="#selectedCategorySub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/lobby/lobby.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedCourse"></a>
+                    <span class="name">
+                        <span ><b>selectedCourse</b></span>
+                        <a href="#selectedCourse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Course.html" target="_self" >Course</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/lobby/lobby.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="successMsg"></a>
+                    <span class="name">
+                        <span ><b>successMsg</b></span>
+                        <a href="#successMsg"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/lobby/lobby.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { BehaviorSubject, Subject, Subscription } from &#x27;rxjs&#x27;;
+import { Quiz } from &#x27;../shared/model/quiz.model&#x27;;
+import { User } from &#x27;../shared/model/user.model&#x27;;
+import { Course } from &#x27;../shared/model/course.model&#x27;;
+import { AuthService } from &#x27;../shared/services/auth.service&#x27;;
+import { LobbyService } from &#x27;../shared/services/lobby.service&#x27;;
+import { UserService } from &#x27;../shared/services/user.service&#x27;;
+import { CourseService } from &#x27;../shared/services/course.service&#x27;;
+import { FormControl } from &#x27;@angular/forms&#x27;;
+import { Category } from &#x27;../shared/model/category.model&#x27;;
+import { CategoryService } from &#x27;../shared/services/category.service&#x27;;
+import { QuizService } from &#x27;../shared/services/quiz.service&#x27;;
+
+
+@Component({
+  selector: &#x27;app-lobby&#x27;,
+  templateUrl: &#x27;./lobby.component.html&#x27;,
+  styleUrls: [&#x27;./lobby.component.css&#x27;]
+})
+export class LobbyComponent implements OnInit {
+  displayedColumns: string[] &#x3D; [&#x27;name&#x27;, &#x27;subject&#x27;, &#x27;category&#x27;, &#x27;action&#x27;];
+
+  successMsg &#x3D; false;
+  cancelGameMsg &#x3D; false;
+
+  loggedInUser: User &#x3D; null;
+
+  selectedCourse: Course &#x3D; null;
+  selectedCategoryId: number &#x3D; null;
+
+  courses &#x3D; new FormControl();
+  categories &#x3D; new FormControl();
+
+  dataSourceCourses: Course[] &#x3D; [];
+  dataSourceCategories: Category[] &#x3D; [];
+
+  dataSource: Quiz[] &#x3D; [];
+  allQuizes: Quiz[] &#x3D; [];
+
+  currentUserGame: Quiz &#x3D; null;
+
+  currentUserSub: Subscription &#x3D; null;
+  openedGamesSub: Subscription &#x3D; null;
+  allCoursesSub: Subscription &#x3D; null;
+  joinedQuiz: Subscription &#x3D; null;
+  createdQuiz: Subscription &#x3D; null;
+  selectedCategorySub: Subscription &#x3D; null;
+
+  loadLobby &#x3D; true;
+
+  constructor(private auth: AuthService, private userService: UserService, private lobbyService: LobbyService, private courseService: CourseService, private quizService: QuizService, private categoryService: CategoryService) { }
+
+  ngOnInit(): void {
+    this.currentUserSub &#x3D; this.auth.user.subscribe(user &#x3D;&gt; {
+      this.loggedInUser &#x3D; user;
+    });
+
+    this.initTable();
+
+    this.initCourses();
+  }
+
+  initCurrentUser() {
+    this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game &#x3D;&gt; {
+      if (game.length &#x3D;&#x3D; 1) {
+        this.currentUserGame &#x3D; game[0];
+      }
+      this.loadLobby &#x3D; false;
+    })
+  }
+
+  initTable() {
+    this.openedGamesSub &#x3D; this.lobbyService.getAllOpenedGames(this.loggedInUser).subscribe(response &#x3D;&gt; {
+      this.allQuizes &#x3D; response;
+      this.dataSource &#x3D; response.filter(quiz &#x3D;&gt; quiz.idJoinerUser &#x3D;&#x3D;&#x3D; null);
+      this.initCurrentUser();
+    },
+      errorMessage &#x3D;&gt; {
+        console.log(errorMessage);
+      });
+  }
+
+  initCourses() {
+    this.allCoursesSub &#x3D; this.courseService.all(this.loggedInUser).subscribe(response &#x3D;&gt; {
+      const filteredResponse &#x3D; response.filter(course &#x3D;&gt; course.isActive &#x3D;&#x3D;&#x3D; true);
+      this.dataSourceCourses &#x3D; filteredResponse;
+    },
+      errorMessage &#x3D;&gt; {
+        console.log(errorMessage);
+      });
+  }
+
+
+
+
+  onJoinGame(quiz: Quiz): void {
+    this.joinedQuiz &#x3D; this.lobbyService.joinQuiz(this.loggedInUser, quiz.idQuiz, this.loggedInUser.idUser).subscribe(response &#x3D;&gt; {
+      this.initTable();
+    },
+      errorMessage &#x3D;&gt; {
+        console.log(errorMessage);
+      });
+
+  }
+
+  onSelectCourse(course: Course) {
+    this.selectedCourse &#x3D; course;
+    this.initCategories();
+  }
+
+  initCategories() {
+    this.selectedCategorySub &#x3D; this.categoryService.find(this.loggedInUser, this.selectedCourse.id).subscribe(response &#x3D;&gt; {
+      this.dataSourceCategories &#x3D; response;
+    },
+      errorMessage &#x3D;&gt; {
+        console.log(errorMessage);
+      });
+  }
+
+  onCreateGame() {
+    this.createdQuiz &#x3D; this.lobbyService.createQuiz(this.loggedInUser, this.selectedCourse.id, this.selectedCategoryId).subscribe(response &#x3D;&gt; {
+      this.initTable();
+
+
+      this.successMsg &#x3D; true;
+      setTimeout(() &#x3D;&gt; {
+        this.successMsg &#x3D; false;
+      }, 5000)
+
+
+    },
+      errorMessage &#x3D;&gt; {
+        console.log(errorMessage);
+      });
+  }
+
+  cancelGame() {
+
+    if (confirm(&#x27;Möchtest du sicher das Spiel abbrechen?&#x27;)) {
+      this.quizService.deleteGame(this.loggedInUser, this.currentUserGame.idQuiz).subscribe(response &#x3D;&gt; {
+        this.cancelGameMsg &#x3D; true;
+        setTimeout(() &#x3D;&gt; {
+          this.cancelGameMsg &#x3D; false;
+        }, 5000)
+      },
+        errorMessage &#x3D;&gt; {
+          console.log(errorMessage);
+        });
+    }
+
+
+  }
+
+
+}
+
+
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;alert alert-success&quot; role&#x3D;&quot;alert&quot; style&#x3D;&quot;text-align: center;&quot; *ngIf&#x3D;&quot;successMsg&quot;&gt;
+    &lt;strong&gt;Spiel erfolgreich erstellt&lt;/strong&gt;
+&lt;/div&gt;
+&lt;div class&#x3D;&quot;alert alert-success&quot; role&#x3D;&quot;alert&quot; style&#x3D;&quot;text-align: center;&quot; *ngIf&#x3D;&quot;cancelGameMsg&quot;&gt;
+    &lt;strong&gt;Spiel abgebrochen&lt;/strong&gt;
+&lt;/div&gt;
+&lt;mat-grid-list cols&#x3D;&quot;2&quot; rowHeight&#x3D;&quot;2:1&quot; *ngIf&#x3D;&quot;!loadLobby&quot;&gt;
+    &lt;mat-grid-tile&gt;
+        &lt;mat-card&gt;
+            &lt;mat-card-title-group&gt;
+                &lt;mat-card-title&gt;{{loggedInUser.firstName}} {{loggedInUser.lastName}}&lt;/mat-card-title&gt;
+                &lt;mat-card-subtitle&gt;{{loggedInUser.accountLevel | accountLevelPipe}}&lt;/mat-card-subtitle&gt;
+            &lt;/mat-card-title-group&gt;
+            &lt;mat-card-content&gt;
+                &lt;span *ngIf&#x3D;&quot;currentUserGame !&#x3D; null&quot;&gt;
+                    &lt;b&gt;Organisator:&lt;/b&gt; {{currentUserGame.firstNameCreator}} {{currentUserGame.lastNameCreator}}
+                    &lt;br&gt;
+                    &lt;b&gt;Spiel:&lt;/b&gt; {{currentUserGame.subject}}
+                    &lt;br&gt;
+                    &lt;b&gt;Kategorie:&lt;/b&gt; {{currentUserGame.category}}
+                    &lt;hr&gt;
+                    &lt;button mat-stroked-button color&#x3D;&quot;warn&quot; (click)&#x3D;&quot;cancelGame()&quot;&gt;Spiel abbrechen&lt;/button&gt;
+                    &lt;button mat-stroked-button [routerLink]&#x3D;&quot;[&#x27;/game&#x27;]&quot; routerLinkActive&#x3D;&quot;is-active&quot;&gt;zum Spiel&lt;/button&gt;
+                &lt;/span&gt;
+                &lt;span *ngIf&#x3D;&quot;currentUserGame &#x3D;&#x3D;&#x3D; null&quot;&gt;Nimmt aktuell an keinen Spiel teil.&lt;/span&gt;
+            &lt;/mat-card-content&gt;
+        &lt;/mat-card&gt;
+    &lt;/mat-grid-tile&gt;
+    &lt;mat-grid-tile&gt;
+        &lt;mat-card&gt;
+            &lt;mat-card-title-group&gt;
+                &lt;mat-card-title&gt;Neues Spiel erstellen&lt;/mat-card-title&gt;
+                &lt;mat-card-subtitle&gt;Organisator {{loggedInUser.firstName}} {{loggedInUser.lastName}}&lt;/mat-card-subtitle&gt;
+            &lt;/mat-card-title-group&gt;
+            &lt;mat-card-content&gt;
+                &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+                    &lt;mat-label&gt;Wähle ein Modul&lt;/mat-label&gt;
+                    &lt;mat-select disableRipple [formControl]&#x3D;&quot;courses&quot; [disabled]&#x3D;&quot;currentUserGame !&#x3D; null&quot;&gt;
+                        &lt;mat-option *ngFor&#x3D;&quot;let course of dataSourceCourses&quot; [value]&#x3D;&quot;course.id&quot;
+                            (click)&#x3D;&quot;onSelectCourse(course)&quot;&gt;
+                            {{course.Name}}
+                        &lt;/mat-option&gt;
+                    &lt;/mat-select&gt;
+                &lt;/mat-form-field&gt;
+                &lt;br&gt;
+                &lt;mat-form-field appearance&#x3D;&quot;fill&quot;&gt;
+                    &lt;mat-label&gt;Wähle eine Kategorie&lt;/mat-label&gt;
+                    &lt;mat-select disableRipple [formControl]&#x3D;&quot;categories&quot; [disabled]&#x3D;&quot;currentUserGame !&#x3D; null&quot;
+                        [(ngModel)]&#x3D;&quot;selectedCategoryId&quot;&gt;
+                        &lt;mat-option *ngFor&#x3D;&quot; let category of dataSourceCategories&quot; [value]&#x3D;&quot;category.id&quot;&gt;
+                            {{category.Name}}
+                        &lt;/mat-option&gt;
+                    &lt;/mat-select&gt;
+                &lt;/mat-form-field&gt;
+                &lt;br&gt;
+                &lt;button mat-stroked-button (click)&#x3D;&quot;onCreateGame()&quot;
+                    [disabled]&#x3D;&quot;currentUserGame !&#x3D; null&quot;&gt;erstellen&lt;/button&gt;
+            &lt;/mat-card-content&gt;
+        &lt;/mat-card&gt;
+    &lt;/mat-grid-tile&gt;
+    &lt;mat-grid-tile colspan&#x3D;&quot;2&quot; rowspan&#x3D;&quot;1&quot;&gt;
+        &lt;mat-table [dataSource]&#x3D;&quot;dataSource&quot; style&#x3D;&quot;width:calc(100% - 10px)&quot;&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;name&quot;&gt;
+                &lt;mat-header-cell *matHeaderCellDef&gt; Organisator &lt;/mat-header-cell&gt;
+                &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt; {{element.firstNameCreator}} {{element.lastNameCreator}}&lt;/mat-cell&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;subject&quot;&gt;
+                &lt;mat-header-cell *matHeaderCellDef&gt; Modul &lt;/mat-header-cell&gt;
+                &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt; {{element.subject}} &lt;/mat-cell&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;category&quot;&gt;
+                &lt;mat-header-cell *matHeaderCellDef&gt; Kategorie &lt;/mat-header-cell&gt;
+                &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt; {{element.category}} &lt;/mat-cell&gt;
+            &lt;/ng-container&gt;
+
+            &lt;ng-container matColumnDef&#x3D;&quot;action&quot;&gt;
+                &lt;mat-header-cell *matHeaderCellDef&gt; Aktion &lt;/mat-header-cell&gt;
+                &lt;mat-cell *matCellDef&#x3D;&quot;let element&quot;&gt;
+                    &lt;button mat-stroked-button (click)&#x3D;&quot;onJoinGame(element)&quot;
+                        [disabled]&#x3D;&quot;currentUserGame !&#x3D; null&quot;&gt;teilnehmen&lt;/button&gt;
+                &lt;/mat-cell&gt;
+            &lt;/ng-container&gt;
+
+            &lt;mat-header-row *matHeaderRowDef&#x3D;&quot;displayedColumns&quot;&gt;&lt;/mat-header-row&gt;
+            &lt;mat-row *matRowDef&#x3D;&quot;let row; columns: displayedColumns;&quot;&gt;&lt;/mat-row&gt;
+        &lt;/mat-table&gt;
+    &lt;/mat-grid-tile&gt;
+&lt;/mat-grid-list&gt;
+
+&lt;div *ngIf&#x3D;&quot;loadLobby&quot; style&#x3D;&quot;text-align: center;&quot;&gt;
+    &lt;mat-spinner style&#x3D;&quot; display: inline-block; margin-top: 100px;&quot;&gt;&lt;/mat-spinner&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./lobby.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">mat-card {
+     width: calc(100% - 10px);
+    height: calc(100% - 10px); 
+  }</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="successMsg">    <strong>Spiel erfolgreich erstellt</strong></div><div class="alert alert-success" role="alert" style="text-align: center;" *ngIf="cancelGameMsg">    <strong>Spiel abgebrochen</strong></div><mat-grid-list cols="2" rowHeight="2:1" *ngIf="!loadLobby">    <mat-grid-tile>        <mat-card>            <mat-card-title-group>                <mat-card-title>{{loggedInUser.firstName}} {{loggedInUser.lastName}}</mat-card-title>                <mat-card-subtitle>{{loggedInUser.accountLevel | accountLevelPipe}}</mat-card-subtitle>            </mat-card-title-group>            <mat-card-content>                <span *ngIf="currentUserGame != null">                    <b>Organisator:</b> {{currentUserGame.firstNameCreator}} {{currentUserGame.lastNameCreator}}                    <br>                    <b>Spiel:</b> {{currentUserGame.subject}}                    <br>                    <b>Kategorie:</b> {{currentUserGame.category}}                    <hr>                    <button mat-stroked-button color="warn" (click)="cancelGame()">Spiel abbrechen</button>                    <button mat-stroked-button [routerLink]="[\'/game\']" routerLinkActive="is-active">zum Spiel</button>                </span>                <span *ngIf="currentUserGame === null">Nimmt aktuell an keinen Spiel teil.</span>            </mat-card-content>        </mat-card>    </mat-grid-tile>    <mat-grid-tile>        <mat-card>            <mat-card-title-group>                <mat-card-title>Neues Spiel erstellen</mat-card-title>                <mat-card-subtitle>Organisator {{loggedInUser.firstName}} {{loggedInUser.lastName}}</mat-card-subtitle>            </mat-card-title-group>            <mat-card-content>                <mat-form-field appearance="fill">                    <mat-label>Wähle ein Modul</mat-label>                    <mat-select disableRipple [formControl]="courses" [disabled]="currentUserGame != null">                        <mat-option *ngFor="let course of dataSourceCourses" [value]="course.id"                            (click)="onSelectCourse(course)">                            {{course.Name}}                        </mat-option>                    </mat-select>                </mat-form-field>                <br>                <mat-form-field appearance="fill">                    <mat-label>Wähle eine Kategorie</mat-label>                    <mat-select disableRipple [formControl]="categories" [disabled]="currentUserGame != null"                        [(ngModel)]="selectedCategoryId">                        <mat-option *ngFor=" let category of dataSourceCategories" [value]="category.id">                            {{category.Name}}                        </mat-option>                    </mat-select>                </mat-form-field>                <br>                <button mat-stroked-button (click)="onCreateGame()"                    [disabled]="currentUserGame != null">erstellen</button>            </mat-card-content>        </mat-card>    </mat-grid-tile>    <mat-grid-tile colspan="2" rowspan="1">        <mat-table [dataSource]="dataSource" style="width:calc(100% - 10px)">            <ng-container matColumnDef="name">                <mat-header-cell *matHeaderCellDef> Organisator </mat-header-cell>                <mat-cell *matCellDef="let element"> {{element.firstNameCreator}} {{element.lastNameCreator}}</mat-cell>            </ng-container>            <ng-container matColumnDef="subject">                <mat-header-cell *matHeaderCellDef> Modul </mat-header-cell>                <mat-cell *matCellDef="let element"> {{element.subject}} </mat-cell>            </ng-container>            <ng-container matColumnDef="category">                <mat-header-cell *matHeaderCellDef> Kategorie </mat-header-cell>                <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>            </ng-container>            <ng-container matColumnDef="action">                <mat-header-cell *matHeaderCellDef> Aktion </mat-header-cell>                <mat-cell *matCellDef="let element">                    <button mat-stroked-button (click)="onJoinGame(element)"                        [disabled]="currentUserGame != null">teilnehmen</button>                </mat-cell>            </ng-container>            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>        </mat-table>    </mat-grid-tile></mat-grid-list><div *ngIf="loadLobby" style="text-align: center;">    <mat-spinner style=" display: inline-block; margin-top: 100px;"></mat-spinner></div></div>'
+    var COMPONENTS = [{'name': 'AccountComponent', 'selector': 'app-account'},{'name': 'AddAnswerDialogComponent', 'selector': 'app-add-answer-dialog'},{'name': 'AddQuestionDialogComponent', 'selector': 'app-add-question-dialog'},{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuthComponent', 'selector': 'app-auth'},{'name': 'CategoryDialogComponent', 'selector': 'app-category-dialog'},{'name': 'CourseDialogComponent', 'selector': 'app-course-dialog'},{'name': 'DialogComponent', 'selector': 'app-dialog'},{'name': 'EditAnswerDialogComponent', 'selector': 'app-edit-answer-dialog'},{'name': 'ErrorPageComponent', 'selector': 'app-error-page'},{'name': 'FaqComponent', 'selector': 'app-faq'},{'name': 'GameComponent', 'selector': 'app-game'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoadingScreenComponent', 'selector': 'app-loading-screen'},{'name': 'LobbyComponent', 'selector': 'app-lobby'},{'name': 'QuestionDialogComponent', 'selector': 'app-question-dialog'},{'name': 'QuestionsComponent', 'selector': 'app-questions'},{'name': 'RankingComponent', 'selector': 'app-ranking'},{'name': 'UserEditComponent', 'selector': 'app-user-edit'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'}];
+    var ACTUAL_COMPONENT = {'name': 'LobbyComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'LobbyComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

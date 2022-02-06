@@ -48,6 +48,9 @@ $routes->post('login', 'Login::index');
 
 
 $routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' => 'authuser']);
+$routes->get('flaggedquestionsbycourse/(:num)', 'Question::showbycourse/$1/flagged', ['filter' => 'authuser']);
+$routes->get('countflagged/(:num)', 'Question::countFlaggedQuestions/$1', ['filter' => 'authuser']);
+
 
 $routes->get('getalluser', 'students::getAllUser', ['filter' => 'authuser']);
 
