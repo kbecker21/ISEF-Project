@@ -52,6 +52,7 @@ $routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' 
 $routes->get('getalluser', 'students::getAllUser', ['filter' => 'authuser']);
 
 
+$routes->get('quiz/getplayerhistory', 'Quiz::getPlayerHistory', ['filter' => 'authuser']);
 
 $routes->get('getquestions/(:num)/(:num)', 'Quiz::getQuestions/$1/$2', ['filter' => 'authuser']);
 

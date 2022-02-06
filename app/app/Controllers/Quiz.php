@@ -189,26 +189,21 @@ class Quiz extends ResourceController {
             }
         }
 
-/* WORK IN PROGRESS
-Spielhistorie: Wann hat Spieler gegen wen gespielt und mit welchem SpielErgebnis mit Datum 2. Spieler; 
-Wer hat gewonnen?
-        // getGameByPlayer
     public function getPlayerHistory(){
-      $model = new QuizModel();
+      $model = new ResultsModel();
       $session = session();
 
 
-      $model->select('quiz.idQuiz, subject.Name AS SubjectName, quiz.PlayDate,  quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1');
-      $model->where('quiz.Creator_idUser', $session->get('idUser'));
-      $model->orWhere('quiz.Joiner_idUser1', $session->get('idUser'))
-      $model->join('user', 'user.idUser = quiz.Creator_idUser', 'left');
-      $model->join('subject', 'subject.idSubject = quiz.Subject_idSubject', 'left');
-      $data['Quiz'] = $model->find();
+      $model->select('quiz.PlayDate, user.FirstName AS Opponent FN, user.LastName AS Opponent LN, Points, Winner');
+      $model->where('results.User_idUser', $session->get('idUser'));
+      $model->join('quiz', 'quiz.idQuiz = results.Quiz_idQuiz', 'left');
+      $model->join('user', 'user.idUser = quiz.Joiner_idUser1', 'left');
+      $data = $model->find();
 
         if($data){
             return $this->respond($data);
         }else{
-            return $this->failNotFound('No Quiz found');
+            return $this->failNotFound('No games found');
         }
     }
 
@@ -217,8 +212,5 @@ Wer hat gewonnen?
     $ResultsModel = new ResultsModel();
 
     $data = $ResultsModel->findAll();
-
-    foreach()
     }    
-    */
 }
