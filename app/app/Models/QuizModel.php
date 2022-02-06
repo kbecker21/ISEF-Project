@@ -7,10 +7,11 @@ class QuizModel extends Model{
 	protected $table = 'quiz';
     protected $primaryKey = 'idQuiz';
     protected $allowedFields = [
-    'Subject_idSubject',
-    'category_idcategory',  
-	'PlayDate',
+    'Subject_idSubject',  
+    'PlayDate',
     'Creator_idUser',
-    'Joiner_idUser1'];
-
+    'Joiner_idUser1',
+    'category_idcategory',
+    'FinishCreator',
+    'FinishJoiner'];
 }
