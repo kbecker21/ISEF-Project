@@ -74,25 +74,37 @@
         <button mat-raised-button (click)="editCourse(courseID)" class="edit">
           Kurs bearbeiten
         </button>
+        
+        <button
+        *ngIf="onlyFlagged; else noFlag"
+        matTooltip="alle Anzeigen"
+        (click)="toggleOnlyFlagged(courseID)"
+        mat-icon-button        
+      >
         <mat-icon
-          color="warn"
-          matBadge="{{ countFlagged }}"
+        matBadge="{{ countFlagged }}"
           matBadgeColor="warn"
           matBadgeSize="small"
-          >flag</mat-icon
-        >
-        &nbsp;
-        <mat-slide-toggle
-          *ngIf="onlyFlagged; else noFlag"
-          matTooltip="Alle anzeigen"
-          checked
-          (change)="toggleOnlyFlagged(courseID)"
-        ></mat-slide-toggle>
+          color="warn"
+          >
+          flag</mat-icon>
+      </button>      
         <ng-template #noFlag>
-          <mat-slide-toggle
-            matTooltip="Nur markierte anzeigen"
-            (change)="toggleOnlyFlagged(courseID)"
-          ></mat-slide-toggle>
+          <button          
+          matTooltip="nur markierte Anzeigen"         
+          (click)="toggleOnlyFlagged(courseID)"
+          mat-icon-button
+          
+          
+        >
+          <mat-icon
+          matBadge="{{ countFlagged }}"
+          matBadgeColor="#a0a0a0"
+          matBadgeSize="small"
+          color="#a0a0a0"
+            >
+            flag</mat-icon>
+        </button>
         </ng-template>
         &nbsp;
         <button
