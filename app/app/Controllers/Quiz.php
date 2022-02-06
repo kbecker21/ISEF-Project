@@ -55,7 +55,7 @@ class Quiz extends ResourceController {
 
     }
 
-        // postResults
+    // postResults
     public function postResult() {
 
         $modelResult = new ResultsModel();
@@ -68,6 +68,8 @@ class Quiz extends ResourceController {
         ];
 
         $modelResult->insert($data);
+
+        $this->finishGame($data);
 
         $response = [
           'status'   => 201,
@@ -143,7 +145,7 @@ class Quiz extends ResourceController {
 
 
 
- public function getRanking(){
+    public function getRanking(){
 
         $ResultsModel = new ResultsModel();
 
@@ -233,5 +235,31 @@ class Quiz extends ResourceController {
             } 
 
         }
-    }    
+    } 
+
+    private function finishGame($array) {
+    
+      $model = new QuizModel();
+    
+      $model->where('quiz.idQuiz', $array["Quiz_idQuiz"]);
+      $model->where('quiz.Creator_idUser', $array["User_idUser"]);
+      $model->orWhere('quiz.Joiner_idUser1', $array["User_idUser"]);     
+      $data = $model->find();
+        
+            if ($data[0]["Creator_idUser"] == $array["User_idUser"] ){
+
+                $finisher = [
+
+                    'FinishCreator' => 1,
+                ];
+          
+            }else {
+
+                $finisher = [
+                    'FinishJoiner' => 1
+                    
+                ];                     
+            }
+        $model->update($array["Quiz_idQuiz"],$finisher);    
+    }        
 }
