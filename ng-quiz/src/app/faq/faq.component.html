@@ -19,4 +19,57 @@
             <a [routerLink]="['/register']" routerLinkActive="is-active">Registrieren</a>
         </p>
     </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Wo kann ich mich anmelden?
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Klicke im Menü auf
+            <a [routerLink]="['/login']" routerLinkActive="is-active">Anmelden</a>
+        </p>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Wie kann ich ein Spiel spielen?
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Klicke im Menü auf
+            <a [routerLink]="['/lobby']" routerLinkActive="is-active">Lobby</a>. Nun kannst du entweder selber ein Spiel
+            erstellen oder du trittst einem bereits erstellten Spiel bei.
+        </p>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Wo kann ich meine eigene Frage einreichen?
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Klicke im Menü auf
+            <a [routerLink]="['/questions']" routerLinkActive="is-active">Fragenpool</a>. Danach wählst du das Modul
+            aus, anschließend die Kategorie und dann kannst du deine eigene Frage einreichen.
+        </p>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Gibt es eine Rangliste?
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Klicke im Menü auf
+            <a [routerLink]="['/ranking']" routerLinkActive="is-active">Rangliste</a>.
+        </p>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Kann ich mir meine Spielhistorie anzeigen lassen?
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Klicke im Menü auf
+            <a [routerLink]="['/account']" routerLinkActive="is-active">Profil</a>. Unter deinem Profil findest du deine
+            Spielhistorie.
+        </p>
+    </mat-expansion-panel>
 </mat-accordion>
