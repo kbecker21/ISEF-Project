@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class ResultsModel extends Model{
 
     protected $table = 'results';
-    protected $primaryKey = 'idResults';
+    protected $primaryKey = 'Quiz_idQuiz';
     protected $allowedFields = [
     'User_idUser',
     'Quiz_idQuiz',  
