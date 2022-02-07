@@ -31,9 +31,9 @@
     <ng-container matColumnDef="result">
         <mat-header-cell *matHeaderCellDef> Ergebnis</mat-header-cell>
         <mat-cell *matCellDef="let element">
-            <span *ngIf="element.result==null">0:0</span>
-            <span *ngIf="element.result==1">1:0</span>
-            <span *ngIf="element.result==0">0:1</span>
+            <span *ngIf="element.Winner==null">0:0</span>
+            <span *ngIf="element.Winner==1">1:0</span>
+            <span *ngIf="element.Winner==0">0:1</span>
         </mat-cell>
     </ng-container>
 
