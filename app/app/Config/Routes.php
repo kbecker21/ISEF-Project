@@ -48,6 +48,9 @@ $routes->post('login', 'Login::index');
 
 
 $routes->get('questionsbycourse/(:num)', 'Question::showbycourse/$1', ['filter' => 'authuser']);
+$routes->get('flaggedquestionsbycourse/(:num)', 'Question::showbycourse/$1/flagged', ['filter' => 'authuser']);
+$routes->get('countflagged/(:num)', 'Question::countFlaggedQuestions/$1', ['filter' => 'authuser']);
+
 
 $routes->get('getalluser', 'students::getAllUser', ['filter' => 'authuser']);
 
@@ -69,7 +72,6 @@ $routes->get('getuser/(:num)', 'students::getUser/$1', ['filter' => 'authuser'])
 
 $routes->get('showanswers/(:num)', 'students::showAnswers/$1', ['filter' => 'authuser']);
 
-$routes->get('getranking', 'Quiz::getRanking', ['filter' => 'authuser']);
 
 $routes->get('answerunique/(:num)/(:num)', 'Answer::checkForUnique/$1/$2', ['filter' => 'authuser']);
 

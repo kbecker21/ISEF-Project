@@ -196,7 +196,7 @@ class Quiz extends ResourceController {
       $session = session();
 
 
-      $model->select('quiz.PlayDate, user.FirstName AS Opponent FN, user.LastName AS Opponent LN, Points, Winner');
+      $model->select('quiz.PlayDate, user.FirstName AS OpponentFn, user.LastName AS OpponentLn, Points, Winner');
       $model->where('results.User_idUser', $session->get('idUser'));
       $model->join('quiz', 'quiz.idQuiz = results.Quiz_idQuiz', 'left');
       $model->join('user', 'user.idUser = quiz.Joiner_idUser1', 'left');

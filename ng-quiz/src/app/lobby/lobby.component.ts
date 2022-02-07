@@ -142,6 +142,9 @@ export class LobbyComponent implements OnInit {
         this.cancelGameMsg = true;
         setTimeout(() => {
           this.cancelGameMsg = false;
+
+          // TODO: refresh
+
         }, 5000)
       },
         errorMessage => {

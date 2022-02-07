@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
@@ -25,13 +25,14 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { FaqComponent } from './faq/faq.component';
-import { RankingComponent } from "./ranking/ranking.component";
+import { RankingComponent } from './ranking/ranking.component';
 import { AccountComponent } from './account/account.component';
 import { AuthComponent } from './auth/auth.component';
 import { AdminComponent } from './admin/admin.component';
@@ -39,7 +40,6 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { AccountLevelPipe } from './shared/pipe/account-level.pipe';
 import { LobbyComponent } from './lobby/lobby.component';
 import { GameComponent } from './game/game.component';
-
 
 import { QuestionsComponent } from './questions/questions.component';
 import { QuestionDialogComponent } from './questions/question-dialog/question-dialog.component';
@@ -53,7 +53,6 @@ import { LoadingScreenInterceptor } from './shared/helpers/loading.interceptors'
 import { CourseDialogComponent } from './questions/course-dialog/course-dialog.component';
 import { CategoryDialogComponent } from './questions/category-dialog/category-dialog.component';
 import { DialogComponent } from './game/dialog/dialog.component';
-
 
 @NgModule({
   declarations: [
@@ -79,7 +78,7 @@ import { DialogComponent } from './game/dialog/dialog.component';
     EditAnswerDialogComponent,
     LoadingScreenComponent,
     CourseDialogComponent,
-    DialogComponent
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,7 +105,8 @@ import { DialogComponent } from './game/dialog/dialog.component';
     MatSlideToggleModule,
     MatTooltipModule,
     MatProgressSpinnerModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatBadgeModule,
   ],
   providers: [
     {
@@ -115,6 +115,6 @@ import { DialogComponent } from './game/dialog/dialog.component';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
