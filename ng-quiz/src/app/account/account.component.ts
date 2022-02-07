@@ -34,7 +34,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   historySub: Subscription = null;
 
   dataSource: PlayerHistory[];
-  displayedColumns: string[] = ['date', 'player1', 'result', 'player2'];
+  displayedColumns: string[] = ['date', 'player1', 'player2', 'result'];
 
   constructor(private auth: AuthService, private userService: UserService, private router: Router, public dialog: MatDialog, private quizService: QuizService) { }
 

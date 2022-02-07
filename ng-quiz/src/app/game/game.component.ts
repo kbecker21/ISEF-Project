@@ -88,6 +88,9 @@ export class GameComponent implements OnInit {
 
     this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
 
+      console.log('this.quizService.getGameByPlayer');
+      console.log(game);
+
       if (game.length > 1) {
         this.moreGamesExists = true;
         this.loadGame = false;
@@ -193,7 +196,7 @@ export class GameComponent implements OnInit {
       this.sentGame = true;
       setTimeout(() => {
         this.router.navigate(['/ranking']);
-      }, 5000)
+      }, 1000)
     });
   }
 

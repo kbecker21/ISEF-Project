@@ -28,18 +28,18 @@
         <mat-cell *matCellDef="let element"> Du </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="result">
-        <mat-header-cell *matHeaderCellDef> Ergebnis</mat-header-cell>
-        <mat-cell *matCellDef="let element">
-            <span *ngIf="element.Winner==null">0:0</span>
-            <span *ngIf="element.Winner==1">1:0</span>
-            <span *ngIf="element.Winner==0">0:1</span>
-        </mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="player2">
         <mat-header-cell *matHeaderCellDef> Spieler 2 </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.OpponentFn}} {{element.OpponentLn}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="result">
+        <mat-header-cell *matHeaderCellDef> Ergebnis</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <span *ngIf="element.Winner==null" style="color: black;">Unentschieden</span>
+            <span *ngIf="element.Winner==1" style="color: rgb(0, 126, 0);">Sieg</span>
+            <span *ngIf="element.Winner==0" style="color: rgb(156, 0, 0)">Niederlage</span>
+        </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

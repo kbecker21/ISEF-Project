@@ -86,18 +86,20 @@ export class QuizService {
         const gamesArray: Quiz[] = [];
 
         responseData.Quiz.forEach((quiz) => {
-          gamesArray.push({
-            idQuiz: quiz.idQuiz,
-            idSubject: quiz.idSubject,
-            playDate: quiz.PlayDate,
-            idCreatorUser: quiz.Creator_idUser,
-            idJoinerUser: quiz.Joiner_idUser1,
-            firstNameCreator: quiz.FirstName,
-            lastNameCreator: quiz.LastName,
-            subject: quiz.SubjectName,
-            idCategory: quiz.idcategory,
-            category: quiz.CategoryName
-          });
+          if (!(quiz.FinishCreator == 1 && quiz.FinishJoiner == 1)) {
+            gamesArray.push({
+              idQuiz: quiz.idQuiz,
+              idSubject: quiz.idSubject,
+              playDate: quiz.PlayDate,
+              idCreatorUser: quiz.Creator_idUser,
+              idJoinerUser: quiz.Joiner_idUser1,
+              firstNameCreator: quiz.FirstName,
+              lastNameCreator: quiz.LastName,
+              subject: quiz.SubjectName,
+              idCategory: quiz.idcategory,
+              category: quiz.CategoryName
+            });
+          }
         });
 
         return gamesArray;
