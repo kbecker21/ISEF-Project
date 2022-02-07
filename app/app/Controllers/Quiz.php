@@ -220,22 +220,27 @@ class Quiz extends ResourceController {
             $model->where('results.Quiz_idQuiz', $Nummer["Quiz_idQuiz"]);
             $model->where('results.User_idUser !=', $Nummer["User_idUser"]);
             $data1 = $model->find();
+
             if ($Nummer["Points"] > $data1[0]["Points"]){
 
                 $winner = [
-                    'Quiz_idQuiz' => $Nummer["Quiz_idQuiz"],
-                    'User_idUser' => $Nummer["User_idUser"],
-                    'Points' => $Nummer["Points"],
                     'Winner'  => 1
                 ];
-
-                $model->where('results.User_idUser', $Nummer["User_idUser"]);
-                $model->update($Nummer["Quiz_idQuiz"], $winner);
+            $model->where('results.User_idUser', $Nummer["User_idUser"]);
+            $model->update($Nummer["Quiz_idQuiz"], $winner);
           
-            } 
+            } else {
+                $winner = [
+                    'Winner'  => 0
+                ];
+
+            $model->where('results.User_idUser', $Nummer["User_idUser"]);
+            $model->update($Nummer["Quiz_idQuiz"], $winner);
+
+            }             
 
         }
-    } 
+    }
 
     private function finishGame($array) {
     
