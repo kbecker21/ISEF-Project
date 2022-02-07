@@ -136,11 +136,7 @@ export class QuizService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
     });
-
-
-    // TODO: not done yet
-
-    return this.http.get<any>(getUrlById('getPlayerHistory', loggedInUser.idUser), { headers: headers }).pipe(
+    return this.http.get<any>(getUrl('getplayerhistory'), { headers: headers }).pipe(
       catchError(handleError)
     );
   }

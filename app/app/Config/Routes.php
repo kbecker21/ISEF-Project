@@ -72,7 +72,6 @@ $routes->get('getuser/(:num)', 'students::getUser/$1', ['filter' => 'authuser'])
 
 $routes->get('showanswers/(:num)', 'students::showAnswers/$1', ['filter' => 'authuser']);
 
-$routes->get('getranking', 'Quiz::getRanking', ['filter' => 'authuser']);
 
 $routes->get('answerunique/(:num)/(:num)', 'Answer::checkForUnique/$1/$2', ['filter' => 'authuser']);
 

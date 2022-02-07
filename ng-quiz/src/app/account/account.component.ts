@@ -8,6 +8,15 @@ import { QuizService } from '../shared/services/quiz.service';
 import { UserService } from '../shared/services/user.service';
 import { UserEditComponent } from '../user-edit/user-edit.component';
 
+
+interface PlayerHistory {
+  OpponentFn: string,
+  OpponentLn: string,
+  PlayDate: Date,
+  Points: number,
+  Winner: number
+}
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -24,7 +33,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   historySub: Subscription = null;
 
-  dataSource: [];
+  dataSource: PlayerHistory[];
   displayedColumns: string[] = ['date', 'player1', 'result', 'player2'];
 
   constructor(private auth: AuthService, private userService: UserService, private router: Router, public dialog: MatDialog, private quizService: QuizService) { }
@@ -36,6 +45,8 @@ export class AccountComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
       this.loggedInUser = user;
+
+      this.initTable();
     },
       errorMessage => {
         console.log(errorMessage);
@@ -44,8 +55,9 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   initTable() {
     this.historySub = this.quizService.getPlayerHistory(this.loggedInUser).subscribe(response => {
-      // TODO: not done yet
-      // dataSource = response;
+      this.dataSource = response;
+      console.log(response);
+      // TODO: winner ist immer null: evtl erst getRanking in Rangliste anpassen da diese den Winner aktualisiert?
     },
       errorMessage => {
         console.log(errorMessage);
