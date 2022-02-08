@@ -121,14 +121,10 @@ export class LobbyComponent implements OnInit {
   onCreateGame() {
     this.createdQuiz = this.lobbyService.createQuiz(this.loggedInUser, this.selectedCourse.id, this.selectedCategoryId).subscribe(response => {
       this.initTable();
-
-
       this.successMsg = true;
       setTimeout(() => {
         this.successMsg = false;
-      }, 5000)
-
-
+      }, 1000)
     },
       errorMessage => {
         console.log(errorMessage);
@@ -139,13 +135,12 @@ export class LobbyComponent implements OnInit {
 
     if (confirm('Möchtest du sicher das Spiel abbrechen?')) {
       this.quizService.deleteGame(this.loggedInUser, this.currentUserGame.idQuiz).subscribe(response => {
+        this.currentUserGame = null;
+        this.initTable();
         this.cancelGameMsg = true;
         setTimeout(() => {
           this.cancelGameMsg = false;
-
-          // TODO: refresh
-
-        }, 5000)
+        }, 1000)
       },
         errorMessage => {
           console.log(errorMessage);
