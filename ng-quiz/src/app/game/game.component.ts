@@ -69,7 +69,8 @@ export class GameComponent implements OnInit {
   noGameExists = false;
   moreGamesExists = false;
   sentGame = false;
-
+  errorExists = false;
+  noSecondPlayer = false;
 
 
 
@@ -87,9 +88,6 @@ export class GameComponent implements OnInit {
   initGame() {
 
     this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
-
-      console.log('this.quizService.getGameByPlayer');
-      console.log(game);
 
       if (game.length > 1) {
         this.moreGamesExists = true;
@@ -118,12 +116,14 @@ export class GameComponent implements OnInit {
       this.player1 = this.loggedInUser;
       const idForPlayer2 = this.loggedInUser.idUser == idCreator ? idJoiner : idCreator;
 
+      if (idForPlayer2 == null) {
+        this.noSecondPlayer = true;
+        this.loadGame = false;
+        return;
+      }
+
       this.userService.getUser(this.loggedInUser, idForPlayer2).subscribe(response => {
         this.player2 = response;
-
-
-        console.log('inside  this.userService.getUse');
-        console.log(response);
 
         // Initialisere alle Fragen, erst nachdem beide Teilnehmer geladen werden konnten.
         this.initQuestionsInGame();
@@ -138,6 +138,12 @@ export class GameComponent implements OnInit {
   initQuestionsInGame() {
     this.questionSub = this.quizService.getQuestions(this.loggedInUser, this.currentSubjectId, this.currentCategoryId).subscribe(response => {
       this.questions = response;
+
+      if (response.length == 0) {
+        this.errorExists = true;
+        this.loadGame = false;
+        return;
+      }
 
       // init first question
       this.nextQuestion();

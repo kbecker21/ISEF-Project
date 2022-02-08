@@ -15,9 +15,21 @@
     </mat-card>
 </div>
 
+<div *ngIf="noSecondPlayer">
+    <mat-card>
+        <h3>Es fehlt noch ein zweiter Spieler. Bitte warte bis ein Student deinem Spiel beigetreten ist.</h3>
+    </mat-card>
+</div>
+
 <div *ngIf="moreGamesExists">
     <mat-card>
         <h3>Das Spiel konnte nicht initialisiert werden. Bitte melde dich an die Administratoren.</h3>
+    </mat-card>
+</div>
+
+<div *ngIf="errorExists">
+    <mat-card>
+        <h3>Unbekannter Fehler. Bitte kontaktiere einen Administrator.</h3>
     </mat-card>
 </div>
 
