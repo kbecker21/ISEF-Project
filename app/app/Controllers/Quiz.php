@@ -147,9 +147,9 @@ class Quiz extends ResourceController {
 
     public function getRanking(){
 
-        $ResultsModel = new ResultsModel();
-
         $this->updateWinner();
+
+        $ResultsModel = new ResultsModel();      
 
         $ResultsModel->select('results.User_idUser, user.FirstName, user.LastName, SUM(Points) AS TotalPoints, SUM(Winner) AS TotalWins');
         $ResultsModel->join('user', 'user.idUser = results.User_idUser', 'left');
@@ -159,6 +159,8 @@ class Quiz extends ResourceController {
         $ResultsModel->groupBy('user.LastName');
 
         $data = $ResultsModel->findAll();
+
+        
 
         if($data){
             return $this->respond($data);
@@ -220,25 +222,33 @@ class Quiz extends ResourceController {
             $model->where('results.Quiz_idQuiz', $Nummer["Quiz_idQuiz"]);
             $model->where('results.User_idUser !=', $Nummer["User_idUser"]);
             $data1 = $model->find();
+            if ($data1){
+                if ($Nummer["Points"] > $data1[0]["Points"]){
 
-            if ($Nummer["Points"] > $data1[0]["Points"]){
-
-                $winner = [
-                    'Winner'  => 1
-                ];
-            $model->where('results.User_idUser', $Nummer["User_idUser"]);
-            $model->update($Nummer["Quiz_idQuiz"], $winner);
-          
-            } else {
-                $winner = [
-                    'Winner'  => 0
-                ];
-
-            $model->where('results.User_idUser', $Nummer["User_idUser"]);
-            $model->update($Nummer["Quiz_idQuiz"], $winner);
-
-            }             
-
+                    $winner = [
+                        'Winner'  => 1
+                    ];
+                $model->where('results.User_idUser', $Nummer["User_idUser"]);
+                $model->update($Nummer["Quiz_idQuiz"], $winner);
+              
+                } elseif ($Nummer["Points"] == $data1[0]["Points"]){
+                    $winner = [
+                        'Winner'  => NULL
+                    ];
+    
+                $model->where('results.User_idUser', $Nummer["User_idUser"]);
+                $model->update($Nummer["Quiz_idQuiz"], $winner);
+    
+                }else {
+                    $winner = [
+                        'Winner'  => 0
+                    ];
+    
+                $model->where('results.User_idUser', $Nummer["User_idUser"]);
+                $model->update($Nummer["Quiz_idQuiz"], $winner);
+                }
+            }
+             
         }
     }
 
