@@ -6,7 +6,7 @@ import { QuizService } from '../shared/services/quiz.service';
 import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/services/user.service';
 import { User } from '../shared/model/user.model';
-import { Subscription, throwError } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { DialogComponent } from './dialog/dialog.component';
 import { QuestionsService } from '../shared/services/questions.service';
 import { Router } from '@angular/router';
@@ -23,6 +23,10 @@ interface Player2 {
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
+
+/**
+ * Diese Komponente implementiert das Gameplay.
+ */
 export class GameComponent implements OnInit {
 
   loggedInUser: User = null;
@@ -54,9 +58,6 @@ export class GameComponent implements OnInit {
   disableNextQuestionButton = true;
   disableAnswerButton = false;
 
-
-
-
   currentGameSub: Subscription = null;
   questionSub: Subscription = null;
   answersSub: Subscription = null;
@@ -72,10 +73,11 @@ export class GameComponent implements OnInit {
   errorExists = false;
   noSecondPlayer = false;
 
-
-
   constructor(private auth: AuthService, private router: Router, private userService: UserService, public dialog: MatDialog, private quizService: QuizService, private questionService: QuestionsService) { }
 
+  /**
+ * Initialisiert das Spiel für den aktuellen Benutzer.
+ */
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
       this.loggedInUser = user;
@@ -84,9 +86,10 @@ export class GameComponent implements OnInit {
 
   }
 
-
+  /**
+* Initialisiert das aktuelle Spiel.
+*/
   initGame() {
-
     this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
 
       if (game.length > 1) {
@@ -135,6 +138,9 @@ export class GameComponent implements OnInit {
 
   }
 
+  /**
+   * Initialisiert die Fragen für das Spiel.
+   */
   initQuestionsInGame() {
     this.questionSub = this.quizService.getQuestions(this.loggedInUser, this.currentSubjectId, this.currentCategoryId).subscribe(response => {
       this.questions = response;
@@ -158,11 +164,18 @@ export class GameComponent implements OnInit {
       });
   }
 
+  /**
+   * Prüft ob alle Daten vorhanden sind.
+   * @returns true: wenn alle Daten vorhanden sind; false: falls Daten fehlen
+   */
   checkAllData() {
     return this.currentQuestion != null && this.currentAnswers != null && this.questions.length >= 10 && this.player1 != null && this.player2 != null;
   }
 
-
+  /**
+   * Initialisiert die Antworten für eine Frage
+   * @param idQuestion Frage ID
+   */
   initAnswersForQuestion(idQuestion: number) {
     this.answersSub = this.quizService.getAnswers(this.loggedInUser, idQuestion).subscribe(response => {
       this.currentCorrectAnswer = response.find(answer => answer.Truth == 1);
@@ -173,6 +186,10 @@ export class GameComponent implements OnInit {
       });
   }
 
+  /**
+   * Auswahl einer Antwort. Öffnet den Dialog.
+   * @param answer ausgewählte Antwort
+   */
   selectAnswer(answer: Answer) {
     if (answer.Truth == 1) {
       this.currentPlayerPoints += 10;
@@ -185,8 +202,9 @@ export class GameComponent implements OnInit {
     this.answeredNumber++;
   }
 
-
-
+  /**
+   * Lädt die nächste Frage.
+   */
   nextQuestion() {
     if (this.questionNumber < 10) {
       this.currentQuestion = this.questions[this.questionNumber];
@@ -197,6 +215,9 @@ export class GameComponent implements OnInit {
     this.disableNextQuestionButton = true;
   }
 
+  /**
+   * Beendet das Spiel.
+   */
   finishGame() {
     this.quizService.finishQuiz(this.loggedInUser, this.currentQuizId, this.currentPlayerPoints).subscribe(response => {
       this.sentGame = true;
@@ -206,6 +227,9 @@ export class GameComponent implements OnInit {
     });
   }
 
+  /**
+   * Meldet die Frage an den Server.
+   */
   onFrageMelden() {
     this.currentQuestion["Flagged"] = 1;
     this.questionService.update(this.loggedInUser, this.currentQuestion).subscribe(response => {
@@ -220,6 +244,11 @@ export class GameComponent implements OnInit {
       });
   }
 
+  /**
+   * Öffnet den Dialog.
+   * @param isCorrect Antwort war korrekt
+   * @param answer Antwort Text
+   */
   openDialog(isCorrect: boolean, answer: string) {
     this.dialog.open(DialogComponent, {
       data: {
@@ -227,7 +256,6 @@ export class GameComponent implements OnInit {
         answer: answer,
       },
     });
-
 
     this.closeDiaSub = this.dialog.afterAllClosed.subscribe(response => {
       if (this.answeredNumber == 10) {

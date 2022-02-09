@@ -42,6 +42,9 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.initTable();
   }
 
+  /**
+   * Initialisiert die Tabelle
+   */
   initTable() {
     this.allUsers = this.userService.getUsers(this.loggedInUser).subscribe(response => {
       this.dataSource = response;
@@ -70,6 +73,10 @@ export class AdminComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Löscht den Account.
+   * @param id Account ID
+   */
   onDelete(id: number) {
     if (confirm('Möchtest du sicher den Account löschen?')) {
       this.userService.deleteUser(this.loggedInUser, id).subscribe(response => {

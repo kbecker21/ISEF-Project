@@ -8,6 +8,7 @@ import { LoadingScreenService } from '../shared/services/loading-screen.service'
   templateUrl: './loading-screen.component.html',
   styleUrls: ['./loading-screen.component.css'],
 })
+
 export class LoadingScreenComponent implements AfterViewInit, OnDestroy {
   debounceTime = 200;
   loading = false;
@@ -17,7 +18,7 @@ export class LoadingScreenComponent implements AfterViewInit, OnDestroy {
     private loadingScreenService: LoadingScreenService,
     private _elmRef: ElementRef,
     private _changeDetectorRef: ChangeDetectorRef
-  ) {}
+  ) { }
 
   ngOnInit() {
     console.log('hallo')
@@ -29,7 +30,7 @@ export class LoadingScreenComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-   
+
     this._elmRef.nativeElement.style.display = 'none';
     this.loadingSubscription = this.loadingScreenService.loadingStatus
       .pipe(debounceTime(this.debounceTime))

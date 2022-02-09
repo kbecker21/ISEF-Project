@@ -35,7 +35,9 @@ export class RankingComponent implements OnInit {
 
   constructor(private auth: AuthService, private rankingService: RankingService) { }
 
-
+  /**
+   * Initialisiert die Rangliste
+   */
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
       this.loggedInUser = user;
@@ -44,6 +46,9 @@ export class RankingComponent implements OnInit {
     this.initTable();
   }
 
+  /**
+   * Initialisiert die Tabelle
+   */
   initTable() {
     this.allSearchUsers = this.rankingService.getRanking(this.loggedInUser).subscribe(response => {
       this.dataSource = response;

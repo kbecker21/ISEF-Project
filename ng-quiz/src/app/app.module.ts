@@ -117,4 +117,4 @@ import { DialogComponent } from './game/dialog/dialog.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

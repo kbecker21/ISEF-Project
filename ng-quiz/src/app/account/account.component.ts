@@ -45,7 +45,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
       this.loggedInUser = user;
-
       this.initTable();
     },
       errorMessage => {
@@ -56,8 +55,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   initTable() {
     this.historySub = this.quizService.getPlayerHistory(this.loggedInUser).subscribe(response => {
       this.dataSource = response;
-      console.log(response);
-      // TODO: winner ist immer null: evtl erst getRanking in Rangliste anpassen da diese den Winner aktualisiert?
     },
       errorMessage => {
         console.log(errorMessage);
@@ -81,7 +78,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   onDeleteAccount() {
     if (confirm('Möchtest du sicher den Account löschen?')) {
       this.userService.deleteUser(this.loggedInUser, this.loggedInUser.idUser).subscribe(response => {
-        console.log(response);
         this.auth.logout();
         this.router.navigate(['/home']);
       },

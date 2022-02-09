@@ -1,7 +1,5 @@
 import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
+  HttpClient
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
@@ -23,7 +21,7 @@ import { setAuthHeader, getUrl, getUrlById, handleError } from '../helpers';
 export class CategoryService {
   private model = 'category';
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   /**
    * Gibt eine Kategorie zurück.

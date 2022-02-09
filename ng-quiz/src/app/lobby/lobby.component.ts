@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Quiz } from '../shared/model/quiz.model';
 import { User } from '../shared/model/user.model';
 import { Course } from '../shared/model/course.model';
@@ -18,6 +18,10 @@ import { QuizService } from '../shared/services/quiz.service';
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.css']
 })
+
+/**
+ * Diese Komponente implementiert die Lobby.
+ */
 export class LobbyComponent implements OnInit {
   displayedColumns: string[] = ['name', 'subject', 'category', 'action'];
 
@@ -51,6 +55,9 @@ export class LobbyComponent implements OnInit {
 
   constructor(private auth: AuthService, private userService: UserService, private lobbyService: LobbyService, private courseService: CourseService, private quizService: QuizService, private categoryService: CategoryService) { }
 
+  /**
+   * Initialisiert die Lobby.
+   */
   ngOnInit(): void {
     this.currentUserSub = this.auth.user.subscribe(user => {
       this.loggedInUser = user;
@@ -61,6 +68,9 @@ export class LobbyComponent implements OnInit {
     this.initCourses();
   }
 
+  /**
+   * Initialisiert den aktuellen Benutzer.
+   */
   initCurrentUser() {
     this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
       if (game.length == 1) {
@@ -70,6 +80,9 @@ export class LobbyComponent implements OnInit {
     })
   }
 
+  /**
+   * Initialisiert die Tabelle.
+   */
   initTable() {
     this.openedGamesSub = this.lobbyService.getAllOpenedGames(this.loggedInUser).subscribe(response => {
       this.allQuizes = response;
@@ -81,6 +94,9 @@ export class LobbyComponent implements OnInit {
       });
   }
 
+  /**
+   * Initialisiert die auswählbaren Kursen.
+   */
   initCourses() {
     this.allCoursesSub = this.courseService.all(this.loggedInUser).subscribe(response => {
       const filteredResponse = response.filter(course => course.isActive === true);
@@ -91,9 +107,10 @@ export class LobbyComponent implements OnInit {
       });
   }
 
-
-
-
+  /**
+   * Spiel wird beigetreten.
+   * @param quiz aktuelles Spiel
+   */
   onJoinGame(quiz: Quiz): void {
     this.joinedQuiz = this.lobbyService.joinQuiz(this.loggedInUser, quiz.idQuiz, this.loggedInUser.idUser).subscribe(response => {
       this.initTable();
@@ -104,11 +121,18 @@ export class LobbyComponent implements OnInit {
 
   }
 
+  /**
+   * Selektiert einen Kurs.
+   * @param course selektierter Kurs
+   */
   onSelectCourse(course: Course) {
     this.selectedCourse = course;
     this.initCategories();
   }
 
+  /**
+  * Initialisiert die auswählbaren Kategorien.
+  */
   initCategories() {
     this.selectedCategorySub = this.categoryService.find(this.loggedInUser, this.selectedCourse.id).subscribe(response => {
       this.dataSourceCategories = response;
@@ -118,6 +142,9 @@ export class LobbyComponent implements OnInit {
       });
   }
 
+  /**
+   * Erstellt ein neues Spiel.
+   */
   onCreateGame() {
     this.createdQuiz = this.lobbyService.createQuiz(this.loggedInUser, this.selectedCourse.id, this.selectedCategoryId).subscribe(response => {
       this.initTable();
@@ -131,6 +158,9 @@ export class LobbyComponent implements OnInit {
       });
   }
 
+  /**
+   * Abbrechen und löschen eines Spiels.
+   */
   cancelGame() {
 
     if (confirm('Möchtest du sicher das Spiel abbrechen?')) {

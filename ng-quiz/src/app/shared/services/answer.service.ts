@@ -19,12 +19,12 @@ import {
 /**
  * Klasse zur Verwaltung der Antworten
  *
- * @Vorgang: BI-016, BI-017, BI-018
+ * @Vorgang BI-016, BI-017, BI-018
  */
 export class AnswerService {
   private model = 'answer';
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   /**
    * erstellt eine Antwort.

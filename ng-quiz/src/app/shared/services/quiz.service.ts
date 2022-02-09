@@ -10,9 +10,20 @@ import { User } from '../model/user.model';
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Diese Komponente implementiert den QuizService.
+ */
 export class QuizService {
   constructor(private http: HttpClient) { }
 
+  /**
+   * Ermittelt Fragen zum Modul und Kategorie.
+   * @param loggedInUser eingeloggter Benutzer
+   * @param idSubject ID des Moduls
+   * @param idCategory ID der Kategorie
+   * @returns Questions
+   */
   getQuestions(loggedInUser: User, idSubject: number, idCategory: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
@@ -38,7 +49,12 @@ export class QuizService {
     );
   }
 
-
+  /**
+   * Ermittelt die Antworten zu einer Frage.
+   * @param loggedInUser eingeloggter Benutzer
+   * @param idQuestion ID der Frage
+   * @returns Antworten
+   */
   getAnswers(loggedInUser: User, idQuestion: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
@@ -70,7 +86,11 @@ export class QuizService {
   }
 
 
-
+  /**
+   * Ermittelt das Spiel für einen Spieler
+   * @param loggedInUser eingeloggter Benutzer
+   * @returns aktuelles Spiel
+   */
   getGameByPlayer(loggedInUser: User) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
@@ -110,7 +130,12 @@ export class QuizService {
     );
   }
 
-
+  /**
+   * Beendet ein Spiel.
+   * @param loggedInUser eingeloggter Benutzer
+   * @param idQuiz ID des Quiz
+   * @param pts erreichte Punktzahl
+   */
   finishQuiz(loggedInUser: User, idQuiz: number, pts: number,) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
@@ -122,6 +147,11 @@ export class QuizService {
       );
   }
 
+  /**
+   * Löscht ein Spiel.
+   * @param loggedInUser eingeloggter Benutzer
+   * @param idQuiz ID des Quiz
+   */
   deleteGame(loggedInUser: User, idQuiz: number) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token
@@ -134,6 +164,11 @@ export class QuizService {
   }
 
 
+  /**
+   * Ermittelt die Spielerhistorie
+   * @param loggedInUser eingeloggter Benutzer
+   * @returns Spielerhistorie
+   */
   getPlayerHistory(loggedInUser: User) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + loggedInUser.token

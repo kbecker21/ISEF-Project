@@ -24,7 +24,6 @@ export class AuthService {
    * @param lastname Nachname
    * @param email E-Mail
    * @param password Passwort
-   * @returns xxxxxxxxxxx
    */
   signup(firstname: string, lastname: string, email: string, password: string) {
     return this.http
@@ -46,7 +45,6 @@ export class AuthService {
    * Meldet einen Benutzer an.
    * @param email E-Mail
    * @param password Passwort
-   * @returns xxxxxxxxx
    */
   login(email: string, password: string) {
     return this.http
@@ -74,7 +72,6 @@ export class AuthService {
 
   /**
    * Aktualisiert den Login.
-   * @returns xxxxxxxxxx
    */
   autoLogin() {
     const userData: {
@@ -162,7 +159,7 @@ export class AuthService {
   /**
    * Behandelt Fehlermeldungen
    * @param errorRes Error
-   * @returns xxxxxxx
+   * @returns Fehlermeldung
    */
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
