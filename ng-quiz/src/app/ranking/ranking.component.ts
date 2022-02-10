@@ -51,6 +51,10 @@ export class RankingComponent implements OnInit {
    */
   initTable() {
     this.allSearchUsers = this.rankingService.getRanking(this.loggedInUser).subscribe(response => {
+
+      response = response.sort((a, b) => a.FirstName < b.FirstName);
+      response = response.sort((a, b) => a.LastName < b.LastName);
+      response = response.sort((a, b) => a.TotalPoints < b.TotalPoints);
       this.dataSource = response.sort((a, b) => a.TotalWins < b.TotalWins);
     },
       errorMessage => {
