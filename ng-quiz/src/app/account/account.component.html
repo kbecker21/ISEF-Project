@@ -16,6 +16,7 @@
         <button mat-stroked-button routerLink="/admin" *ngIf="loggedInUser.isAdmin()">Benutzerverwaltung</button>
     </mat-card-actions>
 </mat-card>
+
 <mat-table [dataSource]="dataSource" style="width:calc(100% - 10px)">
 
     <ng-container matColumnDef="date">
@@ -23,13 +24,8 @@
         <mat-cell *matCellDef="let element"> {{element.PlayDate}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="player1">
-        <mat-header-cell *matHeaderCellDef> Spieler 1 </mat-header-cell>
-        <mat-cell *matCellDef="let element"> Du </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="player2">
-        <mat-header-cell *matHeaderCellDef> Spieler 2 </mat-header-cell>
+    <ng-container matColumnDef="opponent">
+        <mat-header-cell *matHeaderCellDef> Gegner </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.OpponentFn}} {{element.OpponentLn}} </mat-cell>
     </ng-container>
 
