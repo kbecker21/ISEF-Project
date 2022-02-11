@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 /**
  * Diese Komponente implementiert den RankingService. 
  * Der Service stellt alle nötigen HTTP-Funktionen zum Abrufen des Rankings bereit.
+ * @Vorgang BI-007
  */
 export class RankingService {
 
@@ -22,6 +23,7 @@ export class RankingService {
    * Ermittelt das Ranking
    * @param loggedInUser eingeloggter Benutzer
    * @returns Ranking
+   *  @Vorgang BI-007
    */
   getRanking(loggedInUser: User) {
     const headers = new HttpHeaders({

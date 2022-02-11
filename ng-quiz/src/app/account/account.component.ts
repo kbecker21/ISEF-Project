@@ -25,6 +25,7 @@ interface PlayerHistory {
 
 /**
  * Diese Komponente implementiert die aktuelle Nutzeransicht.
+ * @Vorgang BI-004, BI-009
  */
 export class AccountComponent implements OnInit, OnDestroy {
 
@@ -41,6 +42,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   /**
    * Initialisiert den aktuellen Benutzer.
+   * @Vorgang BI-004
    */
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -52,6 +54,10 @@ export class AccountComponent implements OnInit, OnDestroy {
       })
   }
 
+  /**
+  * Initialisiert die Tabelle.
+  * @Vorgang BI-009
+  */
   initTable() {
     this.historySub = this.quizService.getPlayerHistory(this.loggedInUser).subscribe(response => {
       this.dataSource = response;
@@ -63,6 +69,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   /**
    * Öffnet ein Dialogfenster mit den aktuellen Nutzerdaten.
+   * @Vorgang BI-004
    */
   openDialog(): void {
     const dialogRef = this.dialog.open(UserEditComponent, {
@@ -74,6 +81,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   /**
    * Nach der Bestätigung wird der Nutzer gelöscht, ausgeloggt und auf die Startseite navigiert.
+   * @Vorgang BI-004
    */
   onDeleteAccount() {
     if (confirm('Möchtest du sicher den Account löschen?')) {
@@ -90,6 +98,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   /**
   * Beendet alle Subscriptions.
+  * @Vorgang BI-004
   */
   ngOnDestroy(): void {
     this.userSub.unsubscribe();

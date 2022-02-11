@@ -15,6 +15,7 @@ import { UserEditComponent } from '../user-edit/user-edit.component';
 
 /**
  *  Diese Komponente implementiert die Benutzerverwaltung.
+ * @Vorgang BI-008
  */
 export class AdminComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'accountLevel', 'actions'];
@@ -33,6 +34,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   /**
    * Initialisiert den aktuellen Benutzer.
    * Initialisiert die Benutzerverwaltungs-Tabelle.
+   * @Vorgang BI-008
    */
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -44,6 +46,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   /**
    * Initialisiert die Tabelle
+   * @Vorgang BI-008
    */
   initTable() {
     this.allUsers = this.userService.getUsers(this.loggedInUser).subscribe(response => {
@@ -57,6 +60,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   /**
   * Öffnet ein Dialogfenster mit den aktuellen Nutzerdaten.
+  * @Vorgang BI-008
   */
   openDialog(element: Users): void {
     const dialogRef = this.dialog.open(UserEditComponent, {
@@ -76,6 +80,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   /**
    * Löscht den Account.
    * @param id Account ID
+   * @Vorgang BI-008
    */
   onDelete(id: number) {
     if (confirm('Möchtest du sicher den Account löschen?')) {
@@ -91,6 +96,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   /**
     * Beendet alle Subscriptions.
+    * @Vorgang BI-008
     */
   ngOnDestroy(): void {
     this.userSub.unsubscribe();

@@ -12,6 +12,7 @@ import { AuthService } from '../shared/services/auth.service';
 
 /**
  * Diese Komponente implementiert Registrierung und Anmeldung.
+ * @Vorgang BI-002, BI-003
  */
 export class AuthComponent implements OnInit {
 
@@ -26,6 +27,7 @@ export class AuthComponent implements OnInit {
 
   /**
   * Initialisiert das Formular.
+  * @Vorgang BI-002, BI-003
   */
   ngOnInit(): void {
     this.route.data.subscribe(
@@ -46,6 +48,7 @@ export class AuthComponent implements OnInit {
 
   /**
    * Sendet Formulardaten an den AuthService. 
+   * @Vorgang BI-002, BI-003
    */
   onSubmit() {
     if (!this.form.valid) {

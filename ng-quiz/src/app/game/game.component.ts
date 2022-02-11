@@ -26,6 +26,7 @@ interface Player2 {
 
 /**
  * Diese Komponente implementiert das Gameplay.
+ * @Vorgang BI-006
  */
 export class GameComponent implements OnInit {
 
@@ -77,6 +78,7 @@ export class GameComponent implements OnInit {
 
   /**
  * Initialisiert das Spiel für den aktuellen Benutzer.
+ * @Vorgang BI-006
  */
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -88,6 +90,7 @@ export class GameComponent implements OnInit {
 
   /**
 * Initialisiert das aktuelle Spiel.
+@Vorgang BI-006
 */
   initGame() {
     this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
@@ -140,6 +143,7 @@ export class GameComponent implements OnInit {
 
   /**
    * Initialisiert die Fragen für das Spiel.
+   * @Vorgang BI-006
    */
   initQuestionsInGame() {
     this.questionSub = this.quizService.getQuestions(this.loggedInUser, this.currentSubjectId, this.currentCategoryId).subscribe(response => {
@@ -167,6 +171,7 @@ export class GameComponent implements OnInit {
   /**
    * Prüft ob alle Daten vorhanden sind.
    * @returns true: wenn alle Daten vorhanden sind; false: falls Daten fehlen
+   * @Vorgang BI-006
    */
   checkAllData() {
     return this.currentQuestion != null && this.currentAnswers != null && this.questions.length >= 10 && this.player1 != null && this.player2 != null;
@@ -175,6 +180,7 @@ export class GameComponent implements OnInit {
   /**
    * Initialisiert die Antworten für eine Frage
    * @param idQuestion Frage ID
+   * @Vorgang BI-006
    */
   initAnswersForQuestion(idQuestion: number) {
     this.answersSub = this.quizService.getAnswers(this.loggedInUser, idQuestion).subscribe(response => {
@@ -189,6 +195,7 @@ export class GameComponent implements OnInit {
   /**
    * Auswahl einer Antwort. Öffnet den Dialog.
    * @param answer ausgewählte Antwort
+   * @Vorgang BI-006
    */
   selectAnswer(answer: Answer) {
     if (answer.Truth == 1) {
@@ -204,6 +211,7 @@ export class GameComponent implements OnInit {
 
   /**
    * Lädt die nächste Frage.
+   * @Vorgang BI-006
    */
   nextQuestion() {
     if (this.questionNumber < 10) {
@@ -217,6 +225,7 @@ export class GameComponent implements OnInit {
 
   /**
    * Beendet das Spiel.
+   * @Vorgang BI-006
    */
   finishGame() {
     this.quizService.finishQuiz(this.loggedInUser, this.currentQuizId, this.currentPlayerPoints).subscribe(response => {
@@ -229,6 +238,7 @@ export class GameComponent implements OnInit {
 
   /**
    * Meldet die Frage an den Server.
+   * @Vorgang BI-006
    */
   onFrageMelden() {
     this.currentQuestion["Flagged"] = 1;
@@ -248,6 +258,7 @@ export class GameComponent implements OnInit {
    * Öffnet den Dialog.
    * @param isCorrect Antwort war korrekt
    * @param answer Antwort Text
+   * @Vorgang BI-006
    */
   openDialog(isCorrect: boolean, answer: string) {
     this.dialog.open(DialogComponent, {

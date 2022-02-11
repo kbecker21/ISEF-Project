@@ -21,6 +21,7 @@ import { QuizService } from '../shared/services/quiz.service';
 
 /**
  * Diese Komponente implementiert die Lobby.
+ * @Vorgang BI-005
  */
 export class LobbyComponent implements OnInit {
   displayedColumns: string[] = ['name', 'subject', 'category', 'action'];
@@ -57,6 +58,7 @@ export class LobbyComponent implements OnInit {
 
   /**
    * Initialisiert die Lobby.
+   * @Vorgang BI-005
    */
   ngOnInit(): void {
     this.currentUserSub = this.auth.user.subscribe(user => {
@@ -70,6 +72,7 @@ export class LobbyComponent implements OnInit {
 
   /**
    * Initialisiert den aktuellen Benutzer.
+   * @Vorgang BI-005
    */
   initCurrentUser() {
     this.quizService.getGameByPlayer(this.loggedInUser).subscribe(game => {
@@ -82,6 +85,7 @@ export class LobbyComponent implements OnInit {
 
   /**
    * Initialisiert die Tabelle.
+   * @Vorgang BI-005
    */
   initTable() {
     this.openedGamesSub = this.lobbyService.getAllOpenedGames(this.loggedInUser).subscribe(response => {
@@ -96,6 +100,7 @@ export class LobbyComponent implements OnInit {
 
   /**
    * Initialisiert die auswählbaren Kursen.
+   * @Vorgang BI-005
    */
   initCourses() {
     this.allCoursesSub = this.courseService.all(this.loggedInUser).subscribe(response => {
@@ -110,6 +115,7 @@ export class LobbyComponent implements OnInit {
   /**
    * Spiel wird beigetreten.
    * @param quiz aktuelles Spiel
+   * @Vorgang BI-005
    */
   onJoinGame(quiz: Quiz): void {
     this.joinedQuiz = this.lobbyService.joinQuiz(this.loggedInUser, quiz.idQuiz, this.loggedInUser.idUser).subscribe(response => {
@@ -124,6 +130,7 @@ export class LobbyComponent implements OnInit {
   /**
    * Selektiert einen Kurs.
    * @param course selektierter Kurs
+   * @Vorgang BI-005
    */
   onSelectCourse(course: Course) {
     this.selectedCourse = course;
@@ -132,6 +139,7 @@ export class LobbyComponent implements OnInit {
 
   /**
   * Initialisiert die auswählbaren Kategorien.
+  * @Vorgang BI-005
   */
   initCategories() {
     this.selectedCategorySub = this.categoryService.find(this.loggedInUser, this.selectedCourse.id).subscribe(response => {
@@ -144,6 +152,7 @@ export class LobbyComponent implements OnInit {
 
   /**
    * Erstellt ein neues Spiel.
+   * @Vorgang BI-005
    */
   onCreateGame() {
     this.createdQuiz = this.lobbyService.createQuiz(this.loggedInUser, this.selectedCourse.id, this.selectedCategoryId).subscribe(response => {
@@ -160,6 +169,7 @@ export class LobbyComponent implements OnInit {
 
   /**
    * Abbrechen und löschen eines Spiels.
+   * @Vorgang BI-005
    */
   cancelGame() {
 

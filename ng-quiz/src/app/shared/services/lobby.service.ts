@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 /**
  * Diese Komponente implementiert den LobbyService. 
  * Der Service stellt alle nötigen HTTP-Funktionen zum Abrufen, Erstellen und Hinzufügen von Benutzern eines Spiels bereit.
+ * @Vorgang BI-005
  */
 export class LobbyService {
 
@@ -22,6 +23,7 @@ export class LobbyService {
    * Ermittelt alle aktuell geöffneten Spiele
    * @param loggedInUser aktuell eingeloggter Benutzer
    * @returns alle offene Spiele
+   * @Vorgang BI-005
    */
   getAllOpenedGames(loggedInUser: User) {
     // get all created Quizeswhere is still no second player
@@ -64,6 +66,7 @@ export class LobbyService {
    * @param subjectId  ID des Moduls
    * @param categoryId  ID der Kategorie
    * @returns Quiz wurde erstellt
+   * @Vorgang BI-005
    */
   createQuiz(loggedInUser: User, subjectId: number, categoryId: number) {
     const headers = new HttpHeaders({
@@ -82,6 +85,7 @@ export class LobbyService {
    * @param idQuiz ID des Quiz
    * @param idJoinerUser ID des hinzugefügten Benutzer
    * @returns Benutzer wurde hinzugefügt
+   * @Vorgang BI-005
    */
   joinQuiz(loggedInUser: User, idQuiz: number, idJoinerUser: number) {
     const headers = new HttpHeaders({

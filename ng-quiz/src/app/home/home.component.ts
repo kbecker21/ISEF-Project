@@ -9,6 +9,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 /**
  * Diese Komponente implementiert die Startseite.
+ * @Vorgang BI-001
  */
 export class HomeComponent {
   name = 'Angular 6';

@@ -11,6 +11,7 @@ import { getUrl } from '../helpers';
 
 /**
  * Diese Komponente implementiert den Auth Service.
+ * @Vorgang BI-002, BI-003
  */
 export class AuthService {
   user = new BehaviorSubject<User>(null);
@@ -24,6 +25,7 @@ export class AuthService {
    * @param lastname Nachname
    * @param email E-Mail
    * @param password Passwort
+   * @Vorgang BI-002, BI-003
    */
   signup(firstname: string, lastname: string, email: string, password: string) {
     return this.http
@@ -45,6 +47,7 @@ export class AuthService {
    * Meldet einen Benutzer an.
    * @param email E-Mail
    * @param password Passwort
+   * @Vorgang BI-002, BI-003
    */
   login(email: string, password: string) {
     return this.http
@@ -72,6 +75,7 @@ export class AuthService {
 
   /**
    * Aktualisiert den Login.
+   * @Vorgang BI-002, BI-003
    */
   autoLogin() {
     const userData: {
@@ -110,6 +114,7 @@ export class AuthService {
  * Meldet den Benutzer ab.
  * Löscht gespeicherte Daten.
  * Navigiert auf Anmeldung.
+ * @Vorgang BI-002, BI-003
  */
   logout() {
     this.user.next(null);
@@ -124,6 +129,7 @@ export class AuthService {
   /**
    * Meldet den Benutzer ab, wenn die Zeit abgelaufen ist.
    * @param expirationDuration 
+   * @Vorgang BI-002, BI-003
    */
   autoLogout(expirationDuration: number) {
     this.tokenExpirationTimer = setTimeout(() => {
@@ -139,6 +145,7 @@ export class AuthService {
    * @param lastName Nachname
    * @param email E-Mail
    * @param accountLevel Account Level 
+   * @Vorgang BI-002, BI-003
    */
   private handleAuthentication(
     token: string,
@@ -160,6 +167,7 @@ export class AuthService {
    * Behandelt Fehlermeldungen
    * @param errorRes Error
    * @returns Fehlermeldung
+   * @Vorgang BI-002, BI-003
    */
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';

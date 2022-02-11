@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 
 /**
  * Diese Komponente implementiert die Fehlermeldung.
+ * @Vorgang BI-002, BI-003
  */
 export class ErrorPageComponent implements OnInit, OnDestroy {
   errorMessage: string;
@@ -19,6 +20,7 @@ export class ErrorPageComponent implements OnInit, OnDestroy {
 
   /**
    * Initialisiert die Fehlermeldung.
+   * @Vorgang BI-002, BI-003
    */
   ngOnInit(): void {
     this.dataSub = this.route.data.subscribe(
@@ -30,6 +32,7 @@ export class ErrorPageComponent implements OnInit, OnDestroy {
 
   /**
   * Beendet alle Subscriptions.
+  * @Vorgang BI-002, BI-003
   */
   ngOnDestroy(): void {
     this.dataSub.unsubscribe();

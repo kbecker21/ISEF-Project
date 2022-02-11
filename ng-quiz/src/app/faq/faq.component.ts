@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 
 /**
  * Diese Komponente implementiert die FAQ.
+ * @Vorgang BI-001
  */
 export class FaqComponent {
   panelOpenState = false;

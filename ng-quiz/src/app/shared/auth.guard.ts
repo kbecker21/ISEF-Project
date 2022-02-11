@@ -14,6 +14,7 @@ import { AuthService } from './services/auth.service';
 @Injectable({ providedIn: 'root' })
 /**
  * Diese Komponente implementiert den AuthGuard. 
+ * @Vorgang BI-002, BI-003
  */
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
@@ -23,6 +24,7 @@ export class AuthGuard implements CanActivate {
    * @param route ActivatedRouteSnapshot
    * @param router RouterStateSnapshot
    * @returns true: wenn Nutzer diese Route benutzen darf; false: wenn nicht
+   * @Vorgang BI-002, BI-003
    */
   canActivate(
     route: ActivatedRouteSnapshot,

@@ -10,6 +10,7 @@ import { AuthService } from '../shared/services/auth.service';
 
 /**
  * Diese Komponente implementiert das Kopfmenü.
+ * @Vorgang BI-001, BI-003
  */
 export class HeaderComponent implements OnInit {
   isAuthenticated = false;
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit {
 
   /**
    * Initialisiert den aktuellen Benutzer.
+   * @Vorgang BI-003
    */
   ngOnInit(): void {
     this.userSub = this.authService.user.subscribe(user => {
@@ -32,6 +34,7 @@ export class HeaderComponent implements OnInit {
 
   /**
    * Meldet den aktuellen Benutzer ab.
+   * @Vorgang BI-003
    */
   onLogout() {
     this.authService.logout();

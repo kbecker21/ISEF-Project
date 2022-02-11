@@ -13,6 +13,7 @@ import { User } from '../model/user.model';
 
 /**
  * Diese Komponente implementiert den QuizService.
+ * @Vorgang BI-006
  */
 export class QuizService {
   constructor(private http: HttpClient) { }
@@ -23,6 +24,7 @@ export class QuizService {
    * @param idSubject ID des Moduls
    * @param idCategory ID der Kategorie
    * @returns Questions
+   * @Vorgang BI-006
    */
   getQuestions(loggedInUser: User, idSubject: number, idCategory: number) {
     const headers = new HttpHeaders({
@@ -54,6 +56,7 @@ export class QuizService {
    * @param loggedInUser eingeloggter Benutzer
    * @param idQuestion ID der Frage
    * @returns Antworten
+   * @Vorgang BI-006
    */
   getAnswers(loggedInUser: User, idQuestion: number) {
     const headers = new HttpHeaders({
@@ -90,6 +93,7 @@ export class QuizService {
    * Ermittelt das Spiel für einen Spieler
    * @param loggedInUser eingeloggter Benutzer
    * @returns aktuelles Spiel
+   * @Vorgang BI-006
    */
   getGameByPlayer(loggedInUser: User) {
     const headers = new HttpHeaders({
@@ -135,6 +139,7 @@ export class QuizService {
    * @param loggedInUser eingeloggter Benutzer
    * @param idQuiz ID des Quiz
    * @param pts erreichte Punktzahl
+   * @Vorgang BI-006
    */
   finishQuiz(loggedInUser: User, idQuiz: number, pts: number,) {
     const headers = new HttpHeaders({
@@ -151,6 +156,7 @@ export class QuizService {
    * Löscht ein Spiel.
    * @param loggedInUser eingeloggter Benutzer
    * @param idQuiz ID des Quiz
+   * @Vorgang BI-006
    */
   deleteGame(loggedInUser: User, idQuiz: number) {
     const headers = new HttpHeaders({
@@ -168,6 +174,7 @@ export class QuizService {
    * Ermittelt die Spielerhistorie
    * @param loggedInUser eingeloggter Benutzer
    * @returns Spielerhistorie
+   * @Vorgang BI-006
    */
   getPlayerHistory(loggedInUser: User) {
     const headers = new HttpHeaders({

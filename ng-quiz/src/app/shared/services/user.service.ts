@@ -14,6 +14,7 @@ import { AuthService } from './auth.service';
 /**
  * Diese Komponente implementiert den UserService. 
  * Der Service stellt alle nötigen HTTP-Funktionen zum Abrufen, Bearbeiten und Löschen von Benutzern bereit.
+ *  @Vorgang BI-004, BI-008
  */
 export class UserService {
 
@@ -24,6 +25,7 @@ export class UserService {
    * @param loggedInUser aktuell eingeloggter Benutzer
    * @param userId Benutzer ID
    * @returns Benutzer
+   *  @Vorgang BI-004, BI-008
    */
   getUser(loggedInUser: User, userId: number) {
     const headers = new HttpHeaders({
@@ -38,6 +40,7 @@ export class UserService {
    * Ermittelt aller Nutzer im System.
    * @param token Der Token vom aktuellen Nutzer.
    * @returns alle Nutzer aus dem System
+   *  @Vorgang BI-004, BI-008
    */
   getUsers(loggedInUser: User) {
     const headers = new HttpHeaders({
@@ -92,7 +95,7 @@ export class UserService {
    * @param loggedInUser eingeloggter User
    * @param user Der Benutzer der aktualisiert werden soll.
    * @param usedController genutzer Controller
-   * @returns xxxxxxxxx
+   *  @Vorgang BI-004, BI-008
    */
   updateUser(loggedInUser: User, user: User, newAccountLevel: number) {
     const headers = new HttpHeaders({
@@ -116,7 +119,7 @@ export class UserService {
    * Löscht einen Benutzer.
    * @param loggedInUser eingeloggter User
    * @param userId Der Benutzer der gelöscht werden soll.
-   * @returns xxxxxxxxx
+   *  @Vorgang BI-004, BI-008
    */
   deleteUser(loggedInUser: User, userId: number) {
     const headers = new HttpHeaders({

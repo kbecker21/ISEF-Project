@@ -24,6 +24,7 @@ export interface DialogData {
 
 /**
  * Diese Komponente implementiert das Benutzer Formular. 
+ * @Vorgang BI-008
  */
 export class UserEditComponent implements OnInit, OnDestroy {
   form: FormGroup;
@@ -42,6 +43,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
   /**
   * Initialisiert den aktuellen Benutzer.
   * Initialisiert das Formular.
+  * @Vorgang BI-008
   */
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -58,6 +60,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
   /**
    * Abrechen der Eingabe. Schließt den Dialog.
+   * @Vorgang BI-008
    */
   onCancel(): void {
     this.dialogRef.close();
@@ -65,6 +68,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
   /**
    * Sendet Daten an Service.
+   * @Vorgang BI-008
    */
   onSubmit(): void {
 
@@ -83,6 +87,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
   /**
   * Beendet alle Subscriptions.
+  * @Vorgang BI-008
   */
   ngOnDestroy(): void {
     this.userSub.unsubscribe();

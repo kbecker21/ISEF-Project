@@ -9,6 +9,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 /**
  * Diese Komponente implementiert Quiz-Antwort-Dialog.
+ * @Vorgang BI-006
  */
 export class DialogComponent implements OnInit {
 

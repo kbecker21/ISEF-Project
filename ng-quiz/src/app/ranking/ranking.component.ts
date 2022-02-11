@@ -22,6 +22,7 @@ interface Ranking {
 
 /**
  * Diese Komponente implementiert die Rangliste.
+ * @Vorgang BI-007
  */
 export class RankingComponent implements OnInit {
 
@@ -37,6 +38,7 @@ export class RankingComponent implements OnInit {
 
   /**
    * Initialisiert die Rangliste
+   * @Vorgang BI-007
    */
   ngOnInit(): void {
     this.userSub = this.auth.user.subscribe(user => {
@@ -48,6 +50,7 @@ export class RankingComponent implements OnInit {
 
   /**
    * Initialisiert die Tabelle
+   * @Vorgang BI-007
    */
   initTable() {
     this.allSearchUsers = this.rankingService.getRanking(this.loggedInUser).subscribe(response => {
