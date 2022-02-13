@@ -11,7 +11,7 @@ class Category extends ResourceController
 
     /**
      * Rückgabe aller Kategorien
-     * @param 
+     * @return mixed[] $data Liefert einen array mit allen categorien und attributen zurück
      * @Vorgang BI-010
      * 
      * */
@@ -25,7 +25,8 @@ class Category extends ResourceController
 
     /**
      * Rückgabe einer Kategorie
-     * @param Categorie ID
+     * @param int $id übergibt die ID der Kategorie
+     * @return mixed[] $data Liefert einen array mit einer categorien und attributen zurück
      * @Vorgang BI-010
      * 
      * */

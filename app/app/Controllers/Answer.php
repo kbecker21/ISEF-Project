@@ -7,13 +7,11 @@ use App\Models\AnswersModel;
 class Answer extends ResourceController {
     use ResponseTrait;
 
-
-
-
     /**
      * Liefert die Antworten für Gefragte Antwort
-     * @param id Question ID
-     * @return Liefert beschreibung, boolean
+     * 
+     * @param int $id übergibt die ID der Frage
+     * @return mixed[] $data Liefert beschreibung, boolean
      * @Vorgang BI-006
      * 
      * */
@@ -34,9 +32,12 @@ class Answer extends ResourceController {
 
     /**
      * Erstellung der Antwort
-     * @param Question_idQuestion, Description and Truth
      * @Vorgang BI-012
+     * @param int $_GET['Question_idQuestion'] Id der Frage
+     * @param string $_GET['Description'] Beschreibung der Antwort
+     * @param int $_GET['Truth'] Gibt an ob die Frage war oder falsch ist
      * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * */
 
     public function create() {
@@ -66,7 +67,9 @@ class Answer extends ResourceController {
 
     /**
      * Aktuellisierung der Antwort
-     * @param Data Array
+     * @param int $id übergibt die ID der Frage
+     * @param mixed[] $rawdata updated alle erhaltenen informationen aus dem array
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-012
      * 
      * */
@@ -93,7 +96,8 @@ class Answer extends ResourceController {
 
     /**
      * Antwort löschen
-     * @param antwort ID
+     * @param int $id übergibt die ID der Frage
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-012
      * 
      * */
@@ -121,7 +125,9 @@ class Answer extends ResourceController {
 
     /**
      * Antwort auf einzigartigkeit geprüfen
-     * @param Question & Antwort ID
+     * @param int $questionID übergibt die ID der Frage
+     * @param int $answerID übergibt die ID der Antwort
+     * @return mixed[] $data Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-012
      * 
      * */
