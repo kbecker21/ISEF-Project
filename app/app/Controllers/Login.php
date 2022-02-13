@@ -10,7 +10,10 @@ class Login extends ResourceController {
 
     /**
      * Anmeldung beim Server
-     * @param email & password
+     * 
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert einen array mit der erfolgsnachricht und User daten
      * @Vorgang BI-003
      * 
      * */ 

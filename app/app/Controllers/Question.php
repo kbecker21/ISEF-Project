@@ -10,7 +10,8 @@ class Question extends ResourceController {
 
     /**
      * Liefert alle Fragen zurück
-     * @return Liefert beschreibung, ersteller
+     * 
+     * @return mixed[] $data Liefert einen array mit allen fragen und attributen zurück
      * @Vorgang BI-012
      * 
      * */
@@ -27,8 +28,10 @@ class Question extends ResourceController {
 
     /**
      * Liefert eine Frage zurück
-     * @param id Question ID
-     * @return Liefert beschreibung, ersteller
+     * 
+     * @param int $id übergibt die ID der Frage
+     * 
+     * @return mixed[] $data Liefert array mit einer Frage zurück
      * @Vorgang BI-012
      * 
      * */
@@ -47,7 +50,11 @@ class Question extends ResourceController {
 
     /**
      * Erstellung der Frage
-     * @param category_idcategory, QuestionDescription, idUser und CreateDate
+     *
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
+     * 
      * @Vorgang BI-012
      * 
      * */
@@ -79,7 +86,13 @@ class Question extends ResourceController {
 
     /**
      * Aktuellisierung die Frage
-     * @param Data Array
+     * 
+     * @param int $id übergibt die ID der Frage
+     * 
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
+     * 
      * @Vorgang BI-012
      * 
      * */
@@ -102,10 +115,13 @@ class Question extends ResourceController {
     }
 
 
-
     /**
      * Löscht eine Frage
-     * @param Data Array
+     * 
+     * @param int $id übergibt die ID der Frage
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
+     * 
      * @Vorgang BI-012
      * 
      * */
@@ -134,8 +150,12 @@ class Question extends ResourceController {
 
     /**
      * Liefert alle Fragen zur einer Kategorie zurück
-     * @param id Question ID
-     * @return Liefert beschreibung, ersteller
+     * 
+     * @param int $id übergibt die ID der Frage
+     * @param int $flagged übergibt die boolean
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
+     * 
      * @Vorgang BI-012
      * 
      * */
@@ -204,8 +224,10 @@ class Question extends ResourceController {
 
     /**
      * Gibt Summer aller Gemeldeten Fragen zurück
-     * @param id Question ID
-     * @return Summer aller meldungen
+     * 
+     * @param int $id übergibt die ID der Frage
+     * 
+     * @return int $count Summer aller gemeldeten fragen
      * @Vorgang BI-013
      * 
      * */
@@ -231,8 +253,10 @@ class Question extends ResourceController {
 
     /**
      * Gibt Fragen vom Hersteller zurück
-     * @param id User
-     * @return Alle Fragen die vom User erstellt worden sind
+     * 
+     * @param int $id übergibt die ID der Frage
+     * 
+     * @return @return mixed[] $data Liefert array mit allen Fragen von einem user zurück
      * @Vorgang BI-012
      * 
      * */

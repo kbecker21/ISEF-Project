@@ -45,7 +45,8 @@ class Category extends ResourceController
 
     /**
      * Rückgabe aller Kategorien von einem Kurs
-     * @param Subject ID
+     * @param int $id übergibt die ID des Modules
+     * @return mixed[] $data Liefert einen array mit einer categorien und attributen zurück
      * @Vorgang BI-010
      * 
      * */
@@ -63,7 +64,10 @@ class Category extends ResourceController
 
     /**
      * Erstellung einer Kategorien
-     * @param Subject_idSubject, Name, idUser und Erstellungsdatum
+     * 
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert einen array mit der erfolgsnachricht
      * @Vorgang BI-010
      * 
      * */
@@ -95,7 +99,10 @@ class Category extends ResourceController
 
     /**
      * Aktuellisierung einer Kategorien
-     * @param Data Array
+     * @param int $id übergibt die ID der Kategorie
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert einen array mit der erfolgsnachricht
      * @Vorgang BI-010
      * 
      * */
@@ -120,7 +127,8 @@ class Category extends ResourceController
    
     /**
      * Löschen einer Kategorien
-     * @param Category ID
+     * @param int $id übergibt die ID der Kategorie
+     * @return mixed[] $response Liefert einen array mit der erfolgsnachricht
      * @Vorgang BI-010
      * 
      * */

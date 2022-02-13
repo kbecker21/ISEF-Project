@@ -15,7 +15,6 @@ class Answer extends ResourceController {
      * @Vorgang BI-006
      * 
      * */
-
     public function show($id = null){
 
         $model = new AnswersModel();
@@ -33,13 +32,10 @@ class Answer extends ResourceController {
     /**
      * Erstellung der Antwort
      * @Vorgang BI-012
-     * @param int $_GET['Question_idQuestion'] Id der Frage
-     * @param string $_GET['Description'] Beschreibung der Antwort
-     * @param int $_GET['Truth'] Gibt an ob die Frage war oder falsch ist
+     * @Input Daten aus Get-Request
      * 
      * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * */
-
     public function create() {
 
         $model = new AnswersModel();
@@ -68,7 +64,8 @@ class Answer extends ResourceController {
     /**
      * Aktuellisierung der Antwort
      * @param int $id übergibt die ID der Frage
-     * @param mixed[] $rawdata updated alle erhaltenen informationen aus dem array
+     * @Input Daten aus Get-Request
+     * 
      * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-012
      * 
@@ -90,9 +87,7 @@ class Answer extends ResourceController {
           ]
       ];
       return $this->respond($response);
-    }
-
-   
+    }   
 
     /**
      * Antwort löschen

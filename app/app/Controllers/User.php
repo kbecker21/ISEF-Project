@@ -11,9 +11,11 @@ use Exception;
 class User extends ResourceController {
     use ResponseTrait;
 
+
     /**
      * Liefert alle User zurück
-     * @return FirstName, LastName, Email, Password, CreateDate, Status und AccountLevel_idAccountLevel
+     * 
+     * @return mixed[] $data Liefert einen array mit allen Usern und attributen zurück
      * @Vorgang BI-008
      * 
      * */
@@ -27,7 +29,10 @@ class User extends ResourceController {
 
     /**
      * Liefert einen User zurück
-     * @return FirstName, LastName, Email, Password, CreateDate, Status und AccountLevel_idAccountLevel
+     * 
+     * @param int $id übergibt die ID eines Users
+     * 
+     * @return mixed[] $data Liefert einen array mit allen Usern und attributen zurück
      * @Vorgang BI-008
      * 
      * */
@@ -45,7 +50,10 @@ class User extends ResourceController {
 
     /**
      * Erstellung eines Users
-     * @param FirstName, LastName, Email, Password, CreateDate, Status und AccountLevel_idAccountLevel
+     * 
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-008
      * 
      * */
@@ -79,7 +87,10 @@ class User extends ResourceController {
 
     /**
      * Aktualisierung eines Users
-     * @param data array
+     * @param int $id übergibt die ID des Users
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-008
      * 
      * */
@@ -105,10 +116,13 @@ class User extends ResourceController {
     }
 
 
-
     /**
      * Löschen eines Users
-     * @param id subject
+     * 
+     * @param int $id übergibt die ID des Users
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
+     * 
      * @Vorgang BI-008
      * 
      * */

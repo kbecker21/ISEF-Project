@@ -11,10 +11,14 @@ class Register extends ResourceController {
 
     /**
      * Registrierung eines neues Unsers
-     * @param firstname, lastname, email, password, CreateDate, status, AccountLevel_idAccountLevel
-     * @Vorgang BI-002
+     *
+     * @Input Daten aus Get-Request
      * 
-     * */ 
+     * @return mixed[] $registered Liefert Daten vom registierten Benutzer
+     * 
+     * @Vorgang BI-012
+     * 
+     * */
     public function index() {
         helper(['form']);
 

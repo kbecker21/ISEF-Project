@@ -9,10 +9,11 @@ use App\Models\AnswersModel;
 class Students extends ResourceController {
     use ResponseTrait;
 
-     /**
+    /**
      * Liefert die Antworten für Gefragte Antwort
-     * @param id Question ID
-     * @return Liefert beschreibung, boolean
+     * 
+     * @param int $id übergibt die ID der Frage
+     * @return mixed[] $data Liefert beschreibung, boolean
      * @Vorgang BI-006
      * 
      * */
@@ -30,10 +31,12 @@ class Students extends ResourceController {
     }
 
     /**
-     * Liefert ein einen Benutzer zurück
-     * @param id Question ID
-     * @return Liefert beschreibung, boolean
-     * @Vorgang BI-004
+     * Liefert einen User zurück
+     * 
+     * @param int $id übergibt die ID eines Users
+     * 
+     * @return mixed[] $data Liefert einen array mit allen Usern und attributen zurück
+     * @Vorgang BI-008
      * 
      * */
     public function getUser($id = null){
@@ -51,8 +54,8 @@ class Students extends ResourceController {
         
     /**
      * Liefert alle Module zurück
-     * @param 
-     * @return Liefert Name, Creator zurück
+     * 
+     * @return mixed[] $data Liefert einen array mit allen Modulen und attributen zurück
      * @Vorgang BI-010
      * 
      * */
@@ -67,9 +70,9 @@ class Students extends ResourceController {
     }
 
     /**
-     * Liefert ein Module zurück
-     * @param 
-     * @return Liefert Name, Creator zurück
+     * Liefert alle Module zurück
+     * 
+     * @return mixed[] $data Liefert einen array mit allen Modulen und attributen zurück
      * @Vorgang BI-010
      * 
      * */
@@ -87,8 +90,8 @@ class Students extends ResourceController {
 
     /**
      * Liefert alle User zurück
-     * @param 
-     * @return Liefert FirstName, LastName und Email zurück
+     * 
+     * @return mixed[] $data Liefert einen array mit allen Usern und attributen zurück
      * @Vorgang BI-004
      * 
      * */

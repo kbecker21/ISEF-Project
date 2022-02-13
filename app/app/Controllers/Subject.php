@@ -10,8 +10,8 @@ class Subject extends ResourceController {
         
     /**
      * Liefert alle Module zurück
-     * @param 
-     * @return Liefert Name, Creator zurück
+     * 
+     * @return mixed[] $data Liefert einen array mit allen Modulen und attributen zurück
      * @Vorgang BI-010
      * 
      * */
@@ -25,10 +25,13 @@ class Subject extends ResourceController {
       return $this->respond($data);
     }
 
+
     /**
      * Liefert ein Module zurück
-     * @param 
-     * @return Liefert Name, Creator zurück
+     * @param int $id übergibt die ID des modules
+     * 
+     * @return mixed[] $data Liefert einen array mit einer categorien und attributen zurück
+     * 
      * @Vorgang BI-010
      * 
      * */
@@ -44,10 +47,12 @@ class Subject extends ResourceController {
         }
     }
 
-    
     /**
      * Erstellung des Module
-     * @param ShortName, name, creator, active und CreateDate
+     * 
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-010
      * 
      * */
@@ -79,10 +84,12 @@ class Subject extends ResourceController {
 
     }
 
-
     /**
      * Aktualisierung des Module
-     * @param data array
+     * @param int $id übergibt die ID des modules
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-010
      * 
      * */
@@ -105,10 +112,13 @@ class Subject extends ResourceController {
       return $this->respond($response);
     }
 
-   
-    /**
+     /**
      * Löschen eines Module
-     * @param id subject
+     * 
+     * @param int $id übergibt die ID des modules
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
+     * 
      * @Vorgang BI-010
      * 
      * */

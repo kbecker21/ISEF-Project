@@ -9,10 +9,10 @@ use App\Models\QuestionModel;
 class Quiz extends ResourceController {
     use ResponseTrait;
 
-        
     /**
-     * Liefert alle Quiz zurück
-     * @return idQuiz, PlayDate, idSubject, idcategory, CategoryName, SubjectName, Creator_idUser, FirstName, LastName, Joiner_idUser1
+     * Liefert alle Module zurück
+     * 
+     * @return mixed[] $data Liefert einen array mit allen quizes und attributen zurück
      * @Vorgang BI-008
      * 
      * */
@@ -32,10 +32,12 @@ class Quiz extends ResourceController {
         }
     }
 
-
     /**
      * Erstellung eine Quiz
-     * @param Subject_idSubject, category_idcategory, Creator_idUser und PlayDate
+     * 
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-005
      * 
      * */
@@ -64,10 +66,12 @@ class Quiz extends ResourceController {
       return $this->respondCreated($response);
 
     }
-
     /**
-     * Erstellung der Resultate
-     * @param User_idUser, Quiz_idQuiz, Points.
+     * Erstellung eine Resultate
+     * 
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-007
      * 
      * */
@@ -100,7 +104,11 @@ class Quiz extends ResourceController {
 
     /**
      * Aktualisierung des Quiz
-     * @param Data array
+     * 
+     * @param int $id übergibt die ID des Quiz
+     * @Input Daten aus Get-Request
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
      * @Vorgang BI-005
      * 
      * */
@@ -122,11 +130,13 @@ class Quiz extends ResourceController {
       return $this->respond($response);
     }
 
-
     /**
      * Liefert zufällige Fragen von einem Module and Kategorie zurück
-     * @param ID Subjekt & Category
-     * @return Liefert idQuestion, category_idcategory, Subject_idSubject, QuestionDescription
+     * 
+     * @param int $idSubject übergibt die ID des Modules
+     * @param int $idCategory übergibt die ID der Kategorie
+     * 
+     * @return mixed[] $data Liefert 10 zufällige Fragen mit attribute zurück
      * @Vorgang BI-006
      * 
      * */
@@ -150,8 +160,11 @@ class Quiz extends ResourceController {
 
     /**
      * Liefert aktuelles spiel zurück
-     * @param ID User
-     * @return Liefert idQuiz, PlayDate, idSubject, SubjectName, idcategory, CategoryName, Creator_idUser, FirstName, LastName, Joiner_idUser1, FinishCreator, FinishJoiner
+     * 
+     * @param int $id übergibt die ID des Users
+     * 
+     * @return mixed[] $data Liefert einen array mit einem Quiz und attributen zurück
+     * 
      * @Vorgang BI-006
      * 
      * */
@@ -174,10 +187,10 @@ class Quiz extends ResourceController {
         }
     }
 
-
     /**
      * Liefert alle Ergebnisse der User zurück
-     * @return User_idUser, FirstName, LastName, TotalPoints, TotalWins
+     * 
+     * @return mixed[] $data Liefert einen array mit allen Usern und deren Ergebnisse zurück
      * @Vorgang BI-007
      * 
      * */
@@ -205,12 +218,16 @@ class Quiz extends ResourceController {
         }
     }
 
-        /**
-         * Löschen eines Quiz (Abbrechen)
-         * @param id subject
-         * @Vorgang BI-008
-         * 
-         * */ 
+     /**
+     * Löschen eines Quiz (Abbrechen)
+     * 
+     * @param int $id übergibt die ID des Quizes
+     * 
+     * @return mixed[] $response Liefert Erfolgsnachricht als array zurück
+     * 
+     * @Vorgang BI-008
+     * 
+     * */
         public function delete($id = null){
 
             $ResultsModel = new ResultsModel();
@@ -234,10 +251,12 @@ class Quiz extends ResourceController {
             }
         }
 
-    /**
+     /**
      * Liefert alle Ergebnisse der User zurück
-     * @return PlayDate, OpponentFn, OpponentLn, Points, Winner
-     * @Vorgang BI-009
+     * 
+     * @return mixed[] $data Liefert einen array mit allen Quiz und attributen von einem User zurück
+     * 
+     * @Vorgang BI-008
      * 
      * */
     public function getPlayerHistory(){
@@ -304,9 +323,12 @@ class Quiz extends ResourceController {
              
         }
     }
+    
     /**
      * Spiel als beendet markieren
-     * @param Data array
+     * 
+     * @param mixed[] $array übergibt array mit resulatsdaten
+     * 
      * @Vorgang BI-015
      * 
      * */
