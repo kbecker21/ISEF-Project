@@ -5,11 +5,13 @@ use App\Models\UserModel;
 use Firebase\JWT\JWT;
  
 class Me extends ResourceController {
+
     /**
-     * Return an array of resource objects, themselves in array format
-     *
-     * @return mixed
-     */
+     * Benutzerinformation von der Angemeldeten Person
+     * @param 
+     * @Vorgang BI-004
+     * 
+     * */ 
     use ResponseTrait;
     public function index() {
         

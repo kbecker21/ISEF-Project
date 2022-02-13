@@ -8,7 +8,13 @@ class Category extends ResourceController
 {
     use ResponseTrait;
 
-    // all Categorys
+
+    /**
+     * Rückgabe aller Kategorien
+     * @param 
+     * @Vorgang BI-010
+     * 
+     * */
     public function index(){
 
       $model = new CategoryModel();
@@ -17,7 +23,12 @@ class Category extends ResourceController
       return $this->respond($data);
     }
 
-    // single Category
+    /**
+     * Rückgabe einer Kategorie
+     * @param Categorie ID
+     * @Vorgang BI-010
+     * 
+     * */
     public function show($id = null){
 
         $model = new CategoryModel();
@@ -30,7 +41,13 @@ class Category extends ResourceController
         }
     }
 
-    // Category of course
+
+    /**
+     * Rückgabe aller Kategorien von einem Kurs
+     * @param Subject ID
+     * @Vorgang BI-010
+     * 
+     * */
     public function showcourse($id = null){
 
         $model = new CategoryModel();
@@ -43,7 +60,12 @@ class Category extends ResourceController
         }
     }
 
-    // create
+    /**
+     * Erstellung einer Kategorien
+     * @param Subject_idSubject, Name, idUser und Erstellungsdatum
+     * @Vorgang BI-010
+     * 
+     * */
     public function create() {
 
         $model = new CategoryModel();
@@ -70,7 +92,12 @@ class Category extends ResourceController
 
     }
 
-    // update
+    /**
+     * Aktuellisierung einer Kategorien
+     * @param Data Array
+     * @Vorgang BI-010
+     * 
+     * */
     public function update($id = null){
         $model = new CategoryModel();
 
@@ -90,8 +117,12 @@ class Category extends ResourceController
     }
 
    
-
-    // delete 
+    /**
+     * Löschen einer Kategorien
+     * @param Category ID
+     * @Vorgang BI-010
+     * 
+     * */
     public function delete($id = null){
 
         $model = new CategoryModel();

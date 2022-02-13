@@ -11,7 +11,12 @@ use Exception;
 class User extends ResourceController {
     use ResponseTrait;
 
-    // all users
+    /**
+     * Liefert alle User zurück
+     * @return FirstName, LastName, Email, Password, CreateDate, Status und AccountLevel_idAccountLevel
+     * @Vorgang BI-008
+     * 
+     * */
     public function index(){
 
       $model = new UserModel();
@@ -20,7 +25,12 @@ class User extends ResourceController {
       return $this->respond($data);
     }
 
-    // single user
+    /**
+     * Liefert einen User zurück
+     * @return FirstName, LastName, Email, Password, CreateDate, Status und AccountLevel_idAccountLevel
+     * @Vorgang BI-008
+     * 
+     * */
     public function show($id = null){
 
         $model = new UserModel();
@@ -33,7 +43,12 @@ class User extends ResourceController {
         }
     }
 
-    // create
+    /**
+     * Erstellung eines Users
+     * @param FirstName, LastName, Email, Password, CreateDate, Status und AccountLevel_idAccountLevel
+     * @Vorgang BI-008
+     * 
+     * */
     public function create() {
 
         $model = new UserModel();
@@ -62,7 +77,12 @@ class User extends ResourceController {
 
     }
 
-    // update
+    /**
+     * Aktualisierung eines Users
+     * @param data array
+     * @Vorgang BI-008
+     * 
+     * */
     public function update($id = null){
 
         $model = new UserModel();
@@ -86,7 +106,12 @@ class User extends ResourceController {
 
 
 
-    // delete 
+    /**
+     * Löschen eines Users
+     * @param id subject
+     * @Vorgang BI-008
+     * 
+     * */
     public function delete($id = null){
 
         $model = new UserModel();

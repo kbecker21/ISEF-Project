@@ -7,29 +7,17 @@ use App\Models\AnswersModel;
 class Answer extends ResourceController {
     use ResponseTrait;
 
-    /* all Answerss
-    public function index(){
 
-      $model = new AnswersModel();
 
-      $data['Answers'] = $model->orderBy('idAnswers', 'DESC')->findAll();
-      return $this->respond($data);
-    }
 
-     single Answers
-    public function show($id = null){
+    /**
+     * Liefert die Antworten für Gefragte Antwort
+     * @param id Question ID
+     * @return Liefert beschreibung, boolean
+     * @Vorgang BI-006
+     * 
+     * */
 
-        $model = new AnswersModel();
-
-        $data = $model->find($id);
-        if($data){
-            return $this->respond($data);
-        }else{
-            return $this->failNotFound('No Answers found');
-        }
-    }*/
-
-    // Answers by question
     public function show($id = null){
 
         $model = new AnswersModel();
@@ -43,7 +31,14 @@ class Answer extends ResourceController {
         }
     }
 
-    // create
+
+    /**
+     * Erstellung der Antwort
+     * @param Question_idQuestion, Description and Truth
+     * @Vorgang BI-012
+     * 
+     * */
+
     public function create() {
 
         $model = new AnswersModel();
@@ -69,7 +64,12 @@ class Answer extends ResourceController {
 
     }
 
-    // update
+    /**
+     * Aktuellisierung der Antwort
+     * @param Data Array
+     * @Vorgang BI-012
+     * 
+     * */
     public function update($id = null){
 
         $model = new AnswersModel();
@@ -91,7 +91,12 @@ class Answer extends ResourceController {
 
    
 
-    // delete 
+    /**
+     * Antwort löschen
+     * @param antwort ID
+     * @Vorgang BI-012
+     * 
+     * */
     public function delete($id = null){
 
         $model = new AnswersModel();
@@ -113,6 +118,13 @@ class Answer extends ResourceController {
         }
     }
 
+
+    /**
+     * Antwort auf einzigartigkeit geprüfen
+     * @param Question & Antwort ID
+     * @Vorgang BI-012
+     * 
+     * */
     public function checkForUnique($questionID, $answerID){
 
         $model = new AnswersModel();

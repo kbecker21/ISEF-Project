@@ -9,7 +9,13 @@ use App\Models\AnswersModel;
 class Students extends ResourceController {
     use ResponseTrait;
 
-        // Answers by question
+     /**
+     * Liefert die Antworten für Gefragte Antwort
+     * @param id Question ID
+     * @return Liefert beschreibung, boolean
+     * @Vorgang BI-006
+     * 
+     * */
     public function showAnswers($id = null){
 
         $model = new AnswersModel();
@@ -23,7 +29,13 @@ class Students extends ResourceController {
         }
     }
 
-
+    /**
+     * Liefert ein einen Benutzer zurück
+     * @param id Question ID
+     * @return Liefert beschreibung, boolean
+     * @Vorgang BI-004
+     * 
+     * */
     public function getUser($id = null){
 
         $model = new UserModel();
@@ -37,7 +49,13 @@ class Students extends ResourceController {
     }
 
         
-    // all Subjects
+    /**
+     * Liefert alle Module zurück
+     * @param 
+     * @return Liefert Name, Creator zurück
+     * @Vorgang BI-010
+     * 
+     * */
     public function index(){
         
       $model = new SubjectModel();
@@ -48,7 +66,13 @@ class Students extends ResourceController {
       return $this->respond($data);
     }
 
-    // single Subject
+    /**
+     * Liefert ein Module zurück
+     * @param 
+     * @return Liefert Name, Creator zurück
+     * @Vorgang BI-010
+     * 
+     * */
     public function show($id = null){
 
         $model = new SubjectModel();
@@ -61,7 +85,14 @@ class Students extends ResourceController {
         }
     }
 
-       public function getAllUser(){
+    /**
+     * Liefert alle User zurück
+     * @param 
+     * @return Liefert FirstName, LastName und Email zurück
+     * @Vorgang BI-004
+     * 
+     * */
+    public function getAllUser(){
 
         $model = new UserModel();
         $model->select('idUser, FirstName, LastName, Email');

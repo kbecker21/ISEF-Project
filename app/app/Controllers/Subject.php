@@ -8,7 +8,13 @@ class Subject extends ResourceController {
     use ResponseTrait;
 
         
-    // all Subjects
+    /**
+     * Liefert alle Module zurück
+     * @param 
+     * @return Liefert Name, Creator zurück
+     * @Vorgang BI-010
+     * 
+     * */
     public function index(){
         
       $model = new SubjectModel();
@@ -19,7 +25,13 @@ class Subject extends ResourceController {
       return $this->respond($data);
     }
 
-    // single Subject
+    /**
+     * Liefert ein Module zurück
+     * @param 
+     * @return Liefert Name, Creator zurück
+     * @Vorgang BI-010
+     * 
+     * */
     public function show($id = null){
 
         $model = new SubjectModel();
@@ -33,7 +45,12 @@ class Subject extends ResourceController {
     }
 
     
-    // create
+    /**
+     * Erstellung des Module
+     * @param ShortName, name, creator, active und CreateDate
+     * @Vorgang BI-010
+     * 
+     * */
     public function create() {
 
         $model = new SubjectModel();
@@ -42,7 +59,7 @@ class Subject extends ResourceController {
         $data = [
             'ShortName'  => $this->request->getVar('ShortName'),
             'Name' => $this->request->getVar('Name'),
-            'Creator_idUser' => $session->get('idUser'), //NEED to come from session ID!!!!
+            'Creator_idUser' => $session->get('idUser'), 
             'Active'  => $this->request->getVar('Active'),
             'CreateDate'  => date("Y-m-d H:i:s")
         ];
@@ -63,9 +80,12 @@ class Subject extends ResourceController {
     }
 
 
-
-
-    // update
+    /**
+     * Aktualisierung des Module
+     * @param data array
+     * @Vorgang BI-010
+     * 
+     * */
     public function update($id = null){
 
         $model = new SubjectModel();
@@ -86,8 +106,12 @@ class Subject extends ResourceController {
     }
 
    
-
-    // delete 
+    /**
+     * Löschen eines Module
+     * @param id subject
+     * @Vorgang BI-010
+     * 
+     * */
     public function delete($id = null){
 
         $model = new SubjectModel();

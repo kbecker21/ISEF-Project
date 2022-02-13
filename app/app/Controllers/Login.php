@@ -7,6 +7,13 @@ use \Firebase\JWT\JWT;
 class Login extends ResourceController {
     use ResponseTrait;
      
+
+    /**
+     * Anmeldung beim Server
+     * @param email & password
+     * @Vorgang BI-003
+     * 
+     * */ 
     public function index() {
         $userModel = new UserModel();
   

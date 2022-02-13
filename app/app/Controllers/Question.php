@@ -8,7 +8,12 @@ use App\Models\CategoryModel;
 class Question extends ResourceController {
     use ResponseTrait;
 
-    // all Questions
+    /**
+     * Liefert alle Fragen zurück
+     * @return Liefert beschreibung, ersteller
+     * @Vorgang BI-012
+     * 
+     * */
     public function index(){
 
       $QuestionModel = new QuestionModel();
@@ -20,7 +25,13 @@ class Question extends ResourceController {
     }
 
 
-    // single Question
+    /**
+     * Liefert eine Frage zurück
+     * @param id Question ID
+     * @return Liefert beschreibung, ersteller
+     * @Vorgang BI-012
+     * 
+     * */
     public function show($id = null){
 
         $QuestionModel = new QuestionModel();
@@ -34,7 +45,12 @@ class Question extends ResourceController {
         }
     }
 
-    // create
+    /**
+     * Erstellung der Frage
+     * @param category_idcategory, QuestionDescription, idUser und CreateDate
+     * @Vorgang BI-012
+     * 
+     * */
     public function create() {
         $QuestionModel = new QuestionModel(); 
         $session = session();
@@ -61,7 +77,12 @@ class Question extends ResourceController {
 
     }
 
-    // update
+    /**
+     * Aktuellisierung die Frage
+     * @param Data Array
+     * @Vorgang BI-012
+     * 
+     * */
     public function update($id = null){
         $QuestionModel = new QuestionModel(); 
         
@@ -82,7 +103,12 @@ class Question extends ResourceController {
 
 
 
-    // delete 
+    /**
+     * Löscht eine Frage
+     * @param Data Array
+     * @Vorgang BI-012
+     * 
+     * */
     public function delete($id = null){
 
         $QuestionModel = new QuestionModel(); 
@@ -106,7 +132,13 @@ class Question extends ResourceController {
         }
     }
 
-    // Questions by Course
+    /**
+     * Liefert alle Fragen zur einer Kategorie zurück
+     * @param id Question ID
+     * @return Liefert beschreibung, ersteller
+     * @Vorgang BI-012
+     * 
+     * */
     public function showbycourse($id = null, $flagged = null){
 
         $QuestionModel = new QuestionModel();
@@ -169,7 +201,14 @@ class Question extends ResourceController {
     }
 
 
-    // Count Flagged Questions
+
+    /**
+     * Gibt Summer aller Gemeldeten Fragen zurück
+     * @param id Question ID
+     * @return Summer aller meldungen
+     * @Vorgang BI-013
+     * 
+     * */
     public function countFlaggedQuestions($id = null) {
         $QuestionModel = new QuestionModel();        
         $CategoryModel = new CategoryModel();
@@ -190,7 +229,13 @@ class Question extends ResourceController {
     }
 
 
-    // Category of course
+    /**
+     * Gibt Fragen vom Hersteller zurück
+     * @param id User
+     * @return Alle Fragen die vom User erstellt worden sind
+     * @Vorgang BI-012
+     * 
+     * */
     public function getQuestionByCreator($id = null){
 
         $model = new QuestionModel();

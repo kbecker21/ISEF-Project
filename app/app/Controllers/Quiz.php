@@ -10,7 +10,12 @@ class Quiz extends ResourceController {
     use ResponseTrait;
 
         
-    // all Quizs
+    /**
+     * Liefert alle Quiz zurück
+     * @return idQuiz, PlayDate, idSubject, idcategory, CategoryName, SubjectName, Creator_idUser, FirstName, LastName, Joiner_idUser1
+     * @Vorgang BI-008
+     * 
+     * */
     public function index(){
         
       $model = new QuizModel();
@@ -28,7 +33,12 @@ class Quiz extends ResourceController {
     }
 
 
-    // create
+    /**
+     * Erstellung eine Quiz
+     * @param Subject_idSubject, category_idcategory, Creator_idUser und PlayDate
+     * @Vorgang BI-005
+     * 
+     * */
     public function create() {
 
         $model = new QuizModel();
@@ -55,7 +65,12 @@ class Quiz extends ResourceController {
 
     }
 
-    // postResults
+    /**
+     * Erstellung der Resultate
+     * @param User_idUser, Quiz_idQuiz, Points.
+     * @Vorgang BI-007
+     * 
+     * */
     public function postResult() {
 
         $modelResult = new ResultsModel();
@@ -83,8 +98,12 @@ class Quiz extends ResourceController {
 
     }
 
-
-        // update
+    /**
+     * Aktualisierung des Quiz
+     * @param Data array
+     * @Vorgang BI-005
+     * 
+     * */
     public function update($id = null){
 
         $model = new QuizModel();
@@ -104,7 +123,13 @@ class Quiz extends ResourceController {
     }
 
 
-        // getQuestions
+    /**
+     * Liefert zufällige Fragen von einem Module and Kategorie zurück
+     * @param ID Subjekt & Category
+     * @return Liefert idQuestion, category_idcategory, Subject_idSubject, QuestionDescription
+     * @Vorgang BI-006
+     * 
+     * */
     public function getQuestions($idSubject = null, $idCategory = null){
 
         $model = new QuestionModel();
@@ -119,11 +144,17 @@ class Quiz extends ResourceController {
         if($data){
             return $this->respond($data);
         }else{
-            return $this->failNotFound('No User found');
+            return $this->failNotFound('No quiz found');
         }
     }
 
-        // getGameByPlayer
+    /**
+     * Liefert aktuelles spiel zurück
+     * @param ID User
+     * @return Liefert idQuiz, PlayDate, idSubject, SubjectName, idcategory, CategoryName, Creator_idUser, FirstName, LastName, Joiner_idUser1, FinishCreator, FinishJoiner
+     * @Vorgang BI-006
+     * 
+     * */
     public function getGameByPlayer($id = null){
       $model = new QuizModel();
       $model->select('quiz.idQuiz, quiz.PlayDate, subject.idSubject, subject.Name AS SubjectName,category.idcategory, category.Name AS CategoryName,  quiz.Creator_idUser, user.FirstName, user.LastName, quiz.Joiner_idUser1, quiz.FinishCreator, quiz.FinishJoiner');
@@ -144,7 +175,12 @@ class Quiz extends ResourceController {
     }
 
 
-
+    /**
+     * Liefert alle Ergebnisse der User zurück
+     * @return User_idUser, FirstName, LastName, TotalPoints, TotalWins
+     * @Vorgang BI-007
+     * 
+     * */
     public function getRanking(){
 
         $this->updateWinner();
@@ -169,7 +205,12 @@ class Quiz extends ResourceController {
         }
     }
 
-        // delete 
+        /**
+         * Löschen eines Quiz (Abbrechen)
+         * @param id subject
+         * @Vorgang BI-008
+         * 
+         * */ 
         public function delete($id = null){
 
             $ResultsModel = new ResultsModel();
@@ -193,6 +234,12 @@ class Quiz extends ResourceController {
             }
         }
 
+    /**
+     * Liefert alle Ergebnisse der User zurück
+     * @return PlayDate, OpponentFn, OpponentLn, Points, Winner
+     * @Vorgang BI-009
+     * 
+     * */
     public function getPlayerHistory(){
       $model = new ResultsModel();
       $session = session();
@@ -211,6 +258,12 @@ class Quiz extends ResourceController {
         }
     }
 
+    /**
+     * Gewinner updaten
+     * 
+     * @Vorgang BI-014
+     * 
+     * */
     private function updateWinner() {
 
         $ResultsModel = new ResultsModel();
@@ -251,7 +304,12 @@ class Quiz extends ResourceController {
              
         }
     }
-
+    /**
+     * Spiel als beendet markieren
+     * @param Data array
+     * @Vorgang BI-015
+     * 
+     * */
     private function finishGame($array) {
     
       $model = new QuizModel();
